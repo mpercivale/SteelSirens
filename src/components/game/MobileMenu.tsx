@@ -31,14 +31,14 @@ export default function MobileMenu() {
       {/* Current Page Button */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        className="text-white bg-gray-800 px-4 py-2 rounded-md"
+        className="text-white bg-gray-800 px-4 py-2 rounded-md w-full text-left"
       >
         {currentPage}
       </button>
 
       {/* Dropdown Menu */}
       {menuOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md">
+        <div className="absolute right-0 mt-2 w-full bg-white shadow-lg rounded-md z-50">
           {pages.map((page) => (
             <Link
               key={page.path}
@@ -56,13 +56,13 @@ export default function MobileMenu() {
       <div className="mt-4">
         <button
           onClick={() => setLanguageMenuOpen(!languageMenuOpen)}
-          className="text-white bg-gray-800 px-4 py-2 rounded-md"
+          className="text-white bg-gray-800 px-4 py-2 rounded-md w-full text-left"
         >
           Language
         </button>
 
         {languageMenuOpen && (
-          <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md">
+          <div className="absolute right-0 mt-2 w-full bg-white shadow-lg rounded-md z-50">
             {languages.map((lang) => (
               <button
                 key={lang.code}
