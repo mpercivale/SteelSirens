@@ -1,10 +1,10 @@
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Noto_Serif_JP } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import GlobalClientEffects from "@/components/GlobalClientEffects";
 import "./globals.css";
+import MobileMenu from "@/components/game/MobileMenu";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,7 +43,12 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          {children}
+          <div className="relative">
+            <header className="fixed top-0 right-0 p-4">
+              <MobileMenu />
+            </header>
+            <main>{children}</main>
+          </div>
           <GlobalClientEffects />
         </ThemeProvider>
       </body>
