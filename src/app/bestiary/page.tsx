@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Navbar } from "@/components/game/Navbar";
@@ -6,12 +5,13 @@ import Footer from "@/components/game/Footer";
 import { BestiaryGrid } from "@/components/game/BestiaryGrid";
 import { getBestiarioCopy, resolveLanguage, type Language } from "@/lib/i18n";
 import { useSearchParams } from "next/navigation";
+import React, { Suspense } from "react";
 
-export default function BestiaryPage() {
+function BestiaryContent() {
   const searchParams = useSearchParams();
   const lang = resolveLanguage(searchParams.get("lang")) as Language;
   const t = getBestiarioCopy(lang);
-  
+
   const fontClass = lang === "ja" ? "font-noto-serif-jp" : "font-serif";
 
   return (
@@ -38,5 +38,13 @@ export default function BestiaryPage() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+export default function BestiaryPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BestiaryContent />
+    </Suspense>
   );
 }

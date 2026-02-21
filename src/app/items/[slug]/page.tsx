@@ -1,4 +1,3 @@
-
 import { mockObjetos, mockCategorias } from "@/data/mock-data";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/game/Navbar";
@@ -37,6 +36,8 @@ export default async function ItemPage({ params, searchParams }: Props) {
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   return mockObjetos.map((o) => ({ slug: o.slug }));

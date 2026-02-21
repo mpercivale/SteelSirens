@@ -1,4 +1,3 @@
-
 import { Navbar } from "@/components/game/Navbar";
 import Footer from "@/components/game/Footer";
 import { BeastDetail } from "@/components/game/BeastDetail";
@@ -33,6 +32,8 @@ export default async function BeastPage({ params, searchParams }: BeastPageProps
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   return mockBeasts.map((b) => ({ slug: b.slug }));
