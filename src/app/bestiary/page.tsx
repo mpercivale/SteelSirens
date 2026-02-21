@@ -48,3 +48,5 @@ export default function BestiaryPage() {
     </Suspense>
   );
 }
+
+export const dynamic = "force-dynamic";
