@@ -256,28 +256,129 @@ export const mockCharacters: Character[] = [
     name: "La Doncella",
     title: "The Hollow Princess",
     slug: "la-doncella",
-    lore: `**Role:**
-- Daughter of a wizard and princess, partially resurrected as a monster.
-- Represents **corruption through trauma and the recovery of humanity**.
+    lore: `Day IX since departure from the Holy See
+Declaration of The Dog
+Dictated in the presence of the group.
+Transcribed by The Sorcerer.
 
-**Motivation / Objectives:**
-- Survive, remain functional, **approach Ismael**, who helps her recover humanity.
-- The tower represents **a threat and an inevitable destiny**, not her main objective.
+They attacked us at night.
+I didn’t see how many. Only shadows and noise.
+We ran.
 
-**Transformation Arc:**
-- Beginning: empty shell, erratic and animal-like.
-- During the journey: recovers humanity thanks to the boy.
-- End: more human, but with residual animal impulses.
+The child vanished among the trees.
+I didn’t look back.
 
-**Relationships:**
-- **El Escudero:** catalyst of humanity.
-- **El Juez:** respect, tension; he perceives her as an equal monster.
-- **El Perro:** initial distrust; calculable risk.
-- **El Hechicero:** his presence and magic can destabilize her; minimal but disturbing interaction.
+When the forest opened a little, we halted.
+We knew they would return.
 
-**Notes:**
-- Silent, barely any facial gestures.
-- Appearance: blonde, pearl eyes, insectoid body with blue beetle armor.`,
+We heard footsteps. We stood guard.
+
+A girl emerged from the trunks.
+She carried the child on her shoulder.
+
+She didn’t seem exhausted.
+
+She wore armor. Not like ours.
+Dark. Tight. Strange for someone of her condition.
+
+She set him down on the ground.
+
+There I saw the child’s eye.
+Full of blood.
+Surrounded by a large scar.
+I don’t know what that girl did, but she saved him.
+
+I asked nothing.
+And she explained nothing either.
+
+They returned before dawn.
+
+She fought with us.
+The line did not break.
+She struck where it was needed.
+
+If it weren’t for her, this statement would be shorter.
+
+She stays.
+
+For now.
+
+———————
+
+Day XIV since departure
+Dictated by The Squire.
+Transcribed by The Sorcerer.
+
+When I was unconscious I dreamed strange things.
+
+A large house. A very high balcony. A woman speaking to me kindly though I didn’t know her. A man looking at me without anger. I felt I had to remember something, but I couldn’t.
+
+Later, when I opened my eyes in the forest, after the ambush.
+
+The Lady was there, by my side.
+
+As we walked, we found a village covered in blue flowers. They grew on rooftops and walls. They cover the windows. They smell strong at dusk.
+I saw them work hard in the stables, but I saw no horses.
+
+The villagers gave us water and blankets. They offered to clean our boots. They said we could stay as long as we liked. Very hospitable of them, though it seemed strange they asked nothing in return.
+
+The Lady did not enter the houses. She stayed outside, watching the roofs covered in flowers.
+
+Nor did I see her taste the food.
+
+The first night The Judge did not sleep. Neither did she. I saw her stand near the door, but she did not lean against the wall. She seemed to be listening to something.
+
+The second night I dreamed again. I woke with that same strange feeling, as if I had been in a very high place.
+
+Today I saw a man from the village missing an arm. The Judge looked at him for a moment. The Lady did too.
+
+She had already been watching him before.
+
+The flowers move when there is no wind… Could it be magic?
+
+Ah, also, when someone from the village approaches too closely, I notice she steps toward me.
+
+She doesn’t tell me, but I think she doesn’t want to stay here…
+
+———————
+
+Fragment attributed to The Sorcerer
+
+…The third night the flowers stopped pretending.
+
+At first there were no screams. Only the smell.
+
+The doors gave way from the inside.
+
+We realized too late that the hospitality had been a way to trap us.
+
+I will not describe what followed. It adds nothing.
+
+They were many.
+
+Among the creatures emerged one of exceptional size. It did not blend with the pack. The pack arranged itself around it.
+
+Its arrival broke our formation.
+
+At some point, The Squire and The Maiden were no longer with us.
+
+We assumed they had been taken.
+
+I did not see them again that night.
+
+What I record now is not the battle, but something prior.
+
+From the forest I have observed in her a constancy we do not share. I have not seen her sleep. She seems to feel no fear; in fact, she seems to feel nothing. The fact that she emits no sound does not put me at ease.
+
+Something particular happens with The Squire.
+
+She protects him as if they were siblings. She always positions herself between him and whatever threatens. He seems to have grown fond of her; the boy seeks her counsel before deciding, even tried to defend her when the monsters revealed themselves.
+
+It seems they formed some kind of bond, though it is not entirely clear to me.
+
+I only note that, since her arrival, anomalies arrange themselves around both.
+
+If they continue to live, it will not be by chance…`,
     shortDescription: "A resurrected princess trapped between monster and human, seeking redemption",
     imagePngUrl: "https://cdn.chat2db-ai.com/app/avatar/custom/530c7180-e4d2-4d9d-967a-927d8295a6cc_755151.png",
     class: "Corrupted Noble",

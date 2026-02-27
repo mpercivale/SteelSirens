@@ -324,7 +324,7 @@ const characterCircleLocales: Record<Language, Record<string, CharacterCircleLoc
     },
     "el-juez": {
       name: "The Judge",
-      title: "The Necessary Evil",
+      title: "The Herald of Judgment",
       quotes: ["“Mercy is often mistaken for virtue.”"],
     },
     "el-hechicero": {
@@ -366,7 +366,7 @@ const characterCircleLocales: Record<Language, Record<string, CharacterCircleLoc
     },
     "el-juez": {
       name: "El Juez",
-      title: "El Mal Necesario",
+      title: "El Heraldo del Juicio",
       quotes: ["«La misericordia suele confundirse con virtud.»"],
     },
     "el-hechicero": {
@@ -408,7 +408,7 @@ const characterCircleLocales: Record<Language, Record<string, CharacterCircleLoc
     },
     "el-juez": {
       name: "裁き手",
-      title: "必要悪",
+      title: "審判の先触れ",
       quotes: ["慈悲はしばしば徳と取り違えられる。"],
     },
     "el-hechicero": {
@@ -529,10 +529,134 @@ Su objetivo no es el poder: es sobrevivir, cumplir la promesa de su padre y sost
       class: "Noble Corrupta",
       origin: "Linaje Real",
       shortDescription: "Una princesa resucitada, atrapada entre monstruo y humanidad.",
-      lore: `Hija de sangre noble, devuelta a la vida de forma incompleta. Su cuerpo y mente cargan trauma, rabia y ecos de humanidad.
+      lore: `Día IX desde la partida de la Santa Sede
+      Declaración de El Perro
+      Dictada en presencia del grupo.
+      Transcrita por El Hechicero.
+      
+      Nos atacaron en la noche.
+      No vi cuántos eran. Solo sombras y ruido.
+      Corrimos.
 
-No persigue gloria: intenta mantenerse funcional, sobrevivir y acercarse al niño, único vínculo capaz de estabilizarla.`,
-      build: {
+      El crío desapareció entre los árboles.
+      No miré atrás.
+
+      Cuando el bosque se abrió un poco, hicimos alto.
+      Sabíamos que volverían.
+
+      Oímos pasos. Nos pusimos en guardia.
+
+      Salió una muchacha de entre los troncos.
+      Traía al crío al hombro.
+
+      No parecía agotada.
+
+      Llevaba armadura. No como la nuestra.
+      Oscura. Ajustada. Rara para alguien de su condición.
+
+      Lo dejó en el suelo.
+
+      Ahí vi el ojo del crío.
+      Lleno de sangre.
+      Rodeado de una gran cicatriz.
+      No se que habra hecho esa chica, pero lo salvó.
+
+      No pregunté nada.
+      Y ella tampoco explicó nada.
+
+      Volvieron antes del alba.
+
+      Peleó con nosotros.
+      No se quebró la línea.
+      Golpeó donde hacía falta.
+
+      Si no fuera por ella, esta declaración sería más corta.
+
+      Se queda.
+
+      Por ahora.
+
+      ———————
+
+      Día XIV desde la partida
+      Dictada por El Escudero.
+      Transcrita por El Hechicero.
+
+      Cuando estuve sin despertar soñé cosas extrañas.
+
+      Una casa grande. Un balcón muy alto. Una mujer que me hablaba con cariño aunque yo no la conocía. Un hombre que me miraba sin enojo. Sentía que debía recordar algo, pero no podía.
+
+      Después cuando abrí los ojos en el bosque, después de la emboscada.
+
+      La Señorita estaba allí, a mi lado.
+
+      Mientras caminabamos encontramos una aldea cubierta de flores azules. Crecían en los techos y en las paredes. Tapan las ventanas. Huelen fuerte cuando cae la tarde.
+      Los vi Trabajar mucho en los establos, Pero no vi Caballos.
+
+      Los aldeanos nos dieron agua y mantas. Se ofrecieron a limpiar nuestras botas. Nos dijeron que podíamos quedarnos lo que quisiéramos. Muy hospitalarios de su parte, aunque me pareció raro que no nos pidieran nada a cambio.
+
+      La Señorita no entró a las casas. Se quedó afuera mirando los techos cubiertos de flores.
+
+      Tampoco la vi probar la comida.
+
+      La primera noche el Señor Juez no durmió. Ella tampoco. La vi quedarse parada cerca de la puerta, pero no apoyó la espalda en la pared. Estaba como escuchando algo.
+
+      La segunda noche soñé otra vez. Desperté con esa misma sensación rara, como si hubiera estado en un lugar muy alto.
+
+      Hoy vi a un hombre del pueblo que le faltaba un brazo. El Señor Juez lo miró un momento. La Señorita también.
+
+      Ella ya lo estaba mirando antes.
+
+      Las flores se mueven cuando no hay viento..Será magia?
+
+      Ah, tambien cuando alguien del pueblo se acerca demasiado, noto que ella da un paso hacia mí.
+
+      No me lo dice, pero creo que no quiere quedarse aquí.."
+
+      ———————
+
+      Fragmento atribuido al Hechicero
+
+      "..La tercera noche las flores dejaron de fingir.
+
+      No hubo gritos al principio. Solo el olor.
+
+      Las puertas cedieron desde dentro.
+
+      Comprendimos tarde que la hospitalidad había sido una forma de cercarnos.
+
+      No describiré lo que siguió. No aporta nada.
+
+      Eran muchos.
+
+      Entre las criaturas emergió una de tamaño excepcional. No se confundía con la manada. La manada se ordenaba alrededor de ella.
+
+      Su irrupción quebró nuestra formación.
+
+      No se en que momento, El Escudero y La Doncella ya no estaban con nosotros.
+
+      Asumimos que habían sido alcanzados.
+
+      No volví a verlos esa noche.
+
+      Lo que consigno ahora no es el combate, sino algo previo.
+
+      Desde el bosque he observado en ella una constancia que no compartimos. No la he visto dormir. No parece sentir miedo, de hecho no parece sentir nada. El hecho de que no emita sonido alguno no me deja mas tranquilo.
+
+      Con El Escudero ocurre algo particular.
+
+      Ella lo protege como si de hermanos se tratasen. Se coloca siempre entre él y aquello que amenaza. Parece que el le ha tomado mucho cariño, el muchacho la busca antes de decidir, Incluso intentó defenderla cuando los monstruos se revelaron.
+
+      Parece que formaron una especie de vínculo, aunque no está del todo claro para mí.
+
+      Solo registro que, desde su llegada, las anomalías se ordenan alrededor de ambos.
+
+      Si continúan con vida, no será por azar..."
+
+
+      `,
+    build: 
+      {
         archetype: "Depredadora Híbrida",
         weaponClass: "Twinblade + garras",
         damageFocus: "Ráfagas de stagger y presión arcana",
@@ -720,28 +844,129 @@ La mansión refleja su mente: comienza ordenada y termina fragmentada, llena de 
       class: "堕ちた貴族",
       origin: "王家の血統",
       shortDescription: "怪物と人間の狭間に囚われた、蘇生された姫。",
-      lore: `**役割:**
-- 魔術師の娘であり王女。半端な蘇生によって怪物化した存在。
-- **外傷による腐敗と人間性の回復**を象徴する。
+      lore: `聖座出発から第IX日目
+犬の宣言
+グループの前で口述。
+魔術師によって書き起こし。
 
-**動機 / 目的:**
-- 生き延び、機能を保ちつつ、**イスマエルに近づく**こと。彼だけが彼女の人間性を呼び戻せる。
-- 塔は主目的ではなく、**脅威であり避けられない運命**として立ちはだかる。
+夜に襲われた。
+何人いたかは見えなかった。ただ影と音だけ。
+逃げた。
 
-**変化の軌跡:**
-- 序盤: 空虚で不安定、獣のように振る舞う。
-- 旅の途中: 少年との絆を通じて人間性を取り戻していく。
-- 終盤: より人間らしくなるが、獣性の残滓は消えない。
+子供は木々の間に消えた。
+振り返らなかった。
 
-**関係性:**
-- **エル・エスクデロ:** 人間性回復の触媒。
-- **エル・フエス:** 緊張を伴う相互認識。彼は彼女を同類の怪物と見る。
-- **エル・ペロ:** 当初は不信。計算可能な危険として扱う。
-- **エル・エチセロ:** 彼の存在と魔術は彼女を不安定化させる。
+森が少し開けたとき、立ち止まった。
+また戻ってくるとわかっていた。
 
-**備考:**
-- 無口で、表情の変化はほとんどない。
-- 金髪、真珠色の瞳、青い甲虫装甲をまとった昆虫的な体躯。`,
+足音が聞こえた。警戒した。
+
+少女が幹の間から現れた。
+肩に子供を抱えていた。
+
+疲れている様子はなかった。
+
+鎧を着ていた。我々のものとは違う。
+暗く、ぴったりとしている。彼女の身分には奇妙だ。
+
+子供を地面に下ろした。
+
+そこで子供の目を見た。
+血に満ちていた。
+大きな傷跡に囲まれていた。
+あの少女が何をしたのかわからないが、彼を救った。
+
+何も尋ねなかった。
+彼女も何も説明しなかった。
+
+夜明け前に戻ってきた。
+
+我々と共に戦った。
+陣形は崩れなかった。
+必要な場所を打った。
+
+彼女がいなければ、この記録はもっと短かっただろう。
+
+彼女は残る。
+
+今のところ。
+
+———————
+
+出発から第XIV日目
+騎士見習いによって口述。
+魔術師によって書き起こし。
+
+目覚めずにいる間、奇妙な夢を見た。
+
+大きな家。とても高いバルコニー。知らないのに優しく話しかけてくる女性。怒りなく見つめる男性。何かを思い出すべきだと感じたが、思い出せなかった。
+
+その後、森で目を開けたとき、待ち伏せの後。
+
+淑女がそこにいた、私のそばに。
+
+歩きながら、青い花で覆われた村を見つけた。屋根や壁に咲いている。窓を覆っている。夕方になると強い香りがする。
+馬屋で一生懸命働くのを見たが、馬は見なかった。
+
+村人は水と毛布をくれた。靴を掃除すると申し出た。好きなだけ滞在して良いと言った。非常に親切だが、何も要求しないのは奇妙に思えた。
+
+淑女は家には入らなかった。外にいて、花で覆われた屋根を見ていた。
+
+食べ物を口にするのも見なかった。
+
+最初の夜、裁判官は眠らなかった。彼女も。扉の近くに立っているのを見たが、壁にもたれなかった。何かを聞いているようだった。
+
+二夜目、また夢を見た。同じ奇妙な感覚で目覚めた、とても高い場所にいたかのように。
+
+今日、片腕の村人を見た。裁判官が一瞬見つめた。淑女も。
+
+彼女は前から見ていた。
+
+風がないのに花が動く…魔法だろうか？
+
+ああ、村人が近づきすぎると、彼女が私に一歩近づくのにも気づく。
+
+言わないが、ここに留まりたくないのだと思う…
+
+———————
+
+魔術師に帰属される断片
+
+…三夜目、花は偽るのをやめた。
+
+最初は叫び声はなかった。匂いだけ。
+
+扉は内側から開いた。
+
+遅れて気づいた、もてなしは我々を閉じ込める手段だったことを。
+
+続くことは記さない。無意味だから。
+
+数が多かった。
+
+生き物の中に異常な大きさの者が現れた。群れとは混ざらない。群れはその周りに整列した。
+
+その出現で我々の陣形は崩れた。
+
+いつの間にか、騎士見習いと乙女はもう我々と共にいなかった。
+
+捕らえられたのだと推測した。
+
+その夜、二人を再び見ることはなかった。
+
+今記すのは戦闘ではなく、その前のこと。
+
+森から、彼女には我々にない一貫性があるのを観察してきた。眠る姿は見ていない。恐怖を感じていないようだ。実際、何も感じていないように見える。音を発さないことも安心させない。
+
+騎士見習いに特異なことが起こる。
+
+彼女は兄弟のように彼を守る。常に彼と脅威の間に立つ。彼は深く懐いたようで、決定前に彼女を求め、怪物が現れた時は彼女を守ろうとした。
+
+何らかの絆ができたようだが、完全には理解できない。
+
+彼女が来て以来、異常は二人の周りに整列する。
+
+生き延びるのは偶然ではない…`,
       build: {
         archetype: "混成の捕食者",
         weaponClass: "ツインブレード + 爪",
