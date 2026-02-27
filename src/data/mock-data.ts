@@ -1,4 +1,3 @@
-
 import { Character, Item, Location, Category, Update, Beast, Personaje, Objeto, Locacion, Categoria, Actualizacion } from "@/types/game";
 
 export const mockCharacters: Character[] = [
@@ -381,28 +380,117 @@ export const mockCharacters: Character[] = [
     name: "El Juez",
     title: "The Necessary Evil",
     slug: "el-juez",
-    lore: `**Role:**
-- Fanatic, charismatic, medieval psychopath inspired by Judge Holden.
-- Represents the **necessary evil** and the moral corruption of the group.
+    lore: `**Rol:**
+- Fanático, carismático, psicópata medieval inspirado en el Juez Holden.
+- Representa el **mal necesario** y la corrupción moral del grupo.
 
-**Motivation / Objectives:**
-- Reach the tower to obtain the **power he assumes the tower will give him**, reinforcing his fanaticism and control.
-- Corrupt the boy and maintain his influence over the group.
+**Motivación / Objetivos:**
+- Llegar a la torre para obtener el **poder que asume que la torre le otorgará**, reforzando su fanatismo y control.
+- Corromper al niño y mantener su influencia sobre el grupo.
 
-**Transformation Arc:**
-- Beginning: fearsome authority, smiling and manipulative.
-- During the journey: remains corrupt, but his evil keeps the group alive.
-- End: reveals his monstrosity; becomes enraged if La Doncella recovers humanity.
+**Arco de Transformación:**
+- Inicio: autoridad temible, risueño y manipulador.
+- Durante el viaje: sigue siendo corrupto, pero su maldad mantiene vivo al grupo.
+- Final: revela su monstruosidad; se enfurece si La Doncella recupera su humanidad.
 
-**Relationships:**
-- **El Escudero:** tries to corrupt him, test his ethics.
-- **La Doncella:** silent respect; recognizes in her an equal monster.
-- **El Perro:** constant tension; conflict of morality and control.
-- **El Hechicero:** sees him as a useful resource, though doesn't fully trust; intellectual tension.
+**Acta de la Santa Misa de Investidura:**
+En la cual se confirió el Título de Juez del Umbral y Custodio del Camino
 
-**Notes:**
-- Acute psychopathy, manipulative, smiling.
-- His aberrant acts sustain the group's survival.`,
+Y aconteció en el tercer día después de la Octava de Pentecostés,
+que se congregaron en el templo mayor los prelados, los caballeros retornados del oriente y los hermanos del claustro.
+
+Y fue llamado ante el altar aquel que había servido en el frente,
+no con lengua ligera,
+sino con brazo firme y disciplina constante.
+
+Había peregrinado por tierras de polvo y sal.
+Había visto caer murallas y levantar cruces.
+Y no volvió reclamando honra,
+sino silencio.
+
+Entonces el Arzobispo se levantó y dijo:
+
+“No es dado el juicio al impetuoso,
+ni la custodia al tibio.
+Pues escrito está que toda autoridad procede de lo alto,
+y no hay orden sin fundamento.
+
+Este hijo de la Iglesia fue instruido en su seno,
+y probado fuera de él.
+No quebró su voto en ausencia,
+ni buscó amparo cuando fue examinado por el hierro.
+
+Fue hallado constante donde otros fueron movidos,
+y firme donde muchos cedieron.
+No adelantó sentencia sin causa,
+ni postergó corrección cuando era necesaria.”
+
+Y habiendo escuchado testimonio de sus superiores en la guerra y de sus maestros en el claustro,
+fue declarado digno no por palabra suya,
+sino por constancia verificada.
+
+Entonces el Arzobispo impuso sus manos sobre él y pronunció:
+
+“Te es conferido el título de Juez del Umbral,
+no para condena ligera,
+sino para discernimiento recto.
+
+Serás custodio donde otros titubeen.
+Corregirás donde el error eche raíz.
+Callarás donde el tumulto reclame espectáculo.
+
+No actuarás por celo propio,
+sino por fidelidad al orden que recibiste.
+No buscarás gloria en la sentencia,
+ni reposo en la omisión.”
+
+Y el pueblo respondió:
+Amén.
+
+Se le entregó el sello,
+no como insignia de dominio,
+sino como carga.
+
+Y fue dicho:
+
+“No vuelves bajo yugo,
+pues nadie es siervo del santuario,
+sino de la voluntad que lo consagró.
+
+Vuelves como quien guarda el pórtico
+y examina antes de permitir el paso.
+Tu mano no será ligera,
+ni tu oído negligente.”
+
+Entonces, por mandato del celebrante,
+se concedió al investido breve palabra.
+
+Y él dijo:
+
+“No añado voto al que ya hice.
+Guardaré el umbral.
+Y responderé por él.”
+
+Y descendió del presbiterio sin alzar la vista.
+
+Y así quedó registrado en el libro mayor del Priorato…
+
+—
+
+Archivo del Scriptorium Mayor
+Transcripción fiel según los registros del Priorato de Occidente
+Año del Señor MCCCXLVII
+Folio XXVII, Libro de Investiduras…
+
+**Relaciones:**
+- **El Escudero:** intenta corromperlo, poner a prueba su ética.
+- **La Doncella:** respeto silencioso; reconoce en ella a un monstruo igual.
+- **El Perro:** tensión constante; conflicto de moralidad y control.
+- **El Hechicero:** lo ve como un recurso útil, aunque no confía del todo; tensión intelectual.
+
+**Notas:**
+- Psicopatía aguda, manipulador, risueño.
+- Sus actos aberrantes sostienen la supervivencia del grupo.`,
     shortDescription: "A charismatic psychopath whose evil deeds paradoxically keep the group alive",
     imagePngUrl: "https://cdn.chat2db-ai.com/app/avatar/custom/11be65e4-96f4-4411-b52a-6ad20d42d9e1_755151.png",
     class: "Fanatic",
@@ -668,7 +756,22 @@ Today there remains only a weak old man, with his mind lost in blurred memories 
 - **El Juez:** Recognized the Old Man as mentor and inspiration; sees in him the echoes of his own philosophy, though also perceives his decadence.
 - **El Perro and El Hechicero:** Know his reputation; the Sorcerer knows of his past campaigns and conquests, but is indifferent to him.
 - **El Escudero:** The only one with whom he interacts more directly; guides, confuses or provokes reflections, but always briefly and ambiguously.
-- **La Doncella:** Recognizes the presence of something strange in her—the entity or essence that inhabits her body—and reacts with fear or caution, avoiding direct contact; observes her sideways, keeping distance.`,
+- **La Doncella:** Recognizes the presence of something strange in her—the entity or essence that inhabits her body—and reacts with fear or caution, avoiding direct contact; observes her sideways, keeping distance.
+
+**Notes / Psychology:**
+- **Gradual and natural** madness, based on obsessive attachment and the belief that magic can fix everything.
+- The mansion/tower is a living reflection of this emotional state: starts coherent and functional, then fragments and becomes surreal as madness progresses.
+- The Custodia maintains some control, but the dispersion of servants and internal cults creates **dynamics of tension and conspiracy** within the tower.
+- Personality: loving → obsessive → manipulative and calculating → isolated and deranged.
+
+**Appearance:**
+- Initially austere, then adopts **the former magister's clothing and symbols** (robes, amulets, alchemical signs).
+- Intense gaze, mix of care and threat, reflecting obsession and instability.
+
+**Narrative Function:**
+- Catalyst of La Doncella's story and the tower's surrealist progression.
+- Allows exploration of gradual madness, obsession and consequences of extreme love.
+- Introduces microcosm of internal conflicts: cults, factions, ambivalent servants, which brings tension and exploration dynamics to the group.`,
     shortDescription: "A once-powerful baron now reduced to a senile wanderer, haunted by his past",
     imagePngUrl: "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?w=400&h=400&fit=crop",
     class: "Fallen Noble",

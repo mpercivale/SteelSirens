@@ -1,6 +1,5 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -20,64 +19,64 @@ const languages = [
 ];
 
 export default function MobileMenu() {
-  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
-
-  const currentPage = pages.find((page) => page.path === pathname)?.name || "Menu";
 
   return (
     <div className="relative">
-      {/* Current Page Button */}
+      {/* Hamburger Button */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        className="text-white bg-gray-800 px-4 py-2 rounded-md w-full text-left"
+        className="fixed top-4 right-4 z-50 p-2 bg-gray-800 text-white rounded-md"
       >
-        {currentPage}
+        {menuOpen ? "✕" : "☰"}
       </button>
 
-      {/* Dropdown Menu */}
-      {menuOpen && (
-        <div className="absolute right-0 mt-2 w-full bg-white shadow-lg rounded-md z-50">
+      {/* Sliding Menu */}
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-black text-white transform ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        } transition-transform duration-300 z-40`}
+      >
+        <nav className="flex flex-col p-4 space-y-4">
           {pages.map((page) => (
             <Link
               key={page.path}
               href={page.path}
-              className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+              className="text-lg font-bold hover:text-gray-400"
               onClick={() => setMenuOpen(false)}
             >
               {page.name}
             </Link>
           ))}
-        </div>
-      )}
+        </nav>
 
-      {/* Language Selector */}
-      <div className="mt-4">
-        <button
-          onClick={() => setLanguageMenuOpen(!languageMenuOpen)}
-          className="text-white bg-gray-800 px-4 py-2 rounded-md w-full text-left"
-        >
-          Language
-        </button>
-
-        {languageMenuOpen && (
-          <div className="absolute right-0 mt-2 w-full bg-white shadow-lg rounded-md z-50">
+        {/* Language Selector */}
+        <div className="mt-8 p-4">
+          <h3 className="text-sm font-semibold text-gray-400">Language</h3>
+          <div className="flex flex-col space-y-2 mt-2">
             {languages.map((lang) => (
               <button
                 key={lang.code}
-                className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+                className="text-lg font-bold hover:text-gray-400 text-left"
                 onClick={() => {
                   // Handle language change logic here
-                  setLanguageMenuOpen(false);
+                  setMenuOpen(false);
                 }}
               >
                 {lang.label}
               </button>
             ))}
           </div>
-        )}
+        </div>
       </div>
+
+      {/* Overlay */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-30"
+          onClick={() => setMenuOpen(false)}
+        ></div>
+      )}
     </div>
   );
 }
