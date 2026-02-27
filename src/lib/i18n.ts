@@ -325,7 +325,7 @@ const characterCircleLocales: Record<Language, Record<string, CharacterCircleLoc
     "el-juez": {
       name: "The Judge",
       title: "The Necessary Evil",
-      quotes: ["Morality is the luxury of the weak."],
+      quotes: ["“Mercy is often mistaken for virtue.”"],
     },
     "el-hechicero": {
       name: "The Sorcerer",
@@ -367,7 +367,7 @@ const characterCircleLocales: Record<Language, Record<string, CharacterCircleLoc
     "el-juez": {
       name: "El Juez",
       title: "El Mal Necesario",
-      quotes: ["La moral es el lujo de los débiles."],
+      quotes: ["«La misericordia suele confundirse con virtud.»"],
     },
     "el-hechicero": {
       name: "El Hechicero",
@@ -409,7 +409,7 @@ const characterCircleLocales: Record<Language, Record<string, CharacterCircleLoc
     "el-juez": {
       name: "裁き手",
       title: "必要悪",
-      quotes: ["道徳は弱者のぜいたくだ。"],
+      quotes: ["慈悲はしばしば徳と取り違えられる。"],
     },
     "el-hechicero": {
       name: "魔術師",
@@ -539,13 +539,62 @@ No persigue gloria: intenta mantenerse funcional, sobrevivir y acercarse al niñ
       },
     },
     "el-juez": {
-      title: "El Mal Necesario",
+      title: "El Heraldo del Juicio",
       class: "Fanático",
       origin: "Desconocido",
-      shortDescription: "Un psicópata carismático cuyo pragmatismo cruel mantiene vivo al grupo.",
-      lore: `Figura fanática y manipuladora. Busca la torre para dominar su poder y quebrar la moral del muchacho.
+      shortDescription: "“Una mano que no vacila ni aun en tiempos de desviación.”",
+      lore: `..Acta de la Santa Misa de Investidura..
 
-Su violencia y frialdad son repulsivas, pero también efectivas: sobrevive donde otros dudan. Es la contradicción viva entre monstruosidad y utilidad.`,
+       En la cual se confirió el Título de Juez del Umbral y Custodio del Camino
+       
+       Y aconteció en el tercer día después de la Octava de Pentecostés, que se congregaron en el templo mayor los prelados, los caballeros retornados del oriente y los hermanos del claustro.
+       
+       Y fue llamado ante el altar aquel que había servido en el frente, no con lengua ligera, sino con brazo firme y disciplina constante.
+       
+       Había peregrinado por tierras de polvo y sal. Había visto caer murallas y levantar cruces. Y no volvió reclamando honra, sino silencio. 
+       
+       Entonces el Arzobispo se levantó y dijo: 
+
+       “No es dado el juicio al impetuoso, ni la custodia al tibio. Pues escrito está que toda autoridad procede de lo alto, y no hay orden sin fundamento. 
+       Este hijo de la Iglesia fue instruido en su seno, y probado fuera de él. No quebró su voto en ausencia, ni buscó amparo cuando fue examinado por el hierro. Fue hallado constante donde otros fueron movidos, y firme donde muchos cedieron. No adelantó sentencia sin causa, ni postergó corrección cuando era necesaria.” 
+       
+       Y habiendo escuchado testimonio de sus superiores en la guerra y de sus maestros en el claustro, fue declarado digno no por palabra suya, sino por constancia verificada. 
+       
+       Entonces el Arzobispo impuso sus manos sobre él y pronunció:
+       
+       “Te es conferido el título de Juez del Umbral, no para condena ligera, sino para discernimiento recto.
+       
+       Serás custodio donde otros titubeen. Corregirás donde el error eche raíz. Callarás donde el tumulto reclame espectáculo.
+       
+       No actuarás por celo propio, sino por fidelidad al orden que recibiste. No buscarás gloria en la sentencia, ni reposo en la omisión.”
+       
+       Y el pueblo respondió: 
+       Amén.
+       
+       Se le entregó el sello, no como insignia de dominio, sino como carga.
+       
+       Y fue dicho:
+       
+       “No vuelves bajo yugo, pues nadie es siervo del santuario, sino de la voluntad que lo consagró.
+       
+       Vuelves como quien guarda el pórtico y examina antes de permitir el paso. Tu mano no será ligera, ni tu oído negligente.” 
+       
+       Entonces, por mandato del celebrante, se concedió al investido breve palabra.
+       
+       Y él dijo: 
+       
+       “No añado voto al que ya hice. Guardaré el umbral. Y responderé por él.”
+       
+       Y descendió del presbiterio sin alzar la vista. 
+       
+       Y así quedó registrado en el libro mayor del Priorato… 
+       
+       — 
+       
+       Archivo del Scriptorium Mayor
+       Transcripción fiel según los registros del Priorato de Occidente
+       Año del Señor MCCCXLVII 
+       Folio XXVII, Libro de Investiduras…`,
       build: {
         archetype: "Generalista Omnímodo (Overpowered)",
         weaponClass: "Mandoble colosal + sello + bastón",
@@ -573,7 +622,9 @@ Su talento es inmenso, pero su obsesión lo vuelve frágil ante la influencia de
       shortDescription: "Un antiguo barón temido, hoy reducido a un anciano errante y quebrado.",
       lore: `Antiguo conquistador y símbolo de autoridad brutal, ahora deambula entre recuerdos rotos y obsesión por el Pozo.
 
-Su decadencia física contrasta con un pasado de hierro. A veces guía, a veces confunde, siempre deja ecos de algo antiguo y peligroso.`,
+Su decadencia física contrasta con un pasado de hierro. 
+
+A veces guía, a veces confunde, siempre deja ecos de algo antiguo y peligroso.`,
       build: {
         archetype: "Guardián de Reliquias Arcano/Fe",
         weaponClass: "Lanza + catalizador sagrado",
@@ -698,32 +749,98 @@ La mansión refleja su mente: comienza ordenada y termina fragmentada, llena de 
       },
     },
     "el-juez": {
-      title: "必要悪",
+      title: "審判の先触れ",
       class: "狂信者",
       origin: "不明",
-      shortDescription: "残酷な実利主義で仲間を生かす、カリスマ的な精神異常者。",
-      lore: `**役割:**
-- ジャッジ・ホールデンに着想を得た、狂信的でカリスマ性を持つ中世的サイコパス。
-- 仲間の倫理を侵食する**必要悪**を体現する。
+      shortDescription: "逸脱の時にあっても揺らがぬ手。",
+      lore: `聖任命ミサ記録
+門の審判者および道の守護者の称号が授与された件
 
-**動機 / 目的:**
-- 塔が与えると信じる**力**を得るため塔へ向かい、支配と狂信を強化する。
-- 少年を堕落させ、集団への影響力を維持する。
+さて、聖霊降臨祭八日目の後、第三の日に、
+大聖堂において高位聖職者、東方より帰還せし騎士ら、ならびに修道院の兄弟たちが集められた。
 
-**変化の軌跡:**
-- 序盤: 微笑を湛えた恐るべき権威者。
-- 旅の途中: 腐敗し続けるが、その悪が結果的に一行を生かす。
-- 終盤: 怪物性を露わにし、乙女が人間性を取り戻すと激昂する。
+そして戦地に仕えし者が祭壇の前へと呼び出された。
+軽き舌によらず、
+堅き腕と揺るがぬ規律をもって。
 
-**関係性:**
-- **エル・エスクデロ:** 倫理を試し、堕落へ誘う対象。
-- **ラ・ドンセージャ:** 無言の敬意。彼女を同等の怪物として認める。
-- **エル・ペロ:** 道徳と支配を巡る恒常的な緊張。
-- **エル・エチセロ:** 有用な資源と見なすが完全には信用しない。
+彼は塵と塩の地を巡礼し、
+城壁の崩るるを見、十字の立つを見た。
+しかして彼は名誉を求めず帰還し、
+ただ沈黙を携えたり。
 
-**備考:**
-- 鋭い精神病質と操作性、常に浮かぶ笑み。
-- その逸脱した行為こそが、皮肉にも一行の生存を支える。`,
+そのとき大司教は立ち上がりて言えり。
+
+「審きは性急なる者に与えられず、
+守りは心弱き者に委ねられず。
+すべての権威は上より来たると記されており、
+礎なくして秩序は立たず。
+
+この教会の子はその懐にて教えられ、
+外にて試された。
+不在にあって誓いを破らず、
+鉄にて試されしときも逃れを求めず。
+
+他の者が揺らぐときに堅く立ち、
+多くが退くときに踏みとどまった。
+理由なき宣告を急がず、
+必要なる矯正を遅らせなかった。」
+
+戦場の上官ならびに修道院の師の証言を聴き、
+彼は己の言葉によらず、
+証された不変のゆえに相応しき者と宣言された。
+
+そこで大司教は彼に按手し、宣言した。
+
+「汝に門の審判者の称号を授く。
+軽き断罪のためにあらず、
+正しき識別のためなり。
+
+他の者が躊躇するとき汝は守れ。
+誤りが根を下ろすとき汝は矯正せよ。
+騒乱が見世物を求むるとき汝は沈黙せよ。
+
+己が熱心によらず、
+授かりし秩序への忠実によって行え。
+宣告に栄誉を求めず、
+怠りに安息を求むるな。」
+
+民は答えた。
+アーメン。
+
+印章は彼に渡された。
+支配の徴としてではなく、
+重荷として。
+
+そして言われた。
+
+「汝は軛の下に帰るにあらず。
+聖所の僕となるにあらず、
+それを聖別せし意志の僕となるなり。
+
+門を守る者として帰り、
+通す前に試みよ。
+汝の手は軽からず、
+汝の耳は怠ることなかれ。」
+
+その後、司式者の命により、
+任命された者に短き言葉が許された。
+
+彼は言えり。
+
+「新たな誓いを加えず。
+門を守らん。
+そしてその責を負わん。」
+
+彼は目を上げることなく祭壇より降りた。
+
+かくして大修道院の大書に記されたり…
+
+—
+
+大写字室文書庫
+西方修道院記録による忠実なる転写
+主の御年 MCXII
+任命録 第二十七葉…`,
       build: {
         archetype: "全能型ジェネラリスト（Overpowered）",
         weaponClass: "特大剣 + 聖印 + 杖",

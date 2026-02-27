@@ -1,10 +1,13 @@
-
 export interface Character {
   id: string;
   name: string;
   title?: string;
   slug: string;
-  lore?: string;
+  lore?: {
+    es?: string;
+    en?: string;
+    jp?: string;
+  };
   shortDescription?: string;
   imagePngUrl?: string;
   imageArtUrl?: string;
@@ -65,6 +68,7 @@ export interface Character {
     targetKind?: "character" | "faction" | "group";
   }>;
   artGallery?: string[];
+  // Removed chronicles property as lore already supports translations.
 }
 
 // Spanish alias for Character

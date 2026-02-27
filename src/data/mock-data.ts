@@ -377,8 +377,8 @@ export const mockCharacters: Character[] = [
   },
   {
     id: "4",
-    name: "El Juez",
-    title: "The Necessary Evil",
+    name: "The Judge",
+    title: "The Herald of Judgment",
     slug: "el-juez",
     lore: `Act of the Holy Mass of Investiture
 In Which Was Conferred the Title of Judge of the Threshold and Custodian of the Way
@@ -468,18 +468,18 @@ Archive of the Greater Scriptorium
 Faithful transcription according to the records of the Western Priory
 In the Year of Our Lord MCXII
 Folio XXVII, Book of Investitures…`,
-    shortDescription: "A charismatic psychopath whose evil deeds paradoxically keep the group alive",
+    shortDescription: "“An unshaken hand even in times of deviation.”",
     imagePngUrl: "https://cdn.chat2db-ai.com/app/avatar/custom/11be65e4-96f4-4411-b52a-6ad20d42d9e1_755151.png",
-    class: "Fanatic",
+    class: "Knight",
     origin: "Unknown",
     status: "alive",
     isProtagonist: true,
     circleOrder: 3,
     colorGlow: "#6B0000",
     quotes: [
-      "War is the ultimate form of divination.",
-      "Morality is the luxury of the weak.",
-      "The boy will learn... or he will perish.",
+      "War reveals what prayer refuses to answer.",
+      "Mercy is often mistaken for virtue.",
+      "“I do not shape destiny. I enforce it.”",
       "There is no sin in survival, only necessity.",
       "I am the hand that shapes destiny.",
       "The tower calls to those who understand power.",
@@ -522,7 +522,7 @@ Folio XXVII, Book of Investitures…`,
         description: "Manipulates and tests the morality of those around him",
       },
       {
-        name: "Necessary Evil",
+        name: "The Herald of Judgment",
         description: "His ruthless actions often ensure the group's survival",
       },
     ],
