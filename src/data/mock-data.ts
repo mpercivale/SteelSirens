@@ -380,118 +380,196 @@ export const mockCharacters: Character[] = [
     name: "El Juez",
     title: "The Necessary Evil",
     slug: "el-juez",
-    lore: `**Role:**
-- Fanatic, charismatic, medieval psychopath inspired by Judge Holden.
-- Represents the **necessary evil** and the moral corruption of the group.
+    lore: `Act of the Holy Mass of Investiture
+In Which Was Conferred the Title of Judge of the Threshold and Custodian of the Way
 
-**Motivation / Objectives:**
-- Reach the tower to obtain the **power he assumes the tower will give him**, reinforcing his fanaticism and control.
-- Corrupt the boy and maintain his influence over the group.
+And it came to pass on the third day after the Octave of Pentecost,
+that the prelates, the knights returned from the East, and the brethren of the cloister were gathered in the great temple.
 
-**Transformation Arc:**
-- Beginning: fearsome authority, smiling and manipulative.
-- During the journey: remains corrupt, but his evil keeps the group alive.
-- End: reveals his monstrosity; becomes enraged if La Doncella recovers humanity.
+And he who had served upon the front was called before the altar,
+not with a light tongue,
+but with a steady arm and constant discipline.
 
-**Relationships:**
-- **El Escudero:** tries to corrupt him, test his ethics.
-- **La Doncella:** silent respect; recognizes in her an equal monster.
-- **El Perro:** constant tension; conflict of morality and control.
-- **El Hechicero:** sees him as a useful resource, though doesn't fully trust; intellectual tension.
+He had journeyed through lands of dust and salt.
+He had seen walls fall and crosses raised.
+And he returned not claiming honor,
+but silence.
 
-**Notes:**
-- Acute psychopathy, manipulative, smiling.
-- His aberrant acts sustain the group's survival.
+Then the Archbishop arose and said:
 
-**Chronicles:**
-Acta de la Santa Misa de Investidura
-En la cual se confirió el Título de Juez del Umbral y Custodio del Camino
+“Judgment is not given to the impetuous,
+nor guardianship to the faint of heart.
+For it is written that all authority proceeds from above,
+and there is no order without foundation.
 
-Y aconteció en el tercer día después de la Octava de Pentecostés,
-que se congregaron en el templo mayor los prelados, los caballeros retornados del oriente y los hermanos del claustro.
+This son of the Church was instructed within her bosom,
+and tested beyond it.
+He did not break his vow in absence,
+nor seek shelter when examined by iron.
 
-Y fue llamado ante el altar aquel que había servido en el frente,
-no con lengua ligera,
-sino con brazo firme y disciplina constante.
+He was found steadfast where others were shaken,
+and firm where many yielded.
+He did not hasten sentence without cause,
+nor delay correction when it was required.”
 
-Había peregrinado por tierras de polvo y sal.
-Había visto caer murallas y levantar cruces.
-Y no volvió reclamando honra,
-sino silencio.
+And having heard testimony from his superiors in war and from his masters in the cloister,
+he was declared worthy not by his own word,
+but by constancy proven.
 
-Entonces el Arzobispo se levantó y dijo:
+Then the Archbishop laid hands upon him and proclaimed:
 
-“No es dado el juicio al impetuoso,
-ni la custodia al tibio.
-Pues escrito está que toda autoridad procede de lo alto,
-y no hay orden sin fundamento.
+“Unto thee is conferred the title of Judge of the Threshold,
+not for light condemnation,
+but for righteous discernment.
 
-Este hijo de la Iglesia fue instruido en su seno,
-y probado fuera de él.
-No quebró su voto en ausencia,
-ni buscó amparo cuando fue examinado por el hierro.
+Thou shalt stand guard where others falter.
+Thou shalt correct where error takes root.
+Thou shalt be silent where tumult demands spectacle.
 
-Fue hallado constante donde otros fueron movidos,
-y firme donde muchos cedieron.
-No adelantó sentencia sin causa,
-ni postergó corrección cuando era necesaria.”
+Thou shalt not act from thine own zeal,
+but from fidelity to the order thou hast received.
+Thou shalt seek no glory in sentence,
+nor rest in omission.”
 
-Y habiendo escuchado testimonio de sus superiores en la guerra y de sus maestros en el claustro,
-fue declarado digno no por palabra suya,
-sino por constancia verificada.
+And the people answered:
+Amen.
 
-Entonces el Arzobispo impuso sus manos sobre él y pronunció:
+The seal was delivered unto him,
+not as an emblem of dominion,
+but as a burden.
 
-“Te es conferido el título de Juez del Umbral,
-no para condena ligera,
-sino para discernimiento recto.
+And it was said:
 
-Serás custodio donde otros titubeen.
-Corregirás donde el error eche raíz.
-Callarás donde el tumulto reclame espectáculo.
+“Thou returnest not under yoke,
+for none is servant of the sanctuary,
+but of the will that consecrated it.
 
-No actuarás por celo propio,
-sino por fidelidad al orden que recibiste.
-No buscarás gloria en la sentencia,
-ni reposo en la omisión.”
+Thou returnest as one who keeps the gate
+and examines before granting passage.
+Thy hand shall not be light,
+nor thine ear negligent.”
 
-Y el pueblo respondió:
-Amén.
+Then, by command of the celebrant,
+brief word was granted unto the invested.
 
-Se le entregó el sello,
-no como insignia de dominio,
-sino como carga.
+And he said:
 
-Y fue dicho:
+“I add no vow to that which I have made.
+I shall keep the threshold.
+And I shall answer for it.”
 
-“No vuelves bajo yugo,
-pues nadie es siervo del santuario,
-sino de la voluntad que lo consagró.
+And he descended from the presbytery without lifting his gaze.
 
-Vuelves como quien guarda el pórtico
-y examina antes de permitir el paso.
-Tu mano no será ligera,
-ni tu oído negligente.”
-
-Entonces, por mandato del celebrante,
-se concedió al investido breve palabra.
-
-Y él dijo:
-
-“No añado voto al que ya hice.
-Guardaré el umbral.
-Y responderé por él.”
-
-Y descendió del presbiterio sin alzar la vista.
-
-Y así quedó registrado en el libro mayor del Priorato…
+And thus was it recorded in the greater book of the Priory…
 
 —
 
-Archivo del Scriptorium Mayor
-Transcripción fiel según los registros del Priorato de Occidente
-Año del Señor MCCCXLVII
-Folio XXVII, Libro de Investiduras…`,
+Archive of the Greater Scriptorium
+Faithful transcription according to the records of the Western Priory
+In the Year of Our Lord MCXII
+Folio XXVII, Book of Investitures…`,
+    shortDescription: "A charismatic psychopath whose evil deeds paradoxically keep the group alive",
+    imagePngUrl: "https://cdn.chat2db-ai.com/app/avatar/custom/11be65e4-96f4-4411-b52a-6ad20d42d9e1_755151.png",
+    class: "Fanatic",
+    origin: "Unknown",
+    status: "alive",
+    isProtagonist: true,
+    circleOrder: 3,
+    colorGlow: "#6B0000",
+    quotes: [
+      "War is the ultimate form of divination.",
+      "Morality is the luxury of the weak.",
+      "The boy will learn... or he will perish.",
+      "There is no sin in survival, only necessity.",
+      "I am the hand that shapes destiny.",
+      "The tower calls to those who understand power.",
+    ],
+    stats: {
+      vigor: 80,
+      mind: 72,
+      endurance: 78,
+      strength: 82,
+      dexterity: 80,
+      intelligence: 76,
+      faith: 74,
+      arcane: 79,
+      defense: 78,
+      vitality: 80,
+      magic: 76,
+    },
+    build: {
+      archetype: "Omni Generalist (Overpowered)",
+      weaponClass: "Colossal Sword + Seal + Staff",
+      damageFocus: "Universal scaling and oppressive versatility",
+      recommendedWeapons: ["Blasphemous Blade", "Dark Moon Greatsword", "Rivers of Blood"],
+      carriedItems: [
+        { name: "Blade of the Fallen", itemSlug: "blade-fallen" },
+        { name: "Oathsplitter Axe", itemSlug: "oathsplitter-axe" },
+        { name: "Knight's Ashen Cuirass", itemSlug: "knights-ashen-cuirass" },
+      ],
+      spells: [
+        { name: "Eclipse Decree", itemSlug: "eclipsed-catalyst" },
+        { name: "Runic Verdict", itemSlug: "tablet-of-runes" },
+      ],
+      enchantments: [
+        { name: "Nocturne Weapon Blessing", itemSlug: "nocturne-resin" },
+        { name: "Oathbound Conviction", itemSlug: "relic-of-the-vow" },
+      ],
+    },
+    abilities: [
+      {
+        name: "Corrupting Influence",
+        description: "Manipulates and tests the morality of those around him",
+      },
+      {
+        name: "Necessary Evil",
+        description: "His ruthless actions often ensure the group's survival",
+      },
+    ],
+    relationships: [
+      {
+        characterName: "El Escudero",
+        type: "Corruptor",
+        description: "Attempts to break the boy's moral compass",
+        standing: "hostile",
+        targetKind: "character",
+      },
+      {
+        characterName: "La Doncella",
+        type: "Recognition",
+        description: "Sees her as a kindred monstrous spirit",
+        standing: "honored",
+        targetKind: "character",
+      },
+      {
+        characterName: "El Perro",
+        type: "Power Struggle",
+        description: "Constant contest of control and influence over the group",
+        standing: "hostile",
+        targetKind: "character",
+      },
+      {
+        characterName: "El Hechicero",
+        type: "Useful Instrument",
+        description: "Keeps him close as a resource, without full trust",
+        standing: "friendly",
+        targetKind: "character",
+      },
+      {
+        characterName: "El Viejo del Manto Blanco",
+        type: "Former Mentor",
+        description: "Still reveres him as an ideological predecessor",
+        standing: "revered",
+        targetKind: "character",
+      },
+      {
+        characterName: "La Custodia",
+        type: "Mutual Threat",
+        description: "Both seek control over La Doncella and the tower's power",
+        standing: "hostile",
+        targetKind: "character",
+      },
+    ],
   },
   {
     id: "5",
@@ -655,7 +733,22 @@ Today there remains only a weak old man, with his mind lost in blurred memories 
 - **El Juez:** Recognized the Old Man as mentor and inspiration; sees in him the echoes of his own philosophy, though also perceives his decadence.
 - **El Perro and El Hechicero:** Know his reputation; the Sorcerer knows of his past campaigns and conquests, but is indifferent to him.
 - **El Escudero:** The only one with whom he interacts more directly; guides, confuses or provokes reflections, but always briefly and ambiguously.
-- **La Doncella:** Recognizes the presence of something strange in her—the entity or essence that inhabits her body—and reacts with fear or caution, avoiding direct contact; observes her sideways, keeping distance.`,
+- **La Doncella:** Recognizes the presence of something strange in her—the entity or essence that inhabits her body—and reacts with fear or caution, avoiding direct contact; observes her sideways, keeping distance.
+
+**Notes / Psychology:**
+- **Gradual and natural** madness, based on obsessive attachment and the belief that magic can fix everything.
+- The mansion/tower is a living reflection of this emotional state: starts coherent and functional, then fragments and becomes surreal as madness progresses.
+- The Custodia maintains some control, but the dispersion of servants and internal cults creates **dynamics of tension and conspiracy** within the tower.
+- Personality: loving → obsessive → manipulative and calculating → isolated and deranged.
+
+**Appearance:**
+- Initially austere, then adopts **the former magister's clothing and symbols** (robes, amulets, alchemical signs).
+- Intense gaze, mix of care and threat, reflecting obsession and instability.
+
+**Narrative Function:**
+- Catalyst of La Doncella's story and the tower's surrealist progression.
+- Allows exploration of gradual madness, obsession and consequences of extreme love.
+- Introduces microcosm of internal conflicts: cults, factions, ambivalent servants, which brings tension and exploration dynamics to the group.`,
     shortDescription: "A once-powerful baron now reduced to a senile wanderer, haunted by his past",
     imagePngUrl: "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?w=400&h=400&fit=crop",
     class: "Fallen Noble",

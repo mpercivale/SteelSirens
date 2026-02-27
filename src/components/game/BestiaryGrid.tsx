@@ -310,8 +310,7 @@ export function BestiaryGrid({ lang }: BestiaryGridProps) {
             onMouseLeave={() => setHoveredBeastId(null)}
             className="transition-transform duration-500 ease-out will-change-transform hover:scale-[1.02]"
           >
-            <div
-              data-ui-sound="on"
+            <div 
               onClick={() => {
                 setSelectedBeast(beast);
                 setIsDetailOpen(true);
@@ -395,7 +394,6 @@ export function BestiaryGrid({ lang }: BestiaryGridProps) {
                           alt={beast.name}
                           fill
                           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 20vw, 16vw"
-                          unoptimized
                           onError={(event) => {
                             const target = event.currentTarget as HTMLImageElement;
                             if (!target.src.includes(imageFallbackSrc) && !target.src.includes(imageFinalFallbackSrc) && !target.src.includes("placeholder-beast.svg")) {
@@ -403,7 +401,6 @@ export function BestiaryGrid({ lang }: BestiaryGridProps) {
                             } else if (!target.src.includes(imageFinalFallbackSrc) && !target.src.includes("placeholder-beast.svg")) {
                               target.src = imageFinalFallbackSrc;
                             } else if (!target.src.includes("placeholder-beast.svg")) {
-                              target.onerror = null;
                               target.src = "/images/bestiary/placeholder-beast.svg";
                             }
                           }}
