@@ -529,9 +529,7 @@ Su objetivo no es el poder: es sobrevivir, cumplir la promesa de su padre y sost
       class: "Noble Corrupta",
       origin: "Linaje Real",
       shortDescription: "Una princesa resucitada, atrapada entre monstruo y humanidad.",
-      lore: `Día IX desde la partida de la Santa Sede 
-      Declaración de El Perro
-      Dictada en presencia del grupo.
+      lore: `Día IX desde la partida  ———————  Declaración de El Perro,Dictada en presencia del grupo.
       Transcrita por El Hechicero.
       
         Nos atacaron en la noche.
@@ -578,8 +576,7 @@ Su objetivo no es el poder: es sobrevivir, cumplir la promesa de su padre y sost
 
       ———————
 
-      Día XIV desde la partida                                
-      Dictada por El Escudero.
+      Día XIV desde la partida ——————— Dictada por El Escudero.
       Transcrita por El Hechicero.
 
         Cuando estuve sin despertar soñé cosas extrañas.
@@ -615,7 +612,8 @@ Su objetivo no es el poder: es sobrevivir, cumplir la promesa de su padre y sost
 
       ———————
 
-      Fragmento atribuido al Hechicero
+      Fragmento atribuido al Hechicero ——————— Escrito por el mismo.
+
 
         "..La tercera noche las flores dejaron de fingir.
 
