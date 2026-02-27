@@ -578,7 +578,8 @@ Su objetivo no es el poder: es sobrevivir, cumplir la promesa de su padre y sost
 
       ———————
 
-      Día XIV desde la partida                                 Dictada por El Escudero.
+      Día XIV desde la partida                                
+      Dictada por El Escudero.
       Transcrita por El Hechicero.
 
         Cuando estuve sin despertar soñé cosas extrañas.
