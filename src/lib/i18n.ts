@@ -529,129 +529,128 @@ Su objetivo no es el poder: es sobrevivir, cumplir la promesa de su padre y sost
       class: "Noble Corrupta",
       origin: "Linaje Real",
       shortDescription: "Una princesa resucitada, atrapada entre monstruo y humanidad.",
-      lore: `Día IX desde la partida de la Santa Sede
+      lore: `Día IX desde la partida de la Santa Sede 
       Declaración de El Perro
       Dictada en presencia del grupo.
       Transcrita por El Hechicero.
       
-      Nos atacaron en la noche.
-      No vi cuántos eran. Solo sombras y ruido.
-      Corrimos.
+        Nos atacaron en la noche.
+        No vi cuántos eran. Solo sombras y ruido.
+        Corrimos.
 
-      El crío desapareció entre los árboles.
-      No miré atrás.
+        El crío desapareció entre los árboles.
+        No miré atrás.
 
-      Cuando el bosque se abrió un poco, hicimos alto.
-      Sabíamos que volverían.
+        Cuando el bosque se abrió un poco, hicimos alto.
+        Sabíamos que volverían.
 
-      Oímos pasos. Nos pusimos en guardia.
+        Oímos pasos. Nos pusimos en guardia.
 
-      Salió una muchacha de entre los troncos.
-      Traía al crío al hombro.
+        Salió una muchacha de entre los troncos.
+        Traía al crío al hombro.
 
-      No parecía agotada.
+        No parecía agotada.
 
-      Llevaba armadura. No como la nuestra.
-      Oscura. Ajustada. Rara para alguien de su condición.
+        Llevaba armadura. No como la nuestra.
+        Oscura. Ajustada. Rara para alguien de su condición.
 
-      Lo dejó en el suelo.
+        Lo dejó en el suelo.
 
-      Ahí vi el ojo del crío.
-      Lleno de sangre.
-      Rodeado de una gran cicatriz.
-      No se que habra hecho esa chica, pero lo salvó.
+        Ahí vi el ojo del crío.
+        Lleno de sangre.
+        Rodeado de una gran cicatriz.
+        No se que habra hecho esa chica, pero lo salvó.
 
-      No pregunté nada.
-      Y ella tampoco explicó nada.
+        No pregunté nada.
+        Y ella tampoco explicó nada.
 
-      Volvieron antes del alba.
+        Volvieron antes del alba.
 
-      Peleó con nosotros.
-      No se quebró la línea.
-      Golpeó donde hacía falta.
+        Peleó con nosotros.
+        No se quebró la línea.
+        Golpeó donde hacía falta.
 
-      Si no fuera por ella, esta declaración sería más corta.
+        Si no fuera por ella, esta declaración sería más corta.
 
-      Se queda.
+        Se queda.
 
-      Por ahora.
+        Por ahora.
 
       ———————
 
-      Día XIV desde la partida
-      Dictada por El Escudero.
+      Día XIV desde la partida                                 Dictada por El Escudero.
       Transcrita por El Hechicero.
 
-      Cuando estuve sin despertar soñé cosas extrañas.
+        Cuando estuve sin despertar soñé cosas extrañas.
 
-      Una casa grande. Un balcón muy alto. Una mujer que me hablaba con cariño aunque yo no la conocía. Un hombre que me miraba sin enojo. Sentía que debía recordar algo, pero no podía.
+        Una casa grande. Un balcón muy alto. Una mujer que me hablaba con cariño aunque yo no la conocía. Un hombre que me miraba sin enojo. Sentía que debía recordar algo, pero no podía.
 
-      Después cuando abrí los ojos en el bosque, después de la emboscada.
+        Después cuando abrí los ojos en el bosque, después de la emboscada.
 
-      La Señorita estaba allí, a mi lado.
+        La Señorita estaba allí, a mi lado.
 
-      Mientras caminabamos encontramos una aldea cubierta de flores azules. Crecían en los techos y en las paredes. Tapan las ventanas. Huelen fuerte cuando cae la tarde.
-      Los vi Trabajar mucho en los establos, Pero no vi Caballos.
+        Mientras caminabamos encontramos una aldea cubierta de flores azules. Crecían en los techos y en las paredes. Tapan las ventanas. Huelen fuerte cuando cae la tarde.
+        Los vi Trabajar mucho en los establos, Pero no vi Caballos.
 
-      Los aldeanos nos dieron agua y mantas. Se ofrecieron a limpiar nuestras botas. Nos dijeron que podíamos quedarnos lo que quisiéramos. Muy hospitalarios de su parte, aunque me pareció raro que no nos pidieran nada a cambio.
+        Los aldeanos nos dieron agua y mantas. Se ofrecieron a limpiar nuestras botas. Nos dijeron que podíamos quedarnos lo que quisiéramos. Muy hospitalarios de su parte, aunque me pareció raro que no nos pidieran nada a cambio.
 
-      La Señorita no entró a las casas. Se quedó afuera mirando los techos cubiertos de flores.
+        La Señorita no entró a las casas. Se quedó afuera mirando los techos cubiertos de flores.
 
-      Tampoco la vi probar la comida.
+        Tampoco la vi probar la comida.
 
-      La primera noche el Señor Juez no durmió. Ella tampoco. La vi quedarse parada cerca de la puerta, pero no apoyó la espalda en la pared. Estaba como escuchando algo.
+        La primera noche el Señor Juez no durmió. Ella tampoco. La vi quedarse parada cerca de la puerta, pero no apoyó la espalda en la pared. Estaba como escuchando algo.
 
-      La segunda noche soñé otra vez. Desperté con esa misma sensación rara, como si hubiera estado en un lugar muy alto.
+        La segunda noche soñé otra vez. Desperté con esa misma sensación rara, como si hubiera estado en un lugar muy alto.
 
-      Hoy vi a un hombre del pueblo que le faltaba un brazo. El Señor Juez lo miró un momento. La Señorita también.
+        Hoy vi a un hombre del pueblo que le faltaba un brazo. El Señor Juez lo miró un momento. La Señorita también.
 
-      Ella ya lo estaba mirando antes.
+        Ella ya lo estaba mirando antes.
 
-      Las flores se mueven cuando no hay viento..Será magia?
+        Las flores se mueven cuando no hay viento..Será magia?
 
-      Ah, tambien cuando alguien del pueblo se acerca demasiado, noto que ella da un paso hacia mí.
+        Ah, tambien cuando alguien del pueblo se acerca demasiado, noto que ella da un paso hacia mí.
 
-      No me lo dice, pero creo que no quiere quedarse aquí.."
+        No me lo dice, pero creo que no quiere quedarse aquí.."
 
       ———————
 
       Fragmento atribuido al Hechicero
 
-      "..La tercera noche las flores dejaron de fingir.
+        "..La tercera noche las flores dejaron de fingir.
 
-      No hubo gritos al principio. Solo el olor.
+        No hubo gritos al principio. Solo el olor.
 
-      Las puertas cedieron desde dentro.
+        Las puertas cedieron desde dentro.
 
-      Comprendimos tarde que la hospitalidad había sido una forma de cercarnos.
+        Comprendimos tarde que la hospitalidad había sido una forma de cercarnos.
 
-      No describiré lo que siguió. No aporta nada.
+        No describiré lo que siguió. No aporta nada.
 
-      Eran muchos.
+        Eran muchos.
 
-      Entre las criaturas emergió una de tamaño excepcional. No se confundía con la manada. La manada se ordenaba alrededor de ella.
+        Entre las criaturas emergió una de tamaño excepcional. No se confundía con la manada. La manada se ordenaba alrededor de ella.
 
-      Su irrupción quebró nuestra formación.
+        Su irrupción quebró nuestra formación.
 
-      No se en que momento, El Escudero y La Doncella ya no estaban con nosotros.
+        No se en que momento, El Escudero y La Doncella ya no estaban con nosotros.
 
-      Asumimos que habían sido alcanzados.
+        Asumimos que habían sido alcanzados.
 
-      No volví a verlos esa noche.
+        No volví a verlos esa noche.
 
-      Lo que consigno ahora no es el combate, sino algo previo.
+        Lo que consigno ahora no es el combate, sino algo previo.
 
-      Desde el bosque he observado en ella una constancia que no compartimos. No la he visto dormir. No parece sentir miedo, de hecho no parece sentir nada. El hecho de que no emita sonido alguno no me deja mas tranquilo.
+        Desde el bosque he observado en ella una constancia que no compartimos. No la he visto dormir. No parece sentir miedo, de hecho no parece sentir nada. El hecho de que no emita sonido alguno no me deja mas tranquilo.
 
-      Con El Escudero ocurre algo particular.
+        Con El Escudero ocurre algo particular.
 
-      Ella lo protege como si de hermanos se tratasen. Se coloca siempre entre él y aquello que amenaza. Parece que el le ha tomado mucho cariño, el muchacho la busca antes de decidir, Incluso intentó defenderla cuando los monstruos se revelaron.
+        Ella lo protege como si de hermanos se tratasen. Se coloca siempre entre él y aquello que amenaza. Parece que el le ha tomado mucho cariño, el muchacho la busca antes de decidir, Incluso intentó defenderla cuando los monstruos se revelaron.
 
-      Parece que formaron una especie de vínculo, aunque no está del todo claro para mí.
+        Parece que formaron una especie de vínculo, aunque no está del todo claro para mí.
 
-      Solo registro que, desde su llegada, las anomalías se ordenan alrededor de ambos.
+        Solo registro que, desde su llegada, las anomalías se ordenan alrededor de ambos.
 
-      Si continúan con vida, no será por azar..."
+        Si continúan con vida, no será por azar..."
 
 
       `,
@@ -699,7 +698,7 @@ Su objetivo no es el poder: es sobrevivir, cumplir la promesa de su padre y sost
        
        Y fue dicho:
        
-       “No vuelves bajo yugo, pues nadie es siervo del santuario, sino de la voluntad que lo consagró.
+       “No vuelves bajo yugo, pues nadie es siervo del Mármol, sino de la voluntad que lo erigió.
        
        Vuelves como quien guarda el pórtico y examina antes de permitir el paso. Tu mano no será ligera, ni tu oído negligente.” 
        
