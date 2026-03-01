@@ -88,13 +88,20 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
     }));
   }, [personaje.slug, lang]);
 
+  const resolvedCharacterLore =
+    character.lore?.[lang === "ja" ? "jp" : lang] ??
+    character.lore?.es ??
+    character.lore?.en ??
+    character.lore?.jp ??
+    "";
+
   const localizedCharacter = getCharacterDetailContent(lang, {
     slug: personaje.slug,
     title: character.title,
     class: character.class,
     origin: character.origin,
     shortDescription: character.shortDescription,
-    lore: character.lore,
+    lore: resolvedCharacterLore,
     build: {
       archetype: character.build?.archetype,
       weaponClass: character.build?.weaponClass,
@@ -657,7 +664,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                             key={`${section.title}-${index}`}
                             className={`flex ${index % 2 === 0 ? "justify-start md:pr-16 lg:pr-24" : "justify-end md:pl-16 lg:pl-24"}`}
                           >
-                            <div className="w-full md:w-[80%] border border-accent/55 bg-gradient-to-b from-accent/35 via-black/65 to-black/80 backdrop-blur-sm rounded-none overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.35)]">
+                            <div className="w-full md:w-[80%] border border-accent/55 bg-gradient-to-b from-accent/70 via-transparent to-black/85 backdrop-blur-sm rounded-none overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.35)]">
                               <div className="p-4 text-left">
                                 <p className="text-[10px] uppercase tracking-[0.18em] text-accent/95 font-semibold">
                                   {sealedLetterLabel}
