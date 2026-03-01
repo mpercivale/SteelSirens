@@ -191,7 +191,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
 
       const pages: string[] = [];
       let currentPage = "";
-      const maxCharsPerPage = 440;
+      const maxCharsPerPage = 340;
 
       for (const block of blocks) {
         const candidate = currentPage ? `${currentPage}\n\n${block}` : block;
@@ -722,7 +722,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
 
                                 return (
                                   <div className="p-4 pt-1">
-                                    <div className="relative h-[250px] sm:h-[270px] overflow-hidden">
+                                    <div className="relative h-[285px] sm:h-[310px] overflow-hidden">
                                       <p className="text-foreground font-serif leading-relaxed whitespace-pre-line pb-1">
                                         {pages[currentPage]}
                                       </p>
