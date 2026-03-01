@@ -590,9 +590,11 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                         type="button"
                         variant="outline"
                         onClick={() => setIsLoreExpanded((prev) => !prev)}
-                        className="mt-4 border-accent/50 bg-black/55 text-foreground hover:bg-accent/20 hover:text-foreground font-serif"
+                        className="mt-4 rounded-none border-accent/55 bg-black/65 text-foreground hover:bg-accent/20 hover:text-foreground font-serif uppercase tracking-[0.14em] px-5 py-2 h-auto skew-x-[-14deg] transition-all duration-200"
                       >
-                        {isLoreExpanded ? copy.actions.readLess : copy.actions.readMore}
+                        <span className="inline-block skew-x-[14deg] text-[11px] sm:text-xs">
+                          {isLoreExpanded ? copy.actions.readLess : copy.actions.readMore}
+                        </span>
                       </Button>
                     )}
                   </div>
