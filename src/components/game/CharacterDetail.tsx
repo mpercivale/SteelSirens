@@ -116,7 +116,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
   }, [loreText]);
   const chronicleSections = useMemo<ChronicleSection[]>(() => {
     const lines = loreText.split("\n");
-    const headerPattern = /^(Day\s+.+—.*|Día\s+.+—.*|出立より.+日目\s*—?.*)$/u;
+    const headerPattern = /^(Day\s+.+(?:\s+—\s+.*)?|Día\s+.+(?:\s+—\s+.*)?|出立より.+日目(?:\s*—?.*)?)$/u;
     const separatorPattern = /^[—-]{3,}$/u;
 
     const sections: Array<{ title: string; body: string[] }> = [];
@@ -191,7 +191,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
 
       const pages: string[] = [];
       let currentPage = "";
-      const maxCharsPerPage = 340;
+      const maxCharsPerPage = 300;
 
       for (const block of blocks) {
         const candidate = currentPage ? `${currentPage}\n\n${block}` : block;
@@ -729,7 +729,6 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                                       <p className="text-foreground font-serif leading-relaxed whitespace-pre-line pb-1">
                                         {pages[currentPage]}
                                       </p>
-                                      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/90 to-transparent" />
                                     </div>
 
                                     <div className="mt-3 flex justify-end">
