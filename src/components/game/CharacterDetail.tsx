@@ -186,7 +186,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
 
   useEffect(() => {
     setExpandedChronicleCards({});
-  }, [personaje.slug, lang]);
+  }, [personaje.slug, lang, loreText]);
 
   const statEntries = [
     { label: copy.stats.vigor, value: character.stats?.vigor ?? character.stats?.vitality },
@@ -658,59 +658,71 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                             className={`flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}
                           >
                             <div className="w-full md:w-[92%] border border-accent/45 bg-black/45 rounded-none overflow-hidden">
-                              <div className="py-3 px-4 bg-black/55 border-b border-accent/30">
-                                <div className="flex items-center gap-2">
-                                  <span className="text-[10px] uppercase tracking-[0.16em] text-accent border border-accent/40 bg-black/35 px-2 py-0.5">
-                                    {sealedLetterLabel}
-                                  </span>
-                                  <span className="text-sm sm:text-base text-foreground font-serif tracking-[0.02em] font-semibold">
-                                    {section.title}
-                                  </span>
-                                </div>
-                                {section.metaLines.length > 0 && (
-                                  <div className="mt-1 flex flex-wrap gap-1.5">
-                                    {section.metaLines.map((metaLine, metaIndex) => (
-                                      <span
-                                        key={`${section.title}-meta-${metaIndex}`}
-                                        className="text-[10px] uppercase tracking-[0.08em] text-foreground/85 border border-accent/30 bg-black/30 px-1.5 py-0.5"
-                                      >
-                                        {metaLine}
-                                      </span>
-                                    ))}
+                              <div className="py-3 px-4 bg-accent/20 border-b border-accent/35">
+                                <div className="text-left w-full">
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    <span className="text-[10px] uppercase tracking-[0.16em] text-black border border-black/35 bg-accent/30 px-2 py-0.5">
+                                      {sealedLetterLabel}
+                                    </span>
+                                    <span className="text-sm sm:text-base text-black font-serif tracking-[0.02em] font-semibold">
+                                      {section.title}
+                                    </span>
                                   </div>
-                                )}
-                              </div>
-
-                              <div className="px-4 pt-3 pb-4">
-                                <div
-                                  className={`relative transition-all duration-300 ${
-                                    expandedChronicleCards[index] ? "" : "max-h-[210px] overflow-hidden"
-                                  }`}
-                                >
-                                  <p className="text-foreground/85 font-serif leading-relaxed whitespace-pre-line pb-1">
-                                    {section.content}
-                                  </p>
-                                  {!expandedChronicleCards[index] && (
-                                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/95 to-transparent" />
+                                  {section.metaLines.length > 0 && (
+                                    <div className="mt-1 flex flex-wrap gap-1.5">
+                                      {section.metaLines.map((metaLine, metaIndex) => (
+                                        <span
+                                          key={`${section.title}-meta-${metaIndex}`}
+                                          className="text-[10px] uppercase tracking-[0.08em] text-black/90 border border-black/25 bg-accent/25 px-1.5 py-0.5"
+                                        >
+                                          {metaLine}
+                                        </span>
+                                      ))}
+                                    </div>
                                   )}
                                 </div>
-
-                                <Button
-                                  type="button"
-                                  variant="outline"
-                                  onClick={() =>
-                                    setExpandedChronicleCards((prev) => ({
-                                      ...prev,
-                                      [index]: !prev[index],
-                                    }))
-                                  }
-                                  className="mt-3 rounded-none border-accent/55 bg-black/65 text-foreground hover:bg-accent/20 hover:text-foreground font-serif uppercase tracking-[0.14em] px-5 py-2 h-auto skew-x-[-14deg] transition-all duration-200"
-                                >
-                                  <span className="inline-block skew-x-[14deg] text-[11px] sm:text-xs">
-                                    {expandedChronicleCards[index] ? copy.actions.readLess : copy.actions.readMore}
-                                  </span>
-                                </Button>
                               </div>
+
+                              {(() => {
+                                const isCardExpanded = Boolean(expandedChronicleCards[index]);
+                                const cardLineCount = section.content.split("\n").length;
+                                const isCardLong = section.content.length > 420 || cardLineCount > 10;
+
+                                return (
+                                  <div className="p-4 pt-3">
+                                    <div
+                                      className={`relative transition-all duration-300 ${
+                                        isCardLong && !isCardExpanded ? "max-h-[200px] overflow-hidden" : ""
+                                      }`}
+                                    >
+                                      <p className="text-foreground/85 font-serif leading-relaxed whitespace-pre-line pb-1">
+                                        {section.content}
+                                      </p>
+                                      {isCardLong && !isCardExpanded && (
+                                        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/90 to-transparent" />
+                                      )}
+                                    </div>
+
+                                    {isCardLong && (
+                                      <Button
+                                        type="button"
+                                        variant="outline"
+                                        onClick={() =>
+                                          setExpandedChronicleCards((previous) => ({
+                                            ...previous,
+                                            [index]: !Boolean(previous[index]),
+                                          }))
+                                        }
+                                        className="mt-3 rounded-none border-accent/55 bg-black/65 text-foreground hover:bg-accent/20 hover:text-foreground font-serif uppercase tracking-[0.14em] px-5 py-2 h-auto skew-x-[-14deg] transition-all duration-200"
+                                      >
+                                        <span className="inline-block skew-x-[14deg] text-[11px] sm:text-xs">
+                                          {isCardExpanded ? copy.actions.readLess : copy.actions.readMore}
+                                        </span>
+                                      </Button>
+                                    )}
+                                  </div>
+                                );
+                              })()}
                             </div>
                           </div>
                         ))}
