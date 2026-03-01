@@ -45,51 +45,6 @@ type ChronicleSection = {
   content: string;
 };
 
-const estimateChunkUnits = (value: string, lang: Language) => {
-  const condensedLength = value.replace(/\s+/gu, "").length;
-  if (lang === "ja") {
-    return condensedLength;
-  }
-  return value.length;
-};
-
-const splitLongChunk = (chunk: string, lang: Language, maxUnitsPerPage: number) => {
-  const lines = chunk
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean);
-
-  if (lines.length === 0) {
-    return [];
-  }
-
-  const parts: string[] = [];
-  let currentPart = "";
-
-  for (const line of lines) {
-    const candidate = currentPart ? `${currentPart}\n${line}` : line;
-    if (estimateChunkUnits(candidate, lang) > maxUnitsPerPage && currentPart.length > 0) {
-      parts.push(currentPart);
-      currentPart = line;
-    } else {
-      currentPart = candidate;
-    }
-  }
-
-  if (currentPart.length > 0) {
-    parts.push(currentPart);
-  }
-
-  return parts;
-};
-
-const getPageUnitsByLanguage = (lang: Language) => {
-  if (lang === "ja") {
-    return 560;
-  }
-  return 340;
-};
-
 const createSeededRng = (seedText: string) => {
   let hash = 2166136261;
   for (let index = 0; index < seedText.length; index += 1) {
@@ -224,8 +179,6 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
       .filter((section) => section.title.length > 0 && section.content.length > 0);
   }, [loreText]);
   const chronicleSectionPages = useMemo(() => {
-    const maxUnitsPerPage = getPageUnitsByLanguage(lang);
-
     return chronicleSections.map((section) => {
       const blocks = section.content
         .split(/\n\s*\n/u)
@@ -236,16 +189,15 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
         return [section.content.trim()];
       }
 
-      const pageChunks = blocks.flatMap((block) => splitLongChunk(block, lang, maxUnitsPerPage));
-
       const pages: string[] = [];
       let currentPage = "";
+      const maxCharsPerPage = lang === "ja" ? 250 : 340;
 
-      for (const chunk of pageChunks) {
-        const candidate = currentPage ? `${currentPage}\n\n${chunk}` : chunk;
-        if (estimateChunkUnits(candidate, lang) > maxUnitsPerPage && currentPage.length > 0) {
+      for (const block of blocks) {
+        const candidate = currentPage ? `${currentPage}\n\n${block}` : block;
+        if (candidate.length > maxCharsPerPage && currentPage.length > 0) {
           pages.push(currentPage);
-          currentPage = chunk;
+          currentPage = block;
         } else {
           currentPage = candidate;
         }
