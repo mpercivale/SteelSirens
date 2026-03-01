@@ -104,11 +104,13 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
   }, [personaje.slug, lang]);
 
   const resolvedCharacterLore =
-    character.lore?.[lang === "ja" ? "jp" : lang] ??
-    character.lore?.es ??
-    character.lore?.en ??
-    character.lore?.jp ??
-    "";
+    typeof character.lore === "string"
+      ? character.lore
+      : character.lore?.[lang === "ja" ? "jp" : lang] ??
+        character.lore?.es ??
+        character.lore?.en ??
+        character.lore?.jp ??
+        "";
 
   const localizedCharacter = getCharacterDetailContent(lang, {
     slug: personaje.slug,
