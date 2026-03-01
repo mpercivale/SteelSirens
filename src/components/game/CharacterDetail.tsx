@@ -664,9 +664,9 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                             key={`${section.title}-${index}`}
                             className={`flex ${index % 2 === 0 ? "justify-start md:pr-16 lg:pr-24" : "justify-end md:pl-16 lg:pl-24"}`}
                           >
-                            <div className="w-full md:w-[80%] border border-accent/55 bg-gradient-to-b from-accent/70 via-transparent to-black/85 backdrop-blur-sm rounded-none overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.35)]">
+                            <div className="w-full md:w-[80%] border border-accent/60 bg-gradient-to-b from-accent/85 via-accent/28 to-black/90 backdrop-blur-sm rounded-none overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.35)]">
                               <div className="p-4 text-left">
-                                <p className="text-[10px] uppercase tracking-[0.18em] text-accent/95 font-semibold">
+                                <p className="text-xs uppercase tracking-[0.2em] text-accent font-extrabold drop-shadow-sm">
                                   {sealedLetterLabel}
                                 </p>
                                 <p className="text-base sm:text-lg text-foreground font-serif tracking-[0.02em] font-semibold mt-1">
