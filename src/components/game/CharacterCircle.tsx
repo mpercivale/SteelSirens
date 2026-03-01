@@ -35,6 +35,9 @@ export default function CharacterCircle({ characters, lang = "en" }: Props) {
   const [randomQuote, setRandomQuote] = useState("");
   const [activeDisplay, setActiveDisplay] = useState<{ name: string; title?: string }>({ name: "", title: "" });
   const autoRotateRef = useRef<NodeJS.Timeout | null>(null);
+  const lastQuoteByCharacterRef = useRef<Record<string, string>>({});
+
+
   const count = characters.length;
 
   useEffect(() => {
@@ -56,13 +59,24 @@ export default function CharacterCircle({ characters, lang = "en" }: Props) {
 
     const localized = active ? getCharacterCircleContent(lang, active) : null;
     if (localized?.quotes && localized.quotes.length > 0) {
-      const quote = localized.quotes[Math.floor(Math.random() * localized.quotes.length)];
-      setRandomQuote(quote);
+      const characterKey = active?.slug ?? active?.id ?? String(activeIndex);
+      const previousQuote = lastQuoteByCharacterRef.current[characterKey] ?? "";
+
+      let selectedQuote = localized.quotes[Math.floor(Math.random() * localized.quotes.length)];
+      if (localized.quotes.length > 1) {
+        let attempts = 0;
+        while (selectedQuote === previousQuote && attempts < 8) {
+          selectedQuote = localized.quotes[Math.floor(Math.random() * localized.quotes.length)];
+          attempts += 1;
+        }
+      }
+
+      lastQuoteByCharacterRef.current[characterKey] = selectedQuote;
+      setRandomQuote(selectedQuote);
     } else {
       setRandomQuote(localized?.shortDescription || "");
     }
   }, [activeIndex, characters[activeIndex]?.id, lang]);
-
   // Auto-rotate after 5 seconds
   useEffect(() => {
     const startAutoRotate = () => {

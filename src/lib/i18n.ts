@@ -437,13 +437,16 @@ const characterCircleLocales: Record<Language, Record<string, CharacterCircleLoc
 export function getCharacterCircleContent(lang: Language, character: CharacterCircleSource) {
   const slug = character.slug ?? "";
   const localized = characterCircleLocales[lang][slug];
+  const mergedQuotes = Array.from(
+    new Set([...(localized?.quotes ?? []), ...(character.quotes ?? [])].filter(Boolean)),
+  );
 
   return {
     name: localized?.name ?? character.nombre ?? character.name ?? "",
     title: localized?.title ?? character.titulo ?? character.title ?? "",
     shortDescription:
       localized?.shortDescription ?? character.descripcion_corta ?? character.shortDescription ?? "",
-    quotes: localized?.quotes ?? character.quotes ?? [],
+    quotes: mergedQuotes,
   };
 }
 
@@ -866,7 +869,8 @@ Si viven, el tiempo lo dirá.
 
 
 
-Día XXIII desde la partida ——————— Escrita por El Juez
+Día XXIII desde la partida 
+Escrita por El Juez
 
 Pasamos la puerta, no sin desafío.
 
