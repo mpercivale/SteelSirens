@@ -657,30 +657,26 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                             key={`${section.title}-${index}`}
                             className={`flex ${index % 2 === 0 ? "justify-start md:pr-16 lg:pr-24" : "justify-end md:pl-16 lg:pl-24"}`}
                           >
-                            <div className="w-full md:w-[80%] border border-accent/55 bg-black/70 backdrop-blur-sm rounded-none overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.35)]">
-                              <div className="py-3 px-4 bg-gradient-to-r from-accent/75 via-accent/50 to-accent/20 border-b border-accent/55">
-                                <div className="text-left w-full">
-                                  <div className="flex items-center gap-2 flex-wrap">
-                                    <span className="text-[10px] uppercase tracking-[0.16em] text-black border border-black/30 bg-accent/70 px-2 py-0.5 font-semibold">
-                                      {sealedLetterLabel}
-                                    </span>
-                                    <span className="text-sm sm:text-base text-foreground font-serif tracking-[0.02em] font-semibold">
-                                      {section.title}
-                                    </span>
+                            <div className="w-full md:w-[80%] border border-accent/55 bg-gradient-to-b from-accent/35 via-black/65 to-black/80 backdrop-blur-sm rounded-none overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.35)]">
+                              <div className="p-4 text-left">
+                                <p className="text-[10px] uppercase tracking-[0.18em] text-accent/95 font-semibold">
+                                  {sealedLetterLabel}
+                                </p>
+                                <p className="text-base sm:text-lg text-foreground font-serif tracking-[0.02em] font-semibold mt-1">
+                                  {section.title}
+                                </p>
+                                {section.metaLines.length > 0 && (
+                                  <div className="mt-1 text-[11px] font-serif text-foreground/95 tracking-[0.03em]">
+                                    {section.metaLines.map((metaLine, metaIndex) => (
+                                      <span
+                                        key={`${section.title}-meta-${metaIndex}`}
+                                        className="inline-block mr-3"
+                                      >
+                                        {metaLine}
+                                      </span>
+                                    ))}
                                   </div>
-                                  {section.metaLines.length > 0 && (
-                                    <div className="mt-1 text-[11px] font-serif text-foreground/90 tracking-[0.03em]">
-                                      {section.metaLines.map((metaLine, metaIndex) => (
-                                        <span
-                                          key={`${section.title}-meta-${metaIndex}`}
-                                          className="inline-block mr-3"
-                                        >
-                                          {metaLine}
-                                        </span>
-                                      ))}
-                                    </div>
-                                  )}
-                                </div>
+                                )}
                               </div>
 
                               {(() => {
@@ -689,7 +685,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                                 const isCardLong = section.content.length > 420 || cardLineCount > 10;
 
                                 return (
-                                  <div className="p-4 pt-3">
+                                  <div className="p-4 pt-1">
                                     <div
                                       className={`relative transition-all duration-300 ${
                                         isCardLong && !isCardExpanded ? "max-h-[200px] overflow-hidden" : ""
