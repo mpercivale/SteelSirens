@@ -308,7 +308,7 @@ type CharacterCircleLocaleEntry = {
 const characterCircleLocales: Record<Language, Record<string, CharacterCircleLocaleEntry>> = {
   en: {
     "el-perro": {
-      name: "The Dog",
+      name: "The Hound",
       title: "The Street Bandit",
       quotes: ["Keep your coin close and your blade closer."],
     },
@@ -350,7 +350,7 @@ const characterCircleLocales: Record<Language, Record<string, CharacterCircleLoc
   },
   es: {
     "el-perro": {
-      name: "El Perro",
+      name: "El Sabueso",
       title: "El Bandido de la Calle",
       quotes: ["Ten tus monedas cerca y tu hoja aún más."],
     },
@@ -392,7 +392,7 @@ const characterCircleLocales: Record<Language, Record<string, CharacterCircleLoc
   },
   ja: {
     "el-perro": {
-      name: "エル・ペロ",
+      name: "猟犬",
       title: "街路の盗賊",
       quotes: ["金貨は近くに、刃はもっと近くに。"],
     },
@@ -475,7 +475,200 @@ type CharacterDetailContentSource = {
 };
 
 const characterDetailContentLocales: Record<Language, Record<string, Partial<CharacterDetailContentSource>>> = {
-  en: {},
+  en: {
+    "la-doncella": {
+      lore: `Day IX since departure —
+
+Statement of The Dog.
+Dictated in the presence of the group.
+Transcribed by The Sorcerer.
+
+We were attacked in the night.
+I did not see how many. Only shadows and noise.
+We ran.
+
+It was not the first time the group split.
+Some had already been left behind in previous days.
+Others were separated from us in skirmishes.
+Of the Twenty, only the four of us remain.
+
+The last to fall behind was the boy. He vanished among the trees.
+I did not look back.
+
+When the forest thinned slightly, we made a halt.
+We knew they would return.
+
+We heard footsteps. We stood ready.
+
+A young woman emerged from between the trees. I do not know her.
+She carried the boy over her shoulder.
+
+She did not appear exhausted.
+
+She wore armor. Not like ours.
+Dark. Strange for someone of her condition.
+
+She laid him on the ground.
+
+That was when I saw the boy’s eye.
+Filled with blood, yet not wounded.
+Surrounded by a great scar.
+
+I do not know what that girl did.
+But she saved him.
+
+I asked nothing.
+She explained nothing.
+
+They ambushed us again before dawn.
+
+She fought with us.
+She did not break the line.
+She struck where it was needed.
+
+If not for her, this statement would be shorter.
+
+She stays.
+
+For now.
+
+Day XIV since departure —
+
+Dictated by The Squire.
+Transcribed by The Sorcerer.
+
+While I lay without waking, I dreamed strange things.
+
+A large house. A very high balcony. A blonde woman who sang to me kindly. A man who looked at me without anger. I felt something familiar, though I could not name it.
+
+Then I opened my eyes in the forest, after the ambush.
+
+The Young Lady was there, beside me.
+
+When I had recovered, we prepared to resume the journey. As we walked, we found a village covered in violet flowers. They grew on the roofs and walls. They covered the windows. They smelled strong when evening fell.
+
+I saw the men working in the stables.
+But I did not see the horses. They told me they had taken them out to graze.
+
+The villagers gave us water and blankets. They offered to clean our boots. They told us we could stay as long as we wished. It seemed strange to me that they asked nothing in return.
+
+The Young Lady did not enter the houses. She remained outside, watching the flower-covered roofs.
+
+Nor did I see her taste the food.
+
+The first night, the Lord Judge did not sleep. Neither did she. I saw her remain near the door, without leaning against the wall. She seemed to be listening.
+
+The second night I dreamed again. I awoke with the same strange sensation, as though I had been somewhere very high.
+
+Today I saw a man of the village missing an arm. The Lord Judge looked at him for a moment. The Young Lady did as well.
+
+They said it was due to illness.
+
+The Lord Judge did not seem convinced.
+
+I saw the flowers move without wind, as though they breathed.
+
+It seems the Young Lady does not care much for people. When someone approaches too closely, I notice she takes a step toward me.
+
+She does not say it, but I think she does not wish to remain here.
+
+Day XXI since departure —
+
+Written by The Sorcerer.
+
+I write in the shadow of a ruined wall, before dawn.
+
+We managed to escape.
+
+On the third night, the flowers ceased pretending.
+
+There was no clamor at first, only a thick stench, like an opened root. The houses yielded from within.
+
+Then the hunt began.
+We were driven like sheep.
+
+The villagers took the form of beasts — or perhaps that had always been their true form.
+
+Among the creatures rose one of excessive stature. It did not run like the others; it advanced, and the rest parted before it. And its howl is not something I can describe with words.
+
+In the chaos of flight, I lost sight of the Squire and the young woman. They are no longer with us.
+
+We halted after misleading the pack.
+
+The Judge maintains we must proceed toward the Mage’s Tower without delay.
+The Dog disagrees.
+The matter remains unsettled.
+
+Since then, my thoughts return often to the young woman.
+
+I have heard her speak only in monosyllables. She does not share common rest and rarely takes food before us. If she sleeps, I have not seen it.
+
+In the village she did not cross the thresholds of the houses. If she had reason for it, she did not state it.
+
+Since her joining our march, certain disturbances have altered their manner. Where once we heard persistent whispers, there were nights of silence. Where shadows seemed to move with intent, now there remains only the sensation of being observed.
+
+This land abounds in mysteries; I do not ignore that. And yet I find myself associating these changes with her presence.
+
+I assert no cause. I merely record the coincidence.
+
+The Squire’s attachment to her is evident. I do not find it strange.
+The boy has been returned from death; it is natural that he seek closeness where he finds it.
+
+I do not yet arrange these facts into conclusion.
+
+If they live, time will tell.
+
+Day XXIII since departure —
+
+Written by The Judge
+
+We passed the gate, not without challenge.
+
+A dragon lay chained to the steps, opened while still alive.
+Part of its heart had been torn away.
+
+Three barbarians claimed the prize.
+
+I believed I had extinguished that people years ago.
+
+They hurled themselves upon us without honor or order.
+They fought like thieves fearing the loss of stolen goods.
+It availed them little.
+
+They remained where they fell.
+
+In ancient chronicles they are named dragon hunters.
+Some accounts speak of three brothers who defied their appointed end.
+
+I have seen the foundation of that fable.
+
+To consume the heart of a noble beast in order to force one’s own duration.
+To persist by ingestion.
+
+Impious folly of man who refuses his measure.
+
+—
+
+Decades ago, the owner of this tower sent me a letter seeking guidance.
+He spoke of a daughter whose life was declining.
+He insinuated practices he avoided declaring plainly.
+
+It was answered that the end is not error, but fulfillment.
+That altering the passage does not restore what is lost.
+
+There was no second plea.
+
+—
+
+The will to prolong what has been called to conclude assumes many faces.
+Some clothe themselves in scales.
+Others clothe themselves in reason.
+
+I have seen this impulse before.
+
+Enough for now.`,
+    },
+  },
   es: {
     "el-perro": {
       title: "El Bandido de la Calle",
@@ -529,130 +722,199 @@ Su objetivo no es el poder: es sobrevivir, cumplir la promesa de su padre y sost
       class: "Noble Corrupta",
       origin: "Linaje Real",
       shortDescription: "Una princesa resucitada, atrapada entre monstruo y humanidad.",
-      lore: `Día IX desde la partida  ———————  Declaración de El Perro,Dictada en presencia del grupo.
-      Transcrita por El Hechicero.
-      
-        Nos atacaron en la noche.
-        No vi cuántos eran. Solo sombras y ruido.
-        Corrimos.
+      lore: `Día IX desde la partida —
 
-        El crío desapareció entre los árboles.
-        No miré atrás.
+Declaración de El Perro.
+Dictada en presencia del grupo.
+Transcrita por El Hechicero.
 
-        Cuando el bosque se abrió un poco, hicimos alto.
-        Sabíamos que volverían.
+Nos atacaron en la noche.
+No vi cuántos eran. Solo sombras y ruido.
+Corrimos.
 
-        Oímos pasos. Nos pusimos en guardia.
+No era la primera vez que el grupo se partía.
+Algunos ya se habían quedado atrás en jornadas anteriores.
+Otros en el las escaramuzas se separaron del grupo.
+De la Veintena, solo quedamos nosotros cuatro.
 
-        Salió una muchacha de entre los troncos.
-        Traía al crío al hombro.
+El ultimo en separarse fue el crío, desapareció entre los árboles.
+No miré atrás.
 
-        No parecía agotada.
+Cuando el bosque se abrió un poco, hicimos alto.
+Sabíamos que volverían.
 
-        Llevaba armadura. No como la nuestra.
-        Oscura. Ajustada. Rara para alguien de su condición.
+Oímos pasos. Nos pusimos en guardia.
 
-        Lo dejó en el suelo.
+Salió una muchacha de entre los arboles, no la conozco.
+Traía al crío al hombro.
 
-        Ahí vi el ojo del crío.
-        Lleno de sangre.
-        Rodeado de una gran cicatriz.
-        No se que habra hecho esa chica, pero lo salvó.
+No parecía agotada.
 
-        No pregunté nada.
-        Y ella tampoco explicó nada.
+Llevaba armadura. No como la nuestra.
+Oscura. Rara para alguien de su condicion.
 
-        Volvieron antes del alba.
+Lo dejó en el suelo.
 
-        Peleó con nosotros.
-        No se quebró la línea.
-        Golpeó donde hacía falta.
+Ahí vi el ojo del crío.
+Lleno de sangre, pero no herido.
+Rodeado de una gran cicatriz.
 
-        Si no fuera por ella, esta declaración sería más corta.
+No sé qué hizo esa chica.
+Pero lo salvó.
 
-        Se queda.
+No pregunté nada.
+Y ella tampoco explicó nada.
 
-        Por ahora.
+Volvieron a emboscarnos antes del alba.
 
-      ———————
+Peleó con nosotros.
+No quebró la línea.
+Golpeó donde hacía falta.
 
-      Día XIV desde la partida ——————— Dictada por El Escudero.
-      Transcrita por El Hechicero.
+Si no fuera por ella, esta declaración sería más corta.
 
-        Cuando estuve sin despertar soñé cosas extrañas.
+Se queda.
 
-        Una casa grande. Un balcón muy alto. Una mujer que me hablaba con cariño aunque yo no la conocía. Un hombre que me miraba sin enojo. Sentía que debía recordar algo, pero no podía.
+Por ahora.
 
-        Después cuando abrí los ojos en el bosque, después de la emboscada.
+———————
 
-        La Señorita estaba allí, a mi lado.
+Día XIV desde la partida —
 
-        Mientras caminabamos encontramos una aldea cubierta de flores azules. Crecían en los techos y en las paredes. Tapan las ventanas. Huelen fuerte cuando cae la tarde.
-        Los vi Trabajar mucho en los establos, Pero no vi Caballos.
+Dictada por El Escudero.
+Transcrita por El Hechicero.
 
-        Los aldeanos nos dieron agua y mantas. Se ofrecieron a limpiar nuestras botas. Nos dijeron que podíamos quedarnos lo que quisiéramos. Muy hospitalarios de su parte, aunque me pareció raro que no nos pidieran nada a cambio.
+Cuando estuve sin despertar soñé cosas extrañas.
 
-        La Señorita no entró a las casas. Se quedó afuera mirando los techos cubiertos de flores.
+Una casa grande. Un balcón muy alto. Una mujer rubia que me cantaba con cariño. Un hombre que me miraba sin enojo. Sentí una sensacion familiar, pero no podía identificarla.
 
-        Tampoco la vi probar la comida.
+Después abrí los ojos en el bosque, tras la emboscada.
 
-        La primera noche el Señor Juez no durmió. Ella tampoco. La vi quedarse parada cerca de la puerta, pero no apoyó la espalda en la pared. Estaba como escuchando algo.
+La Señorita estaba allí, a mi lado.
 
-        La segunda noche soñé otra vez. Desperté con esa misma sensación rara, como si hubiera estado en un lugar muy alto.
+Cuando me recompuse nos dispusimos a retomar el viaje, mientras caminábamos encontramos una aldea cubierta de flores violetas. Crecían en los techos y en las paredes. Tapaban las ventanas. Olían fuerte cuando caía la tarde.
 
-        Hoy vi a un hombre del pueblo que le faltaba un brazo. El Señor Juez lo miró un momento. La Señorita también.
+Vi a los hombres trabajar en los establos.
+Pero no vi a los caballos, me dijeron que los habían llevado a pastar.
 
-        Ella ya lo estaba mirando antes.
+Los aldeanos nos dieron agua y mantas. Se ofrecieron a limpiar nuestras botas. Nos dijeron que podíamos quedarnos lo que quisiéramos. Me pareció extraño que no pidieran nada a cambio.
 
-        Las flores se mueven cuando no hay viento..Será magia?
+La Señorita no entró a las casas. Se quedó afuera mirando los techos cubiertos de flores.
 
-        Ah, tambien cuando alguien del pueblo se acerca demasiado, noto que ella da un paso hacia mí.
+Tampoco la vi probar la comida.
 
-        No me lo dice, pero creo que no quiere quedarse aquí.."
+La primera noche el Señor Juez no durmió. Ella tampoco. La vi quedarse cerca de la puerta, sin apoyarse en la pared. Parecía escuchar algo.
 
-      ———————
+La segunda noche soñé otra vez. Desperté con la misma sensación rara, como si hubiera estado en un lugar muy alto.
 
-      Fragmento atribuido al Hechicero ——————— Escrito por el mismo.
+Hoy vi a un Señor del pueblo al que le faltaba un brazo. El Señor Juez lo miró un momento. La Señorita también.
+
+Dijo que fue por una enfermedad.
+
+El Señor Juez no parecía convencido.
+
+Vi a las flores moverse sin viento, como si respiraran.
+
+Parece que a la Señorita no le gusta mucho la gente, Cuando alguien se acerca demasiado, noto que ella da un paso hacia mí.
+
+No me lo dice, pero creo que no quiere quedarse aquí.
+
+———————
+
+Día XXI desde la partida —
+Escrito por El Hechicero.
+
+Escribo a la sombra de un muro derruido, antes del alba.
+
+Logramos escapar.
+
+La tercera noche las flores dejaron de fingir.
+
+No hubo clamor al principio, sino un hedor espeso, como de raíz abierta. Las casas cedieron desde dentro.
+Después comenzó la caza.
+Fuimos arreados como ovejas.
+
+Los aldeanos tomaron forma de bestia, o quizá aquella fue siempre su forma verdadera.
+
+Entre las criaturas se alzó una de talla desmedida. No corría como las otras; avanzaba, y las demás se apartaban a su paso, y Su aullido, no es algo que pueda describir con palabras. 
+En el desorden de la huida perdí de vista al Escudero y a la joven. Ya no están con nosotros.
+
+Hicimos alto tras despistar a la manada.
+
+El Juez sostiene que debemos avanzar hacia la torre del mago sin demora.
+El Perro no concuerda.
+La discusión permanece abierta.
+
+Desde entonces, mi pensamiento vuelve con frecuencia a la joven.
+
+No la he oído hablar sino en monosílabos. No comparte el descanso común y rara vez toma alimento ante nosotros. Si duerme, no la he visto hacerlo.
+En la aldea no cruzó los umbrales de las casas. Si tuvo razón para ello, no la expresó.
+
+Desde su incorporación a nuestra marcha, ciertas perturbaciones variaron en su modo. Donde antes oíamos susurros persistentes, hubo noches de silencio. Donde las sombras parecían moverse con intención, ahora sólo queda la sensación de ser observados.
+Este lugar abunda en misterios; no ignoro tal cosa. Y sin embargo, me descubro relacionando estos cambios con su presencia.
+
+No afirmo causa. Sólo consigno la coincidencia.
+
+El apego del Escudero hacia ella es visible. No lo juzgo extraño. 
+El muchacho ha sido devuelto de la muerte; es natural que busque cercanía donde la encuentra.
+
+No ordeno aún estos hechos en conclusión.
+
+Si viven, el tiempo lo dirá.
+
+——————————————————————
 
 
-        "..La tercera noche las flores dejaron de fingir.
 
-        No hubo gritos al principio. Solo el olor.
+Día XXIII desde la partida ——————— Escrita por El Juez
 
-        Las puertas cedieron desde dentro.
+Pasamos la puerta, no sin desafío.
 
-        Comprendimos tarde que la hospitalidad había sido una forma de cercarnos.
+Un dragón yacía encadenado a los escalones, abierto aún en vida.
+Le habían arrancado parte del corazón.
 
-        No describiré lo que siguió. No aporta nada.
+Tres bárbaros reclamaban la presa.
 
-        Eran muchos.
+Creí haber extinguido ese pueblo hace años.
 
-        Entre las criaturas emergió una de tamaño excepcional. No se confundía con la manada. La manada se ordenaba alrededor de ella.
+Se abalanzaron sin honor ni orden.
+Pelearon como ladrones que temen perder lo robado.
+No les sirvió de mucho.
 
-        Su irrupción quebró nuestra formación.
+Quedaron donde cayeron.
 
-        No se en que momento, El Escudero y La Doncella ya no estaban con nosotros.
+En crónicas antiguas se les nombra cazadores de dragones.
+Algunos relatos hablan de tres hermanos que desafiaron su término.
 
-        Asumimos que habían sido alcanzados.
+He visto el fundamento de esa fábula.
 
-        No volví a verlos esa noche.
+Consumir el corazón de una bestia noble para forzar la propia duración.
+Persistir por ingestión.
 
-        Lo que consigno ahora no es el combate, sino algo previo.
+Impía necedad del hombre que rehúsa su medida.
 
-        Desde el bosque he observado en ella una constancia que no compartimos. No la he visto dormir. No parece sentir miedo, de hecho no parece sentir nada. El hecho de que no emita sonido alguno no me deja mas tranquilo.
+——
 
-        Con El Escudero ocurre algo particular.
+Décadas atrás, el dueño de esta torre me remitió carta solicitando orientación.
+Hablaba de una hija cuya vida declinaba.
+Insinuaba prácticas que evitaba declarar con claridad.
 
-        Ella lo protege como si de hermanos se tratasen. Se coloca siempre entre él y aquello que amenaza. Parece que el le ha tomado mucho cariño, el muchacho la busca antes de decidir, Incluso intentó defenderla cuando los monstruos se revelaron.
+Se le respondió que el fin no es error, sino cumplimiento.
+Que alterar el tránsito no restituye lo perdido.
 
-        Parece que formaron una especie de vínculo, aunque no está del todo claro para mí.
+No hubo segunda súplica.
 
-        Solo registro que, desde su llegada, las anomalías se ordenan alrededor de ambos.
+——
 
-        Si continúan con vida, no será por azar..."
+La voluntad de prolongar lo que ha sido llamado a concluir adopta múltiples rostros.
+Algunos se cubren de escamas.
+Otros se cubren de razón.
 
+He visto este impulso antes.
 
-      `,
+Basta por ahora.
+
+`,
     build: 
       {
         archetype: "Depredadora Híbrida",
@@ -842,129 +1104,196 @@ La mansión refleja su mente: comienza ordenada y termina fragmentada, llena de 
       class: "堕ちた貴族",
       origin: "王家の血統",
       shortDescription: "怪物と人間の狭間に囚われた、蘇生された姫。",
-      lore: `聖座出発から第IX日目
-犬の宣言
-グループの前で口述。
-魔術師によって書き起こし。
+      lore: `出立より九日目 —
 
-夜に襲われた。
-何人いたかは見えなかった。ただ影と音だけ。
-逃げた。
+    〈犬〉の供述。
+    一行立会いのもと口述。
+    〈魔術師〉筆録。
 
-子供は木々の間に消えた。
-振り返らなかった。
+    夜に襲撃を受けた。
+    数は見ていない。影と物音だけだった。
+    我らは走った。
 
-森が少し開けたとき、立ち止まった。
-また戻ってくるとわかっていた。
+    隊が分かれるのは初めてではない。
+    先の行程で既に遅れた者もいる。
+    小競り合いで散った者もいる。
+    二十名のうち、残ったのは我ら四人のみ。
 
-足音が聞こえた。警戒した。
+    最後に離れたのは小僧だった。森の中へ消えた。
+    振り返らなかった。
 
-少女が幹の間から現れた。
-肩に子供を抱えていた。
+    森がやや開けたところで足を止めた。
+    戻ってくると分かっていた。
 
-疲れている様子はなかった。
+    足音を聞いた。構えた。
 
-鎧を着ていた。我々のものとは違う。
-暗く、ぴったりとしている。彼女の身分には奇妙だ。
+    木立の間から若い女が現れた。見覚えはない。
+    小僧を肩に担いでいた。
 
-子供を地面に下ろした。
+    疲れた様子はなかった。
 
-そこで子供の目を見た。
-血に満ちていた。
-大きな傷跡に囲まれていた。
-あの少女が何をしたのかわからないが、彼を救った。
+    鎧を着ていた。我らのものとは違う。
+    黒く、その身分には不相応なものだった。
 
-何も尋ねなかった。
-彼女も何も説明しなかった。
+    小僧を地に下ろした。
 
-夜明け前に戻ってきた。
+    その時、小僧の眼を見た。
+    血に満ちていたが、傷ではない。
+    大きな瘢痕に囲まれていた。
 
-我々と共に戦った。
-陣形は崩れなかった。
-必要な場所を打った。
+    あの娘が何をしたのかは分からない。
+    だが救った。
 
-彼女がいなければ、この記録はもっと短かっただろう。
+    何も問わなかった。
+    彼女も何も語らなかった。
 
-彼女は残る。
+    夜明け前に再び待ち伏せを受けた。
 
-今のところ。
+    彼女は共に戦った。
+    陣を崩さなかった。
+    必要な所を打った。
 
-———————
+    彼女がいなければ、この供述はもっと短かった。
 
-出発から第XIV日目
-騎士見習いによって口述。
-魔術師によって書き起こし。
+    彼女は留まる。
 
-目覚めずにいる間、奇妙な夢を見た。
+    今のところは。
 
-大きな家。とても高いバルコニー。知らないのに優しく話しかけてくる女性。怒りなく見つめる男性。何かを思い出すべきだと感じたが、思い出せなかった。
+    出立より十四日目 —
 
-その後、森で目を開けたとき、待ち伏せの後。
+    〈従士〉口述。
+    〈魔術師〉筆録。
 
-淑女がそこにいた、私のそばに。
+    目覚めぬ間、奇妙な夢を見た。
 
-歩きながら、青い花で覆われた村を見つけた。屋根や壁に咲いている。窓を覆っている。夕方になると強い香りがする。
-馬屋で一生懸命働くのを見たが、馬は見なかった。
+    大きな家。高いバルコニー。優しく歌う金髪の女。怒らずに私を見る男。懐かしい感覚があったが、名を持たなかった。
 
-村人は水と毛布をくれた。靴を掃除すると申し出た。好きなだけ滞在して良いと言った。非常に親切だが、何も要求しないのは奇妙に思えた。
+    目を開けると森の中、待ち伏せの後だった。
 
-淑女は家には入らなかった。外にいて、花で覆われた屋根を見ていた。
+    〈令嬢〉が傍らにいた。
 
-食べ物を口にするのも見なかった。
+    回復後、旅を再開した。歩くうちに紫の花に覆われた村を見つけた。屋根にも壁にも生えていた。窓を塞いでいた。夕刻になると強い匂いを放った。
 
-最初の夜、裁判官は眠らなかった。彼女も。扉の近くに立っているのを見たが、壁にもたれなかった。何かを聞いているようだった。
+    男たちが厩で働くのを見た。
+    だが馬は見なかった。放牧に出したと言われた。
 
-二夜目、また夢を見た。同じ奇妙な感覚で目覚めた、とても高い場所にいたかのように。
+    村人は水と毛布をくれた。靴を清めると申し出た。望むだけ滞在せよと言った。見返りを求めぬのが不自然に思えた。
 
-今日、片腕の村人を見た。裁判官が一瞬見つめた。淑女も。
+    〈令嬢〉は家に入らなかった。花に覆われた屋根を外から見ていた。
 
-彼女は前から見ていた。
+    食事にも手を付けなかった。
 
-風がないのに花が動く…魔法だろうか？
+    最初の夜、〈判事殿〉は眠らなかった。彼女も眠らなかった。扉の近くに立ち、壁にもたれず、何かを聞くようだった。
 
-ああ、村人が近づきすぎると、彼女が私に一歩近づくのにも気づく。
+    二夜目も夢を見た。高い所にいたような奇妙な感覚で目覚めた。
 
-言わないが、ここに留まりたくないのだと思う…
+    今日、腕のない村の男を見た。〈判事殿〉はしばらく見た。〈令嬢〉も見た。
 
-———————
+    病だと言われた。
 
-魔術師に帰属される断片
+    〈判事殿〉は納得していないようだった。
 
-…三夜目、花は偽るのをやめた。
+    風もないのに花が動くのを見た。まるで呼吸するようだった。
 
-最初は叫び声はなかった。匂いだけ。
+    〈令嬢〉は人を好まぬように見える。誰かが近づきすぎると、私の方へ一歩寄る。
 
-扉は内側から開いた。
+    口にはしないが、ここに留まりたくないのだと思う。
 
-遅れて気づいた、もてなしは我々を閉じ込める手段だったことを。
+    出立より二十一日目 —
 
-続くことは記さない。無意味だから。
+    〈魔術師〉記す。
 
-数が多かった。
+    夜明け前、崩れた壁の影で書く。
 
-生き物の中に異常な大きさの者が現れた。群れとは混ざらない。群れはその周りに整列した。
+    脱出した。
 
-その出現で我々の陣形は崩れた。
+    三夜目、花は偽るのをやめた。
 
-いつの間にか、騎士見習いと乙女はもう我々と共にいなかった。
+    初めに喧騒はなかった。ただ濃い臭気、裂けた根のような。家々は内側から崩れた。
 
-捕らえられたのだと推測した。
+    やがて狩りが始まった。
+    我らは羊のように追われた。
 
-その夜、二人を再び見ることはなかった。
+    村人は獣の姿を取った――あるいはそれが本来の姿だったのかもしれぬ。
 
-今記すのは戦闘ではなく、その前のこと。
+    その中にひときわ巨大なものがいた。他のように走らず、進み、周囲は道を開けた。その咆哮は言葉にできぬ。
 
-森から、彼女には我々にない一貫性があるのを観察してきた。眠る姿は見ていない。恐怖を感じていないようだ。実際、何も感じていないように見える。音を発さないことも安心させない。
+    逃走の混乱で従士と若い女を見失った。今は共にいない。
 
-騎士見習いに特異なことが起こる。
+    群れをまいた後、足を止めた。
 
-彼女は兄弟のように彼を守る。常に彼と脅威の間に立つ。彼は深く懐いたようで、決定前に彼女を求め、怪物が現れた時は彼女を守ろうとした。
+    〈判事〉は即刻塔へ進むべきと主張する。
+    〈犬〉は異を唱える。
+    議は未決。
 
-何らかの絆ができたようだが、完全には理解できない。
+    以来、私の思考は若い女へ戻る。
 
-彼女が来て以来、異常は二人の周りに整列する。
+    彼女が語るのは単音のみ。共に休まず、食を取る姿も稀。眠るなら、私は見ていない。
 
-生き延びるのは偶然ではない…`,
+    村で家の敷居を越えなかった。理由があったとしても語らなかった。
+
+    彼女が加わって以後、幾つかの異変は様相を変えた。以前は絶えぬ囁きがあった夜に沈黙があり、意志ある影の代わりに、ただ見られている感覚だけが残る。
+
+    この地に謎が多いことは承知している。だが私はそれを彼女の存在と結びつけている。
+
+    因果は断じない。ただ符合を記すのみ。
+
+    従士の彼女への執着は明白だ。不自然とは思わぬ。
+    死から戻された者が、近さを求めるのは当然だ。
+
+    結論はまだ置かぬ。
+
+    生きているなら、時が示す。
+
+    出立より二十三日目 —
+
+    〈判事〉記す
+
+    門を越えた。容易ではなかった。
+
+    竜が階段に鎖され、生きたまま裂かれていた。
+    心臓の一部を抉られていた。
+
+    三人の蛮族が獲物を主張していた。
+
+    その民は数年前に滅ぼしたはずだった。
+
+    名誉も秩序もなく襲いかかった。
+    盗人のように戦った。
+    長くは保たなかった。
+
+    倒れた場所に伏した。
+
+    古き年代記にて竜狩りと呼ばれる。
+    三兄弟が定めを拒んだという話もある。
+
+    その寓話の根拠を見た。
+
+    高貴な獣の心臓を喰らい、己の寿を強いる。
+    摂取による存続。
+
+    分を拒む人の不敬なる愚行。
+
+    ——
+
+    数十年前、この塔の主は指針を求め書を寄越した。
+    命尽きゆく娘のことを語った。
+    明言を避けつつ、ある行為を示唆した。
+
+    終わりは過誤ではなく成就であると答えた。
+    推移を改めても失われたものは戻らぬと。
+
+    二度目の嘆願はなかった。
+
+    ——
+
+    終わるべきものを延ばそうとする意志は、多くの貌を取る。
+    鱗をまとうものもあれば、
+    理をまとうものもある。
+
+    私はこの衝動を以前にも見ている。
+
+    今はこれまで。`,
       build: {
         archetype: "混成の捕食者",
         weaponClass: "ツインブレード + 爪",
@@ -1227,6 +1556,10 @@ const characterDetailCopy = {
       build: "Arsenal",
       relations: "Relations",
     },
+    actions: {
+      readMore: "Continue Reading",
+      readLess: "Show Less",
+    },
     sections: {
       chronicle: "Chronicle",
       buildLoadout: "Build & Loadout",
@@ -1286,6 +1619,10 @@ const characterDetailCopy = {
       build: "Arsenal",
       relations: "Relaciones",
     },
+    actions: {
+      readMore: "Seguir leyendo",
+      readLess: "Ver menos",
+    },
     sections: {
       chronicle: "Crónica",
       buildLoadout: "Arsenal y Equipamiento",
@@ -1344,6 +1681,10 @@ const characterDetailCopy = {
       lore: "伝承",
       build: "アーセナル",
       relations: "関係",
+    },
+    actions: {
+      readMore: "続きを読む",
+      readLess: "折りたたむ",
     },
     sections: {
       chronicle: "年代記",

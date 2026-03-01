@@ -55,6 +55,7 @@ const createSeededRng = (seedText: string) => {
 export function CharacterDetail({ character, personaje, lang = "en" }: CharacterDetailProps) {
   const [is3DMode, setIs3DMode] = useState(false);
   const [displayName, setDisplayName] = useState(character.name);
+  const [isLoreExpanded, setIsLoreExpanded] = useState(false);
   const characterGlowColor = personaje.color_glow || personaje.colorGlow || character.colorGlow || "#ffffff";
   const copy = getCharacterDetailCopy(lang);
   const dialogueTitle = lang === "es" ? "Diálogos" : lang === "ja" ? "台詞" : "Dialogues";
@@ -94,11 +95,21 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
     },
   });
 
+  const loreText = localizedCharacter.lore || copy.empty.noLore;
+  const loreIsLong = useMemo(() => {
+    const lineCount = loreText.split("\n").length;
+    return loreText.length > 900 || lineCount > 18;
+  }, [loreText]);
+
   useEffect(() => {
     const identities = getCharacterCircleIdentities(lang, personaje);
     const picked = identities[Math.floor(Math.random() * identities.length)] ?? identities[0];
     setDisplayName(picked?.name ?? character.name);
   }, [personaje.id, lang]);
+
+  useEffect(() => {
+    setIsLoreExpanded(false);
+  }, [personaje.slug, lang]);
 
   const statEntries = [
     { label: copy.stats.vigor, value: character.stats?.vigor ?? character.stats?.vitality },
@@ -141,6 +152,9 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
   const relationNameToSlug: Record<string, string> = {
     "el perro": "el-perro",
     "the dog": "el-perro",
+    "the hound": "el-perro",
+    "el sabueso": "el-perro",
+    "猟犬": "el-perro",
     "エル・ペロ": "el-perro",
     "el escudero": "el-escudero",
     "the squire": "el-escudero",
@@ -559,9 +573,28 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                 <div className="bg-black/50 backdrop-blur-sm border border-accent/35 rounded-lg p-6">
                   <h3 className="text-xl font-bold text-foreground font-serif mb-4">{copy.sections.chronicle}</h3>
                   <div className="prose prose-invert prose-stone max-w-none">
-                    <p className="text-foreground/80 font-serif leading-relaxed whitespace-pre-line">
-                      {localizedCharacter.lore || copy.empty.noLore}
-                    </p>
+                    <div
+                      className={`relative transition-all duration-300 ${
+                        loreIsLong && !isLoreExpanded ? "max-h-[360px] overflow-hidden" : ""
+                      }`}
+                    >
+                      <p className="text-foreground/80 font-serif leading-relaxed whitespace-pre-line">
+                        {loreText}
+                      </p>
+                      {loreIsLong && !isLoreExpanded && (
+                        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/90 to-transparent" />
+                      )}
+                    </div>
+                    {loreIsLong && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        onClick={() => setIsLoreExpanded((prev) => !prev)}
+                        className="mt-3 px-0 text-accent hover:text-accent hover:bg-transparent font-serif"
+                      >
+                        {isLoreExpanded ? copy.actions.readLess : copy.actions.readMore}
+                      </Button>
+                    )}
                   </div>
 
                   <Separator className="bg-accent/30 my-6" />
