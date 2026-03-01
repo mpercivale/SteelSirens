@@ -62,7 +62,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
   const [is3DMode, setIs3DMode] = useState(false);
   const [displayName, setDisplayName] = useState(character.name);
   const [isLoreExpanded, setIsLoreExpanded] = useState(false);
-  const [expandedChronicleCards, setExpandedChronicleCards] = useState<Record<number, boolean>>({});
+  const [chronicleCardPage, setChronicleCardPage] = useState<Record<number, number>>({});
   const characterGlowColor = personaje.color_glow || personaje.colorGlow || character.colorGlow || "#ffffff";
   const copy = getCharacterDetailCopy(lang);
   const dialogueTitle = lang === "es" ? "Diálogos" : lang === "ja" ? "台詞" : "Dialogues";
@@ -178,6 +178,38 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
       })
       .filter((section) => section.title.length > 0 && section.content.length > 0);
   }, [loreText]);
+  const chronicleSectionPages = useMemo(() => {
+    return chronicleSections.map((section) => {
+      const blocks = section.content
+        .split(/\n\s*\n/u)
+        .map((block) => block.trim())
+        .filter(Boolean);
+
+      if (blocks.length === 0) {
+        return [section.content.trim()];
+      }
+
+      const pages: string[] = [];
+      let currentPage = "";
+      const maxCharsPerPage = 340;
+
+      for (const block of blocks) {
+        const candidate = currentPage ? `${currentPage}\n\n${block}` : block;
+        if (candidate.length > maxCharsPerPage && currentPage.length > 0) {
+          pages.push(currentPage);
+          currentPage = block;
+        } else {
+          currentPage = candidate;
+        }
+      }
+
+      if (currentPage.length > 0) {
+        pages.push(currentPage);
+      }
+
+      return pages.length > 0 ? pages : [section.content.trim()];
+    });
+  }, [chronicleSections]);
   const isMaidenChronicleCards = personaje.slug === "la-doncella" && chronicleSections.length >= 2;
   const sealedLetterLabel = lang === "es" ? "Carta sellada" : lang === "ja" ? "封蝋書簡" : "Sealed Letter";
 
@@ -192,7 +224,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
   }, [personaje.slug, lang]);
 
   useEffect(() => {
-    setExpandedChronicleCards({});
+    setChronicleCardPage({});
   }, [personaje.slug, lang, loreText]);
 
   const statEntries = [
@@ -664,7 +696,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                             key={`${section.title}-${index}`}
                             className={`flex ${index % 2 === 0 ? "justify-start md:pr-16 lg:pr-24" : "justify-end md:pl-16 lg:pl-24"}`}
                           >
-                            <div className="w-full md:w-[80%] border border-[#8a6b4d]/55 bg-gradient-to-b from-[#8a6b4d]/45 via-[#8a6b4d]/18 to-black/92 backdrop-blur-sm rounded-none overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.35)]">
+                            <div className="w-full md:w-[75%] border border-[#8a6b4d]/25 bg-gradient-to-b from-[#8a6b4d]/15 via-[#8a6b4d]/5 to-black/0 backdrop-blur-sm rounded-none overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.35)]">
                               <div className="p-4 text-left">
                                 <p className="text-xs uppercase tracking-[0.2em] text-[#8a6b4d] font-extrabold drop-shadow-sm">
                                   {sealedLetterLabel}
@@ -687,42 +719,53 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                               </div>
 
                               {(() => {
-                                const isCardExpanded = Boolean(expandedChronicleCards[index]);
-                                const cardLineCount = section.content.split("\n").length;
-                                const isCardLong = section.content.length > 420 || cardLineCount > 10;
+                                const pages = chronicleSectionPages[index] ?? [section.content];
+                                const totalPages = pages.length;
+                                const currentPage = Math.min(Math.max(chronicleCardPage[index] ?? 0, 0), totalPages - 1);
 
                                 return (
                                   <div className="p-4 pt-1">
-                                    <div
-                                      className={`relative transition-all duration-300 ${
-                                        isCardLong && !isCardExpanded ? "max-h-[200px] overflow-hidden" : ""
-                                      }`}
-                                    >
+                                    <div className="relative h-[210px] overflow-hidden">
                                       <p className="text-foreground font-serif leading-relaxed whitespace-pre-line pb-1">
-                                        {section.content}
+                                        {pages[currentPage]}
                                       </p>
-                                      {isCardLong && !isCardExpanded && (
-                                        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/90 to-transparent" />
-                                      )}
+                                      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/90 to-transparent" />
                                     </div>
 
-                                    {isCardLong && (
-                                      <Button
-                                        type="button"
-                                        variant="outline"
-                                        onClick={() =>
-                                          setExpandedChronicleCards((previous) => ({
-                                            ...previous,
-                                            [index]: !Boolean(previous[index]),
-                                          }))
-                                        }
-                                        className="mt-4 rounded-none border-[#8a6b4d]/65 bg-[#8a6b4d]/35 text-foreground hover:bg-[#8a6b4d]/45 hover:text-foreground font-serif font-semibold uppercase tracking-[0.14em] px-5 py-2 h-auto skew-x-[-14deg] transition-all duration-200"
-                                      >
-                                        <span className="inline-block skew-x-[14deg] text-[11px] sm:text-xs">
-                                          {isCardExpanded ? copy.actions.readLess : copy.actions.readMore}
+                                    <div className="mt-3 flex justify-end">
+                                      <div className="inline-flex items-center gap-2 border-t border-[#8a6b4d]/40 pt-2 text-[11px] font-serif tracking-[0.08em] text-foreground/90">
+                                        <button
+                                          type="button"
+                                          onClick={() =>
+                                            setChronicleCardPage((previous) => ({
+                                              ...previous,
+                                              [index]: Math.max(0, (previous[index] ?? 0) - 1),
+                                            }))
+                                          }
+                                          disabled={currentPage === 0}
+                                          className="h-6 min-w-6 px-1 border border-[#8a6b4d]/60 text-[#8a6b4d] disabled:opacity-35 disabled:cursor-not-allowed hover:bg-[#8a6b4d]/20 transition-colors"
+                                        >
+                                          &lt;
+                                        </button>
+                                        <span className="min-w-[52px] text-center">
+                                          {currentPage + 1}/{totalPages}
                                         </span>
-                                      </Button>
-                                    )}
+                                        <button
+                                          type="button"
+                                          onClick={() =>
+                                            setChronicleCardPage((previous) => ({
+                                              ...previous,
+                                              [index]: Math.min(totalPages - 1, (previous[index] ?? 0) + 1),
+                                            }))
+                                          }
+                                          disabled={currentPage >= totalPages - 1}
+                                          className="h-6 min-w-6 px-1 border border-[#8a6b4d]/60 text-[#8a6b4d] disabled:opacity-35 disabled:cursor-not-allowed hover:bg-[#8a6b4d]/20 transition-colors"
+                                        >
+                                          &gt;
+                                        </button>
+                                      </div>
+                                    </div>
+
                                   </div>
                                 );
                               })()}
