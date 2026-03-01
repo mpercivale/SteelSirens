@@ -588,9 +588,9 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                     {loreIsLong && (
                       <Button
                         type="button"
-                        variant="ghost"
+                        variant="outline"
                         onClick={() => setIsLoreExpanded((prev) => !prev)}
-                        className="mt-3 px-0 text-accent hover:text-accent hover:bg-transparent font-serif"
+                        className="mt-4 border-accent/50 bg-black/55 text-foreground hover:bg-accent/20 hover:text-foreground font-serif"
                       >
                         {isLoreExpanded ? copy.actions.readLess : copy.actions.readMore}
                       </Button>
