@@ -186,6 +186,55 @@ export type Actualizacion = Update & {
 };
 
 // Beast type now uses race/type instead of rarity-based categories
+export type BeastDrop = {
+  itemName: string;
+  rarity: string;
+  dropRate: string;
+};
+
+export type BeastStatBlock = {
+  health?: number;
+  attack?: number;
+  defense?: number;
+  speed?: number;
+};
+
+export type BeastAbility = {
+  name: string;
+  description: string;
+};
+
+export interface BeastVariant {
+  id?: string;
+  slug: string;
+  name: string;
+  name_es?: string;
+  name_ja?: string;
+  shortDescription?: string;
+  shortDescription_es?: string;
+  shortDescription_ja?: string;
+  loreDescription?: string;
+  loreDescription_es?: string;
+  loreDescription_ja?: string;
+  subtype?: string;
+  subtype_es?: string;
+  subtype_ja?: string;
+  iconUrl?: string;
+  imageUrl?: string;
+  model3dUrl?: string;
+  has3dModel?: boolean;
+  dangerLevel?: "low" | "medium" | "high" | "extreme";
+  habitat?: string;
+  habitat_es?: string;
+  habitat_ja?: string;
+  habitatImages?: string[];
+  weaknesses?: string[];
+  resistances?: string[];
+  drops?: BeastDrop[];
+  stats?: BeastStatBlock;
+  abilities?: BeastAbility[];
+}
+
 export interface Beast {
   id: string;
   name: string;
@@ -214,21 +263,10 @@ export interface Beast {
   habitatImages?: string[];
   weaknesses?: string[];
   resistances?: string[];
-  drops?: Array<{
-    itemName: string;
-    rarity: string;
-    dropRate: string;
-  }>;
-  stats?: {
-    health?: number;
-    attack?: number;
-    defense?: number;
-    speed?: number;
-  };
-  abilities?: Array<{
-    name: string;
-    description: string;
-  }>;
+  drops?: BeastDrop[];
+  stats?: BeastStatBlock;
+  abilities?: BeastAbility[];
+  variants?: BeastVariant[];
   isBoss?: boolean;
   active?: boolean;
 }

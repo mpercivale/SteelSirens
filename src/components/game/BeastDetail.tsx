@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Beast, Item } from "@/types/game";
+import { Beast, BeastVariant, Item } from "@/types/game";
 import { mockBeasts, mockItems } from "@/data/mock-data";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -16,7 +16,7 @@ import {
   Moon,
 } from "lucide-react";
 import ViewerToggle from "./ViewerToggle";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import ModelViewer3D from "./ModelViewer3D";
 import { getCreatureTranslation, getHabitatLabel, getRaceLabel as getTranslatedRaceLabel } from "@/lib/bestiary-translations";
 import { type Language, getBeastDetailCopy, getItemContent } from "@/lib/i18n";
@@ -89,8 +89,52 @@ export function BeastDetail({
   const [is3DMode, setIs3DMode] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
   const [itemViewMode, setItemViewMode] = useState<"2d" | "3d">("2d");
+  const [selectedVariantSlug, setSelectedVariantSlug] = useState<string | null>(null);
   const router = useRouter();
-  const habitatImages = beast.habitatImages ?? [];
+
+  const variants = beast.variants ?? [];
+  const activeVariant = useMemo(
+    () => variants.find((variant) => variant.slug === selectedVariantSlug) ?? variants[0],
+    [variants, selectedVariantSlug]
+  );
+
+  const activeBeast = useMemo(() => {
+    if (!activeVariant) {
+      return beast;
+    }
+
+    return {
+      ...beast,
+      ...activeVariant,
+      slug: activeVariant.slug,
+      name: activeVariant.name ?? beast.name,
+      iconUrl: activeVariant.iconUrl ?? beast.iconUrl,
+      imageUrl: activeVariant.imageUrl ?? beast.imageUrl,
+      model3dUrl: activeVariant.model3dUrl ?? beast.model3dUrl,
+      has3dModel: activeVariant.has3dModel ?? beast.has3dModel,
+      habitatImages: activeVariant.habitatImages ?? beast.habitatImages,
+      drops: activeVariant.drops ?? beast.drops,
+      weaknesses: activeVariant.weaknesses ?? beast.weaknesses,
+      resistances: activeVariant.resistances ?? beast.resistances,
+      stats: activeVariant.stats ?? beast.stats,
+      abilities: activeVariant.abilities ?? beast.abilities,
+      shortDescription: activeVariant.shortDescription ?? beast.shortDescription,
+      shortDescription_es: activeVariant.shortDescription_es ?? beast.shortDescription_es,
+      shortDescription_ja: activeVariant.shortDescription_ja ?? beast.shortDescription_ja,
+      loreDescription: activeVariant.loreDescription ?? beast.loreDescription,
+      loreDescription_es: activeVariant.loreDescription_es ?? beast.loreDescription_es,
+      loreDescription_ja: activeVariant.loreDescription_ja ?? beast.loreDescription_ja,
+      subtype: activeVariant.subtype ?? beast.subtype,
+      subtype_es: activeVariant.subtype_es ?? beast.subtype_es,
+      subtype_ja: activeVariant.subtype_ja ?? beast.subtype_ja,
+      habitat: activeVariant.habitat ?? beast.habitat,
+      habitat_es: activeVariant.habitat_es ?? beast.habitat_es,
+      habitat_ja: activeVariant.habitat_ja ?? beast.habitat_ja,
+      dangerLevel: activeVariant.dangerLevel ?? beast.dangerLevel,
+    } as Beast;
+  }, [beast, activeVariant]);
+
+  const habitatImages = activeBeast.habitatImages ?? [];
 
   // Find current beast index
   const currentIndex = mockBeasts.findIndex((b) => b.slug === beast.slug);
@@ -131,6 +175,11 @@ export function BeastDetail({
     setItemViewMode("2d");
   }, [selectedItem]);
 
+  useEffect(() => {
+    setSelectedVariantSlug(variants[0]?.slug ?? null);
+    setIs3DMode(false);
+  }, [beast.slug]);
+
   const navigateToBeast = (slug: string) => {
     if (!enableRouteNavigation) return;
     router.push(`/bestiary/${slug}`);
@@ -162,9 +211,19 @@ export function BeastDetail({
 
   const legacySpanishLorePlaceholder = "Entrada del diario del Hechicero sobre esta criatura y su conducta en combate.";
   const displayLoreDescription =
-    beast.loreDescription === legacySpanishLorePlaceholder
+    activeBeast.loreDescription === legacySpanishLorePlaceholder
       ? labels.notesPlaceholder
-      : beast.loreDescription;
+      : activeBeast.loreDescription;
+  const variantsTitle = lang === "es" ? "Variantes" : lang === "ja" ? "亜種" : "Variants";
+  const localizedVariantName = (variant: BeastVariant) => {
+    if (lang === "es") {
+      return variant.name_es || variant.name;
+    }
+    if (lang === "ja") {
+      return variant.name_ja || variant.name;
+    }
+    return variant.name;
+  };
 
   const selectedItemImageUrl = selectedItem?.imageUrl ?? (selectedItem as (Item & { imagen_url?: string }) | null)?.imagen_url;
   const selectedItemModel3dUrl = selectedItem?.model3dUrl ?? (selectedItem as (Item & { model3d_url?: string }) | null)?.model3d_url;
@@ -196,16 +255,16 @@ export function BeastDetail({
               <ViewerToggle
                 is3D={is3DMode}
                 onToggle={() => setIs3DMode((v) => !v)}
-                has3DModel={beast.has3dModel ?? false}
+                has3DModel={activeBeast.has3dModel ?? false}
               />
             </div>
 
             {/* Content */}
-            {is3DMode && beast.model3dUrl ? (
-              <ModelViewer3D modelUrl={beast.model3dUrl} />
+            {is3DMode && activeBeast.model3dUrl ? (
+              <ModelViewer3D modelUrl={activeBeast.model3dUrl} />
             ) : (
               <div className="relative w-full h-full overflow-visible">
-                {beast.slug === "wisp" && (
+                {activeBeast.slug === "wisp" && (
                   <>
                     <motion.div
                       className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full pointer-events-none"
@@ -270,8 +329,8 @@ export function BeastDetail({
                 />
                 
                 <Image
-                  src={beast.imageUrl || beast.iconUrl || `/images/bestiary/${beast.slug}.png`}
-                  alt={beast.name}
+                  src={activeBeast.imageUrl || activeBeast.iconUrl || `/images/bestiary/${activeBeast.slug}.png`}
+                  alt={activeBeast.name}
                   width={800}
                   height={600}
                   onError={(event) => {
@@ -280,17 +339,17 @@ export function BeastDetail({
                       target.src = "/images/bestiary/placeholder-beast.svg";
                     }
                   }}
-                  className={`absolute left-1/2 bottom-0 -translate-x-1/2 h-[95%] w-auto max-w-none object-contain object-bottom ${beast.slug === "wisp" ? "relative z-10" : ""}`}
+                  className={`absolute left-1/2 bottom-0 -translate-x-1/2 h-[95%] w-auto max-w-none object-contain object-bottom ${activeBeast.slug === "wisp" ? "relative z-10" : ""}`}
                   style={{
-                    filter: getBeastEffigyDropShadow(beast.slug),
+                    filter: getBeastEffigyDropShadow(activeBeast.slug),
                   }}
                 />
               </div>
             )}
 
             {/* Ash particles */}
-            <div className={`absolute inset-0 pointer-events-none ${beast.slug === "wisp" && !is3DMode ? "z-30" : ""}`}>
-              {beast.slug === "wisp" && !is3DMode ? (
+            <div className={`absolute inset-0 pointer-events-none ${activeBeast.slug === "wisp" && !is3DMode ? "z-30" : ""}`}>
+              {activeBeast.slug === "wisp" && !is3DMode ? (
                 <>
                   {[
                     { count: 60, color: "rgba(204, 226, 255, 0.82)", minSize: 1.2, maxSize: 3.6, rise: 85, duration: 3.3 },
@@ -470,8 +529,8 @@ export function BeastDetail({
             <div className="text-center space-y-3">
               <h1 className={`souls-title text-4xl md:text-5xl text-[oklch(0.88_0.01_60)] tracking-widest ${lang === "ja" ? "font-noto-serif-jp" : ""}`}>
                 {(() => {
-                  const translation = getCreatureTranslation(lang, beast.slug);
-                  return translation?.name || beast.name;
+                  const translation = getCreatureTranslation(lang, activeBeast.slug);
+                  return translation?.name || activeBeast.name;
                 })()}
               </h1>
               
@@ -486,8 +545,8 @@ export function BeastDetail({
             {/* Description centered - Hidden to focus on title and image */}
             <div className="text-center hidden">
               {(() => {
-                const translation = getCreatureTranslation(lang, beast.slug);
-                const description = translation?.short || beast.shortDescription;
+                const translation = getCreatureTranslation(lang, activeBeast.slug);
+                const description = translation?.short || activeBeast.shortDescription;
                 return description ? (
                   <p className="souls-text text-[oklch(0.55_0.01_60)] text-sm max-w-2xl mx-auto">
                     {description}
@@ -499,71 +558,67 @@ export function BeastDetail({
         </motion.div>
       </div>
 
-      {/* Troll Circle - Show all 3 trolls when opening trolls-psiquicos */}
-      {beast.slug === "trolls-psiquicos" && (
+      {/* Generic Variants Selector */}
+      {variants.length > 0 && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
           className="relative py-8"
         >
-          <h2 className="text-2xl font-bold text-accent font-serif mb-8 text-center">Variantes de Trolls</h2>
-          
-          <div className="relative w-full h-80 flex items-center justify-center">
-            {/* Circular arrangement of trolls */}
-            {[
-              { slug: "troll-gordo", name: "Troll Gordo", nameJa: "太ったトロル", nameEn: "Fat Troll" },
-              { slug: "troll-delgado", name: "Troll Delgado", nameJa: "細いトロル", nameEn: "Lean Troll" },
-              { slug: "troll-bajito", name: "Troll Bajito", nameJa: "低いトロル", nameEn: "Short Troll" },
-            ].map((troll, index) => {
-              const angle = (index / 3) * (Math.PI * 2);
-              const radius = 120;
-              const x = Math.cos(angle) * radius;
-              const y = Math.sin(angle) * radius;
-              
-              const displayName = lang === "es" ? troll.name : lang === "ja" ? troll.nameJa : troll.nameEn;
-              
+          <h2 className="text-2xl font-bold text-accent font-serif mb-6 text-center">{variantsTitle}</h2>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {variants.map((variant) => {
+              const translation = getCreatureTranslation(lang, variant.slug);
+              const variantName = translation?.name || localizedVariantName(variant);
+              const variantDescription =
+                translation?.short ||
+                (lang === "es"
+                  ? variant.shortDescription_es || variant.shortDescription
+                  : lang === "ja"
+                    ? variant.shortDescription_ja || variant.shortDescription
+                    : variant.shortDescription);
+              const isSelected = activeBeast.slug === variant.slug;
+
               return (
-                <motion.div
-                  key={troll.slug}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
-                  className="absolute"
-                  style={{
-                    transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                <button
+                  key={variant.slug}
+                  type="button"
+                  onClick={() => {
+                    setSelectedVariantSlug(variant.slug);
+                    setIs3DMode(false);
                   }}
+                  className={`group relative w-full text-left border p-3 bg-black/35 transition-all ${
+                    isSelected
+                      ? "border-accent/70 shadow-[0_0_0_1px_rgba(194,154,96,0.35)]"
+                      : "border-accent/25 hover:border-accent/55"
+                  }`}
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-32 h-40 relative group cursor-pointer rounded-lg overflow-hidden border-2 border-accent/30 hover:border-accent/60 transition-all duration-300"
-                  >
-                    {/* Background glow */}
-                    <div className="absolute inset-0 bg-gradient-radial from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    {/* Troll Image */}
+                  <div className="relative h-32 overflow-hidden bg-black/40">
                     <Image
-                      src={`/images/bestiary/portraits/${troll.slug}-portrait.png`}
-                      alt={displayName}
+                      src={variant.iconUrl || variant.imageUrl || `/images/bestiary/portraits/${variant.slug}-portrait.png`}
+                      alt={variantName}
                       fill
-                      sizes="128px"
-                      className="object-contain p-2 bg-black/40"
+                      sizes="240px"
+                      className="object-contain p-2"
                       onError={(event) => {
                         const target = event.currentTarget as HTMLImageElement;
-                        if (!target.src.includes(`/images/bestiary/${troll.slug}.png`)) {
-                          target.src = `/images/bestiary/${troll.slug}.png`;
+                        if (!target.src.includes(`/images/bestiary/${variant.slug}.png`)) {
+                          target.src = `/images/bestiary/${variant.slug}.png`;
                         }
                       }}
                     />
-                    
-                    {/* Name overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/90 to-transparent p-2">
-                      <p className={`text-xs font-serif text-center text-accent truncate ${lang === "ja" ? "font-noto-serif-jp" : ""}`}>
-                        {displayName}
-                      </p>
-                    </div>
-                  </motion.div>
-                </motion.div>
+                  </div>
+                  <p className={`mt-2 text-sm font-semibold text-accent ${lang === "ja" ? "font-noto-serif-jp" : "font-serif"}`}>
+                    {variantName}
+                  </p>
+                  {variantDescription && (
+                    <p className="mt-1 text-xs text-foreground/75 leading-relaxed line-clamp-2">
+                      {variantDescription}
+                    </p>
+                  )}
+                </button>
               );
             })}
           </div>
@@ -571,7 +626,7 @@ export function BeastDetail({
       )}
 
       {/* Lore Section */}
-      {beast.loreDescription && (
+      {activeBeast.loreDescription && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -595,7 +650,7 @@ export function BeastDetail({
       )}
 
       {/* Weaknesses & Resistances */}
-      {((beast.weaknesses?.length ?? 0) > 0 || (beast.resistances?.length ?? 0) > 0) && (
+      {((activeBeast.weaknesses?.length ?? 0) > 0 || (activeBeast.resistances?.length ?? 0) > 0) && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -603,13 +658,13 @@ export function BeastDetail({
         >
           <Card className="rounded-none bg-black/30 backdrop-blur-sm border-[oklch(0.72_0.08_75/20%)] p-5">
             <div className="grid md:grid-cols-2 gap-4">
-              {(beast.weaknesses?.length ?? 0) > 0 && (
+              {(activeBeast.weaknesses?.length ?? 0) > 0 && (
                 <div>
                   <p className="text-xs souls-title tracking-[0.25em] uppercase text-[oklch(0.72_0.08_75)] mb-2">
                     {labels.weaknesses}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {beast.weaknesses?.map((value) => (
+                    {activeBeast.weaknesses?.map((value) => (
                       <span
                         key={`weakness-${value}`}
                         className="text-xs souls-text px-2 py-1 border border-red-400/35 text-red-200/90 bg-red-500/8"
@@ -621,13 +676,13 @@ export function BeastDetail({
                 </div>
               )}
 
-              {(beast.resistances?.length ?? 0) > 0 && (
+              {(activeBeast.resistances?.length ?? 0) > 0 && (
                 <div>
                   <p className="text-xs souls-title tracking-[0.25em] uppercase text-[oklch(0.72_0.08_75)] mb-2">
                     {labels.resistances}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {beast.resistances?.map((value) => (
+                    {activeBeast.resistances?.map((value) => (
                       <span
                         key={`resistance-${value}`}
                         className="text-xs souls-text px-2 py-1 border border-emerald-400/35 text-emerald-200/90 bg-emerald-500/8"
@@ -644,7 +699,7 @@ export function BeastDetail({
       )}
 
       {/* Stats Section */}
-      {beast.stats && (
+      {activeBeast.stats && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -653,39 +708,39 @@ export function BeastDetail({
           <Card className="bg-black/40 backdrop-blur-sm border-accent/20 p-6">
             <h2 className="text-2xl font-bold text-accent font-serif mb-4">Statistics</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {beast.stats.health && (
+              {activeBeast.stats.health && (
                 <div className="flex items-center gap-3 p-3 bg-black/40 rounded-lg border border-accent/10">
                   <Heart className="w-5 h-5 text-red-500" />
                   <div>
                     <p className="text-xs text-muted-foreground font-serif">Health</p>
-                    <p className="text-lg font-bold text-foreground">{beast.stats.health}</p>
+                    <p className="text-lg font-bold text-foreground">{activeBeast.stats.health}</p>
                   </div>
                 </div>
               )}
-              {beast.stats.attack && (
+              {activeBeast.stats.attack && (
                 <div className="flex items-center gap-3 p-3 bg-black/40 rounded-lg border border-accent/10">
                   <Swords className="w-5 h-5 text-orange-500" />
                   <div>
                     <p className="text-xs text-muted-foreground font-serif">Attack</p>
-                    <p className="text-lg font-bold text-foreground">{beast.stats.attack}</p>
+                    <p className="text-lg font-bold text-foreground">{activeBeast.stats.attack}</p>
                   </div>
                 </div>
               )}
-              {beast.stats.defense && (
+              {activeBeast.stats.defense && (
                 <div className="flex items-center gap-3 p-3 bg-black/40 rounded-lg border border-accent/10">
                   <ShieldCheck className="w-5 h-5 text-blue-500" />
                   <div>
                     <p className="text-xs text-muted-foreground font-serif">Defense</p>
-                    <p className="text-lg font-bold text-foreground">{beast.stats.defense}</p>
+                    <p className="text-lg font-bold text-foreground">{activeBeast.stats.defense}</p>
                   </div>
                 </div>
               )}
-              {beast.stats.speed && (
+              {activeBeast.stats.speed && (
                 <div className="flex items-center gap-3 p-3 bg-black/40 rounded-lg border border-accent/10">
                   <Gauge className="w-5 h-5 text-green-500" />
                   <div>
                     <p className="text-xs text-muted-foreground font-serif">Speed</p>
-                    <p className="text-lg font-bold text-foreground">{beast.stats.speed}</p>
+                    <p className="text-lg font-bold text-foreground">{activeBeast.stats.speed}</p>
                   </div>
                 </div>
               )}
@@ -720,7 +775,7 @@ export function BeastDetail({
                   {labels.type}
                 </p>
                 <p className="souls-text text-[oklch(0.72_0.02_70)] text-lg">
-                  {getTranslatedRaceLabel(lang, beast.race)}
+                  {getTranslatedRaceLabel(lang, activeBeast.race)}
                 </p>
               </div>
 
@@ -733,12 +788,12 @@ export function BeastDetail({
                   <div className="mt-3 flex gap-3 overflow-x-auto pb-2">
                     {habitatImages.map((src, index) => (
                       <div
-                        key={`${beast.slug}-habitat-${index}`}
+                        key={`${activeBeast.slug}-habitat-${index}`}
                         className="relative h-24 w-36 shrink-0 overflow-hidden border border-[oklch(0.72_0.08_75/20%)]"
                       >
                         <Image
                           src={src}
-                          alt={`${beast.name} habitat ${index + 1}`}
+                          alt={`${activeBeast.name} habitat ${index + 1}`}
                           fill
                           sizes="144px"
                           className="object-cover"
@@ -750,10 +805,10 @@ export function BeastDetail({
                 ) : (
                   <p className="souls-text text-[oklch(0.72_0.02_70)]">
                     {lang === "es"
-                      ? beast.habitat_es || beast.habitat || "--"
+                      ? activeBeast.habitat_es || activeBeast.habitat || "--"
                       : lang === "ja"
-                        ? beast.habitat_ja || getHabitatLabel(lang, beast.habitat || "") || "--"
-                        : getHabitatLabel(lang, beast.habitat || "") || "--"}
+                        ? activeBeast.habitat_ja || getHabitatLabel(lang, activeBeast.habitat || "") || "--"
+                        : getHabitatLabel(lang, activeBeast.habitat || "") || "--"}
                   </p>
                 )}
               </div>
@@ -764,8 +819,8 @@ export function BeastDetail({
                   {labels.description}
                 </p>
                 {(() => {
-                  const translation = getCreatureTranslation(lang, beast.slug);
-                  const description = translation?.short || beast.shortDescription;
+                  const translation = getCreatureTranslation(lang, activeBeast.slug);
+                  const description = translation?.short || activeBeast.shortDescription;
                   return description ? (
                     <p className="souls-text text-[oklch(0.68_0.03_75)] leading-relaxed">
                       {description}
@@ -777,7 +832,7 @@ export function BeastDetail({
           </Card>
 
           {/* Right: Botín Grid */}
-          {beast.drops && beast.drops.length > 0 && (
+          {activeBeast.drops && activeBeast.drops.length > 0 && (
             <Card className="relative overflow-hidden rounded-none bg-black/25 backdrop-blur-sm border-[oklch(0.72_0.08_75/25%)] p-8 h-full flex flex-col">
               <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.18_0.02_75/35%)] via-transparent to-black/55" />
               <div className="relative z-10 space-y-6 flex-1 flex flex-col">
@@ -789,7 +844,7 @@ export function BeastDetail({
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 flex-1">
-                  {beast.drops.map((drop, index) => {
+                  {activeBeast.drops.map((drop, index) => {
                     const item = findItem(drop.itemName);
                     const itemLocale = item ? getItemContent(lang, item.id) : undefined;
                     const dropItemName = itemLocale?.name || drop.itemName;
@@ -840,7 +895,7 @@ export function BeastDetail({
         </motion.div>
 
         {/* Abilities */}
-        {beast.abilities && beast.abilities.length > 0 && (
+        {activeBeast.abilities && activeBeast.abilities.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -849,7 +904,7 @@ export function BeastDetail({
             <Card className="rounded-none bg-black/40 backdrop-blur-sm border-accent/20 p-6 h-full">
               <h2 className="text-2xl font-bold text-accent font-serif mb-4">{labels.abilities}</h2>
               <div className="space-y-3">
-                {beast.abilities.map((ability, index) => (
+                {activeBeast.abilities.map((ability, index) => (
                   <div
                     key={index}
                     className="p-3 bg-black/40 rounded-lg border border-accent/10"

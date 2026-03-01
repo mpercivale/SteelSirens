@@ -2297,6 +2297,101 @@ export const mockBeasts: Beast[] = [
       { itemName: "Tear of the Abyss", rarity: "epic", dropRate: "15%" },
       { itemName: "Golden Seed", rarity: "uncommon", dropRate: "54%" },
     ],
+    variants: [
+      {
+        slug: "troll-gordo",
+        name: "Fat Troll",
+        name_es: "Troll Gordo",
+        name_ja: "太ったトロル",
+        shortDescription: "Bulky psionic brute that soaks damage and crushes with area slams.",
+        shortDescription_es: "Bruto psiónico voluminoso que aguanta daño y aplasta con golpes de área.",
+        shortDescription_ja: "被弾に強く、範囲叩きつけで圧をかける重量級の精神トロル。",
+        loreDescription:
+          "The broadest frame among the psychic trolls. It advances slowly while projecting disruptive pulses that stagger frontliners.",
+        loreDescription_es:
+          "La silueta más ancha entre los trolls psíquicos. Avanza lento mientras emite pulsos disruptivos que tambalean la primera línea.",
+        loreDescription_ja:
+          "精神トロルの中で最も巨躯。緩慢に前進しつつ、前衛をよろめかせる攪乱波を放つ。",
+        iconUrl: "/images/bestiary/troll-gordo.png",
+        imageUrl: "/images/bestiary/troll-gordo.png",
+        drops: [
+          { itemName: "Knight's Ashen Cuirass", rarity: "epic", dropRate: "16%" },
+          { itemName: "Penitent Mace", rarity: "rare", dropRate: "28%" },
+          { itemName: "Golden Seed", rarity: "uncommon", dropRate: "51%" },
+        ],
+        stats: { health: 1480, attack: 215, defense: 190, speed: 75 },
+        weaknesses: ["Frost", "Pierce"],
+        resistances: ["Strike", "Poise Break"],
+        abilities: [
+          {
+            name: "Impacto Psiónico",
+            description: "Golpe de ambas manos que libera una onda frontal de aturdimiento.",
+          },
+        ],
+      },
+      {
+        slug: "troll-delgado",
+        name: "Lean Troll",
+        name_es: "Troll Delgado",
+        name_ja: "細いトロル",
+        shortDescription: "Nimble variant that chains psionic dashes and punishes recoveries.",
+        shortDescription_es: "Variante ágil que encadena embestidas psiónicas y castiga recuperaciones.",
+        shortDescription_ja: "機動力に優れ、連続の精神突進で隙を狩る亜種。",
+        loreDescription:
+          "Lighter, faster and more erratic than its kin. It circles targets before releasing needle-like mental spikes.",
+        loreDescription_es:
+          "Más liviano, veloz y errático que sus pares. Rodea al objetivo antes de soltar agujas mentales.",
+        loreDescription_ja:
+          "同族より軽快で不規則。標的の周囲を回り、針のような精神棘を撃ち込む。",
+        iconUrl: "/images/bestiary/troll-delgado.png",
+        imageUrl: "/images/bestiary/troll-delgado.png",
+        drops: [
+          { itemName: "Ember Pike", rarity: "rare", dropRate: "31%" },
+          { itemName: "Nocturne Resin", rarity: "rare", dropRate: "24%" },
+          { itemName: "Golden Seed", rarity: "uncommon", dropRate: "46%" },
+        ],
+        stats: { health: 1120, attack: 232, defense: 122, speed: 138 },
+        weaknesses: ["Heavy", "Holy"],
+        resistances: ["Slash", "Bleed"],
+        abilities: [
+          {
+            name: "Finta Mental",
+            description: "Desplazamiento lateral instantáneo seguido de tajo psíquico en diagonal.",
+          },
+        ],
+      },
+      {
+        slug: "troll-bajito",
+        name: "Short Troll",
+        name_es: "Troll Bajito",
+        name_ja: "低いトロル",
+        shortDescription: "Compact variant with burst leaps and close-range psychic bursts.",
+        shortDescription_es: "Variante compacta con saltos explosivos y ráfagas psiónicas a corta distancia.",
+        shortDescription_ja: "小柄ながら跳躍と近距離精神爆発に特化した亜種。",
+        loreDescription:
+          "Smallest profile but hardest to read. It uses abrupt leaps to break spacing, then detonates a point-blank pulse.",
+        loreDescription_es:
+          "De menor tamaño, pero la más difícil de leer. Rompe distancias con saltos bruscos y detona un pulso a quemarropa.",
+        loreDescription_ja:
+          "体格は最小だが挙動は最も読みにくい。跳躍で間合いを崩し、至近距離で脈動を爆ぜさせる。",
+        iconUrl: "/images/bestiary/troll-bajito.png",
+        imageUrl: "/images/bestiary/troll-bajito.png",
+        drops: [
+          { itemName: "Ashbound Gauntlets", rarity: "rare", dropRate: "26%" },
+          { itemName: "Cinder Bomb", rarity: "uncommon", dropRate: "37%" },
+          { itemName: "Golden Seed", rarity: "uncommon", dropRate: "43%" },
+        ],
+        stats: { health: 980, attack: 248, defense: 108, speed: 156 },
+        weaknesses: ["Guard Counter", "Lightning"],
+        resistances: ["Poison", "Arcane"],
+        abilities: [
+          {
+            name: "Pulso de Tobillo",
+            description: "Explosión mental de bajo alcance que interrumpe combos largos.",
+          },
+        ],
+      },
+    ],
   },
   {
     id: "42",
