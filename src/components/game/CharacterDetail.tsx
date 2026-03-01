@@ -191,7 +191,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
 
       const pages: string[] = [];
       let currentPage = "";
-      const maxCharsPerPage = 300;
+      const maxCharsPerPage = 440;
 
       for (const block of blocks) {
         const candidate = currentPage ? `${currentPage}\n\n${block}` : block;
@@ -705,14 +705,11 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                                   {section.title}
                                 </p>
                                 {section.metaLines.length > 0 && (
-                                  <div className="mt-1 text-[11px] font-serif text-foreground/95 tracking-[0.03em]">
+                                  <div className="mt-1 space-y-0.5 text-[11px] font-serif text-foreground/95 tracking-[0.03em]">
                                     {section.metaLines.map((metaLine, metaIndex) => (
-                                      <span
-                                        key={`${section.title}-meta-${metaIndex}`}
-                                        className="inline-block mr-3"
-                                      >
+                                      <p key={`${section.title}-meta-${metaIndex}`} className="m-0">
                                         {metaLine}
-                                      </span>
+                                      </p>
                                     ))}
                                   </div>
                                 )}
@@ -725,7 +722,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
 
                                 return (
                                   <div className="p-4 pt-1">
-                                    <div className="relative h-[210px] overflow-hidden">
+                                    <div className="relative h-[250px] sm:h-[270px] overflow-hidden">
                                       <p className="text-foreground font-serif leading-relaxed whitespace-pre-line pb-1">
                                         {pages[currentPage]}
                                       </p>
