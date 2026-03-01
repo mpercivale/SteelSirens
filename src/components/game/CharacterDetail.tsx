@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
@@ -37,6 +38,12 @@ type AshParticleSeed = {
   top: number;
   duration: number;
   delay: number;
+};
+
+type ChronicleSection = {
+  title: string;
+  metaLines: string[];
+  content: string;
 };
 
 const createSeededRng = (seedText: string) => {
@@ -100,6 +107,72 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
     const lineCount = loreText.split("\n").length;
     return loreText.length > 900 || lineCount > 18;
   }, [loreText]);
+  const chronicleSections = useMemo<ChronicleSection[]>(() => {
+    const lines = loreText.split("\n");
+    const headerPattern = /^(Day\s+.+—.*|Día\s+.+—.*|出立より.+日目\s*—?.*)$/u;
+    const separatorPattern = /^[—-]{3,}$/u;
+
+    const sections: Array<{ title: string; body: string[] }> = [];
+    let current: { title: string; body: string[] } | null = null;
+
+    for (const rawLine of lines) {
+      const trimmed = rawLine.trim();
+      if (headerPattern.test(trimmed)) {
+        if (current) {
+          sections.push(current);
+        }
+        current = { title: trimmed, body: [] };
+        continue;
+      }
+
+      if (!current) {
+        continue;
+      }
+
+      if (separatorPattern.test(trimmed)) {
+        continue;
+      }
+
+      current.body.push(rawLine.trimStart());
+    }
+
+    if (current) {
+      sections.push(current);
+    }
+
+    return sections
+      .map((section) => {
+        const rawContent = section.body.join("\n").trim();
+        const contentLines = rawContent.split("\n");
+        const metaLines: string[] = [];
+        let bodyStartIndex = 0;
+
+        for (let index = 0; index < contentLines.length; index += 1) {
+          const line = contentLines[index].trim();
+          if (!line) {
+            bodyStartIndex = index + 1;
+            break;
+          }
+          if (metaLines.length < 3) {
+            metaLines.push(line);
+            bodyStartIndex = index + 1;
+            continue;
+          }
+          break;
+        }
+
+        const bodyContent = contentLines.slice(bodyStartIndex).join("\n").trim();
+
+        return {
+          title: section.title,
+          metaLines,
+          content: bodyContent.length > 0 ? bodyContent : rawContent,
+        };
+      })
+      .filter((section) => section.title.length > 0 && section.content.length > 0);
+  }, [loreText]);
+  const isMaidenChronicleCards = personaje.slug === "la-doncella" && chronicleSections.length >= 2;
+  const sealedLetterLabel = lang === "es" ? "Carta sellada" : lang === "ja" ? "封蝋書簡" : "Sealed Letter";
 
   useEffect(() => {
     const identities = getCharacterCircleIdentities(lang, personaje);
@@ -573,29 +646,79 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                 <div className="bg-black/50 backdrop-blur-sm border border-accent/35 rounded-lg p-6">
                   <h3 className="text-xl font-bold text-foreground font-serif mb-4">{copy.sections.chronicle}</h3>
                   <div className="prose prose-invert prose-stone max-w-none">
-                    <div
-                      className={`relative transition-all duration-300 ${
-                        loreIsLong && !isLoreExpanded ? "max-h-[360px] overflow-hidden" : ""
-                      }`}
-                    >
-                      <p className="text-foreground/80 font-serif leading-relaxed whitespace-pre-line">
-                        {loreText}
-                      </p>
-                      {loreIsLong && !isLoreExpanded && (
-                        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/90 to-transparent" />
-                      )}
-                    </div>
-                    {loreIsLong && (
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => setIsLoreExpanded((prev) => !prev)}
-                        className="mt-4 rounded-none border-accent/55 bg-black/65 text-foreground hover:bg-accent/20 hover:text-foreground font-serif uppercase tracking-[0.14em] px-5 py-2 h-auto skew-x-[-14deg] transition-all duration-200"
-                      >
-                        <span className="inline-block skew-x-[14deg] text-[11px] sm:text-xs">
-                          {isLoreExpanded ? copy.actions.readLess : copy.actions.readMore}
-                        </span>
-                      </Button>
+                    {isMaidenChronicleCards ? (
+                      <div className="space-y-4">
+                        {chronicleSections.map((section, index) => (
+                          <div
+                            key={`${section.title}-${index}`}
+                            className={`flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}
+                          >
+                            <Accordion type="single" collapsible className="w-full md:w-[92%]">
+                              <AccordionItem
+                                value={`chronicle-letter-${index}`}
+                                className="border border-accent/45 bg-black/45 rounded-none overflow-hidden"
+                              >
+                                <AccordionTrigger className="hover:no-underline py-3 px-4 bg-accent/20 text-black hover:bg-accent/30 data-[state=open]:bg-accent/45 data-[state=open]:text-black transition-colors duration-200">
+                                  <div className="text-left w-full">
+                                    <div className="flex items-center gap-2">
+                                      <span className="text-[10px] uppercase tracking-[0.16em] text-black border border-black/35 bg-accent/30 px-2 py-0.5">
+                                      {sealedLetterLabel}
+                                      </span>
+                                      <span className="text-sm sm:text-base text-black font-serif tracking-[0.02em] font-semibold">
+                                        {section.title}
+                                      </span>
+                                    </div>
+                                    {section.metaLines.length > 0 && (
+                                      <div className="mt-1 flex flex-wrap gap-1.5">
+                                        {section.metaLines.map((metaLine, metaIndex) => (
+                                          <span
+                                            key={`${section.title}-meta-${metaIndex}`}
+                                            className="text-[10px] uppercase tracking-[0.08em] text-black/90 border border-black/25 bg-accent/25 px-1.5 py-0.5"
+                                          >
+                                            {metaLine}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
+                                </AccordionTrigger>
+                                <AccordionContent className="px-4 pb-4">
+                                  <p className="text-foreground/85 font-serif leading-relaxed whitespace-pre-line pb-1">
+                                    {section.content}
+                                  </p>
+                                </AccordionContent>
+                              </AccordionItem>
+                            </Accordion>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <>
+                        <div
+                          className={`relative transition-all duration-300 ${
+                            loreIsLong && !isLoreExpanded ? "max-h-[360px] overflow-hidden" : ""
+                          }`}
+                        >
+                          <p className="text-foreground/80 font-serif leading-relaxed whitespace-pre-line">
+                            {loreText}
+                          </p>
+                          {loreIsLong && !isLoreExpanded && (
+                            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/90 to-transparent" />
+                          )}
+                        </div>
+                        {loreIsLong && (
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => setIsLoreExpanded((prev) => !prev)}
+                            className="mt-4 rounded-none border-accent/55 bg-black/65 text-foreground hover:bg-accent/20 hover:text-foreground font-serif uppercase tracking-[0.14em] px-5 py-2 h-auto skew-x-[-14deg] transition-all duration-200"
+                          >
+                            <span className="inline-block skew-x-[14deg] text-[11px] sm:text-xs">
+                              {isLoreExpanded ? copy.actions.readLess : copy.actions.readMore}
+                            </span>
+                          </Button>
+                        )}
+                      </>
                     )}
                   </div>
 
