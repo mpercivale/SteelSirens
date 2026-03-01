@@ -240,6 +240,7 @@ export interface Beast {
   name: string;
   slug: string;
   race: "humanoid" | "demihuman" | "demon" | "vampire" | "undead" | "beast" | "dragon" | "aberration" | "elemental";
+  unlockByCharacterSlugs?: string[];
   subtype?: string;
   loreDescription?: string;
   shortDescription?: string;

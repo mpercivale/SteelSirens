@@ -26,6 +26,7 @@ import { cn } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
 import { resolveLanguage, type Language } from "@/lib/i18n";
 import { getCreatureTranslation, getRaceLabel as getTranslatedRaceLabel } from "@/lib/bestiary-translations";
+import { getBeastUnlockRequirements, getDiscoveredCharacterSlugs, isBeastUnlocked } from "@/lib/progression";
 
 type WispParticleSeed = {
   size: number;
@@ -136,6 +137,7 @@ export function BestiaryGrid({ lang }: BestiaryGridProps) {
   const [hasMounted, setHasMounted] = useState(false);
   const [selectedBeast, setSelectedBeast] = useState<Beast | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [discoveredCharacterSlugs, setDiscoveredCharacterSlugs] = useState<string[]>([]);
   
   // Fallback to search params if lang prop not provided
   const searchParams = useSearchParams();
@@ -157,6 +159,16 @@ export function BestiaryGrid({ lang }: BestiaryGridProps) {
 
   useEffect(() => {
     setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    setDiscoveredCharacterSlugs(getDiscoveredCharacterSlugs());
+  }, []);
+
+  useEffect(() => {
+    const onStorage = () => setDiscoveredCharacterSlugs(getDiscoveredCharacterSlugs());
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
   }, []);
 
   const filteredBeasts = selectedRace === "all"
@@ -279,6 +291,15 @@ export function BestiaryGrid({ lang }: BestiaryGridProps) {
           const displayName = translation?.name || beast.name;
           const displayDesc = translation?.short || beast.shortDescription;
           const fontClass = finalLang === "ja" ? "font-noto-serif-jp" : "font-serif";
+          const isUnlocked = isBeastUnlocked(beast, discoveredCharacterSlugs);
+          const requiredCount = getBeastUnlockRequirements(beast).length;
+          const sealedLabel = finalLang === "es" ? "Entrada Sellada" : finalLang === "ja" ? "封印済み" : "Sealed Entry";
+          const sealedHint =
+            finalLang === "es"
+              ? `Descubre personajes para desbloquear (${requiredCount})`
+              : finalLang === "ja"
+              ? `キャラクター発見で解除（${requiredCount}）`
+              : `Discover characters to unlock (${requiredCount})`;
           const currentPreviewSlug =
             beast.slug === "trolls-psiquicos"
               ? trollPortraitOptions[trollPortraitIndex] ?? "troll-bajito"
@@ -312,6 +333,9 @@ export function BestiaryGrid({ lang }: BestiaryGridProps) {
           >
             <div 
               onClick={() => {
+                if (!isUnlocked) {
+                  return;
+                }
                 setSelectedBeast(beast);
                 setIsDetailOpen(true);
               }}
@@ -327,7 +351,11 @@ export function BestiaryGrid({ lang }: BestiaryGridProps) {
                   </Badge>
                 </div>
 
-                <div className="aspect-square bg-black/40 backdrop-blur-sm border-2 border-[oklch(0.72_0.08_75/20%)] hover:border-[oklch(0.72_0.08_75/50%)] overflow-hidden transition-[border-color,box-shadow,transform] duration-500 ease-out transform-gpu cursor-pointer group-hover:shadow-[0_0_20px_oklch(0.72_0.08_75/18%)]">
+                <div className={`aspect-square bg-black/40 backdrop-blur-sm border-2 overflow-hidden transition-[border-color,box-shadow,transform] duration-500 ease-out transform-gpu ${
+                  isUnlocked
+                    ? "border-[oklch(0.72_0.08_75/20%)] hover:border-[oklch(0.72_0.08_75/50%)] cursor-pointer group-hover:shadow-[0_0_20px_oklch(0.72_0.08_75/18%)]"
+                    : "border-[oklch(0.72_0.08_75/14%)] cursor-not-allowed"
+                }`}>
                   {/* Background glow effect */}
                   <div className="absolute inset-0 bg-gradient-radial from-accent/50 via-accent/20 to-transparent opacity-[0.08] group-hover:opacity-100 transition-opacity duration-700 ease-out" />
 
@@ -464,14 +492,21 @@ export function BestiaryGrid({ lang }: BestiaryGridProps) {
                 {/* Name overlay */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/90 to-transparent px-3 pt-6 pb-2">
                     <h3 className={`souls-title text-xs tracking-widest text-[oklch(0.88_0.01_60)] text-center line-clamp-2 ${fontClass}`}>
-                      {displayName}
+                      {isUnlocked ? displayName : "???"}
                     </h3>
-                    {displayDesc && (
+                    {isUnlocked && displayDesc && (
                       <p className={`text-[10px] souls-text text-[oklch(0.55_0.01_60)] mt-1 text-center line-clamp-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${fontClass}`}>
                         {displayDesc}
                       </p>
                     )}
                   </div>
+
+                  {!isUnlocked && (
+                    <div className="absolute inset-0 bg-black/75 flex flex-col items-center justify-center px-3 text-center">
+                      <p className="text-[11px] uppercase tracking-[0.2em] text-[oklch(0.72_0.08_75)] font-semibold">{sealedLabel}</p>
+                      <p className="mt-2 text-[10px] text-foreground/70 font-serif leading-relaxed">{sealedHint}</p>
+                    </div>
+                  )}
 
                   {/* Ash particles on hover */}
                   <div className={`absolute inset-0 pointer-events-none transition-opacity duration-900 ease-out ${beast.slug === "wisp" ? (isHovered ? "opacity-100 z-30" : "opacity-0") : "opacity-0 group-hover:opacity-100"}`}>

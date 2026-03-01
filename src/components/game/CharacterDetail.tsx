@@ -25,6 +25,7 @@ import {
   getItemContent,
   type Language,
 } from "@/lib/i18n";
+import { markCharacterDiscovered } from "@/lib/progression";
 
 interface CharacterDetailProps {
   character: Character;
@@ -267,6 +268,10 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
   useEffect(() => {
     setIsLoreExpanded(false);
   }, [personaje.slug, lang]);
+
+  useEffect(() => {
+    markCharacterDiscovered(personaje.slug);
+  }, [personaje.slug]);
 
   useEffect(() => {
     setChronicleCardPage({});

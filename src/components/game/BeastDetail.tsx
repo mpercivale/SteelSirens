@@ -20,6 +20,7 @@ import { useState, useEffect, useMemo } from "react";
 import ModelViewer3D from "./ModelViewer3D";
 import { getCreatureTranslation, getHabitatLabel, getRaceLabel as getTranslatedRaceLabel } from "@/lib/bestiary-translations";
 import { type Language, getBeastDetailCopy, getItemContent } from "@/lib/i18n";
+import { getBeastUnlockRequirements, getDiscoveredCharacterSlugs, isBeastUnlocked } from "@/lib/progression";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -90,6 +91,7 @@ export function BeastDetail({
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
   const [itemViewMode, setItemViewMode] = useState<"2d" | "3d">("2d");
   const [selectedVariantSlug, setSelectedVariantSlug] = useState<string | null>(null);
+  const [discoveredCharacterSlugs, setDiscoveredCharacterSlugs] = useState<string[]>([]);
   const router = useRouter();
 
   const variants = beast.variants ?? [];
@@ -180,6 +182,16 @@ export function BeastDetail({
     setIs3DMode(false);
   }, [beast.slug]);
 
+  useEffect(() => {
+    setDiscoveredCharacterSlugs(getDiscoveredCharacterSlugs());
+  }, []);
+
+  useEffect(() => {
+    const onStorage = () => setDiscoveredCharacterSlugs(getDiscoveredCharacterSlugs());
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
+
   const navigateToBeast = (slug: string) => {
     if (!enableRouteNavigation) return;
     router.push(`/bestiary/${slug}`);
@@ -235,6 +247,30 @@ export function BeastDetail({
   const selectedItemLoreDescription = selectedItemLocale?.lorDescription ?? selectedItem?.lorDescription;
   const selectedItemHowToObtain = selectedItemLocale?.howToObtain ?? selectedItem?.howToObtain;
   const japaneseTypographyClass = lang === "ja" ? "font-noto-serif-jp [&_*]:!font-noto-serif-jp" : "";
+  const isUnlocked = isBeastUnlocked(beast, discoveredCharacterSlugs);
+  const requiredCount = getBeastUnlockRequirements(beast).length;
+  const sealedLabel = lang === "es" ? "Entrada Sellada" : lang === "ja" ? "封印済み" : "Sealed Entry";
+  const sealedHint =
+    lang === "es"
+      ? `Descubre personajes para desbloquear (${requiredCount})`
+      : lang === "ja"
+      ? `キャラクター発見で解除（${requiredCount}）`
+      : `Discover characters to unlock (${requiredCount})`;
+
+  if (!isUnlocked) {
+    return (
+      <div className={`space-y-8 overflow-hidden ${japaneseTypographyClass}`}>
+        <Card className="relative overflow-hidden rounded-none bg-black/45 backdrop-blur-sm border-[oklch(0.72_0.08_75/25%)] p-10 text-center">
+          <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.18_0.02_75/45%)] via-transparent to-black/65" />
+          <div className="relative z-10">
+            <h2 className="souls-title text-3xl text-[oklch(0.72_0.08_75)] tracking-widest">{sealedLabel}</h2>
+            <div className="w-20 h-px bg-[oklch(0.72_0.08_75/50%)] mx-auto my-4" />
+            <p className="text-[oklch(0.68_0.03_75)] leading-relaxed max-w-xl mx-auto souls-text">{sealedHint}</p>
+          </div>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className={`space-y-8 overflow-hidden ${japaneseTypographyClass}`}>
