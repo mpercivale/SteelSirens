@@ -8,7 +8,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
@@ -63,6 +62,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
   const [is3DMode, setIs3DMode] = useState(false);
   const [displayName, setDisplayName] = useState(character.name);
   const [isLoreExpanded, setIsLoreExpanded] = useState(false);
+  const [expandedChronicleCards, setExpandedChronicleCards] = useState<Record<number, boolean>>({});
   const characterGlowColor = personaje.color_glow || personaje.colorGlow || character.colorGlow || "#ffffff";
   const copy = getCharacterDetailCopy(lang);
   const dialogueTitle = lang === "es" ? "Diálogos" : lang === "ja" ? "台詞" : "Dialogues";
@@ -182,6 +182,10 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
 
   useEffect(() => {
     setIsLoreExpanded(false);
+  }, [personaje.slug, lang]);
+
+  useEffect(() => {
+    setExpandedChronicleCards({});
   }, [personaje.slug, lang]);
 
   const statEntries = [
@@ -653,42 +657,61 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                             key={`${section.title}-${index}`}
                             className={`flex ${index % 2 === 0 ? "justify-start" : "justify-end"}`}
                           >
-                            <Accordion type="single" collapsible className="w-full md:w-[92%]">
-                              <AccordionItem
-                                value={`chronicle-letter-${index}`}
-                                className="border border-accent/45 bg-black/45 rounded-none overflow-hidden"
-                              >
-                                <AccordionTrigger className="hover:no-underline py-3 px-4 bg-accent/20 text-black hover:bg-accent/30 data-[state=open]:bg-accent/45 data-[state=open]:text-black transition-colors duration-200">
-                                  <div className="text-left w-full">
-                                    <div className="flex items-center gap-2">
-                                      <span className="text-[10px] uppercase tracking-[0.16em] text-black border border-black/35 bg-accent/30 px-2 py-0.5">
-                                      {sealedLetterLabel}
+                            <div className="w-full md:w-[92%] border border-accent/45 bg-black/45 rounded-none overflow-hidden">
+                              <div className="py-3 px-4 bg-black/55 border-b border-accent/30">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-[10px] uppercase tracking-[0.16em] text-accent border border-accent/40 bg-black/35 px-2 py-0.5">
+                                    {sealedLetterLabel}
+                                  </span>
+                                  <span className="text-sm sm:text-base text-foreground font-serif tracking-[0.02em] font-semibold">
+                                    {section.title}
+                                  </span>
+                                </div>
+                                {section.metaLines.length > 0 && (
+                                  <div className="mt-1 flex flex-wrap gap-1.5">
+                                    {section.metaLines.map((metaLine, metaIndex) => (
+                                      <span
+                                        key={`${section.title}-meta-${metaIndex}`}
+                                        className="text-[10px] uppercase tracking-[0.08em] text-foreground/85 border border-accent/30 bg-black/30 px-1.5 py-0.5"
+                                      >
+                                        {metaLine}
                                       </span>
-                                      <span className="text-sm sm:text-base text-black font-serif tracking-[0.02em] font-semibold">
-                                        {section.title}
-                                      </span>
-                                    </div>
-                                    {section.metaLines.length > 0 && (
-                                      <div className="mt-1 flex flex-wrap gap-1.5">
-                                        {section.metaLines.map((metaLine, metaIndex) => (
-                                          <span
-                                            key={`${section.title}-meta-${metaIndex}`}
-                                            className="text-[10px] uppercase tracking-[0.08em] text-black/90 border border-black/25 bg-accent/25 px-1.5 py-0.5"
-                                          >
-                                            {metaLine}
-                                          </span>
-                                        ))}
-                                      </div>
-                                    )}
+                                    ))}
                                   </div>
-                                </AccordionTrigger>
-                                <AccordionContent className="px-4 pb-4">
+                                )}
+                              </div>
+
+                              <div className="px-4 pt-3 pb-4">
+                                <div
+                                  className={`relative transition-all duration-300 ${
+                                    expandedChronicleCards[index] ? "" : "max-h-[210px] overflow-hidden"
+                                  }`}
+                                >
                                   <p className="text-foreground/85 font-serif leading-relaxed whitespace-pre-line pb-1">
                                     {section.content}
                                   </p>
-                                </AccordionContent>
-                              </AccordionItem>
-                            </Accordion>
+                                  {!expandedChronicleCards[index] && (
+                                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/95 to-transparent" />
+                                  )}
+                                </div>
+
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  onClick={() =>
+                                    setExpandedChronicleCards((prev) => ({
+                                      ...prev,
+                                      [index]: !prev[index],
+                                    }))
+                                  }
+                                  className="mt-3 rounded-none border-accent/55 bg-black/65 text-foreground hover:bg-accent/20 hover:text-foreground font-serif uppercase tracking-[0.14em] px-5 py-2 h-auto skew-x-[-14deg] transition-all duration-200"
+                                >
+                                  <span className="inline-block skew-x-[14deg] text-[11px] sm:text-xs">
+                                    {expandedChronicleCards[index] ? copy.actions.readLess : copy.actions.readMore}
+                                  </span>
+                                </Button>
+                              </div>
+                            </div>
                           </div>
                         ))}
                       </div>
