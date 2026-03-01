@@ -424,7 +424,7 @@ const characterCircleLocales: Record<Language, Record<string, CharacterCircleLoc
     "el-escudero": {
       name: "従者",
       title: "純粋なる心",
-      quotes: ["父さんは、正しいことをしろと言った..."
+      quotes: ["父さんは、正しいことをしろと言った...",
                 "みんなの中に何か良いものがあるはずだよね？",
                 "恐怖に決定させるわけにはいかない。",
                 "もしかしたら、彼らを助けることができるかもしれない。",
