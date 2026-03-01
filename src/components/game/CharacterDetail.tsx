@@ -227,6 +227,29 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
         pages.push(currentPage);
       }
 
+      if (pages.length >= 2) {
+        const lastPage = pages[pages.length - 1];
+        const previousPage = pages[pages.length - 2];
+        const lastPageLines = estimateRenderedLines(lastPage, lang);
+        const isTinyLastPage = lastPageLines <= 2 || lastPage.length <= (lang === "ja" ? 24 : 40);
+
+        if (isTinyLastPage) {
+          const mergedCandidate = `${previousPage}\n\n${lastPage}`;
+          const mergedLines = estimateRenderedLines(mergedCandidate, lang);
+          const mergedChars = mergedCandidate.length;
+          const allowLineOverflow = 1;
+          const allowCharOverflow = lang === "ja" ? 40 : 60;
+
+          if (
+            mergedLines <= maxLinesPerPage + allowLineOverflow &&
+            mergedChars <= maxCharsPerPage + allowCharOverflow
+          ) {
+            pages[pages.length - 2] = mergedCandidate;
+            pages.pop();
+          }
+        }
+      }
+
       return pages.length > 0 ? pages : [section.content.trim()];
     });
   }, [chronicleSections, lang]);
