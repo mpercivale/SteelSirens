@@ -664,9 +664,9 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                             key={`${section.title}-${index}`}
                             className={`flex ${index % 2 === 0 ? "justify-start md:pr-16 lg:pr-24" : "justify-end md:pl-16 lg:pl-24"}`}
                           >
-                            <div className="w-full md:w-[80%] border border-accent/45 bg-gradient-to-b from-accent/45 via-accent/18 to-black/92 backdrop-blur-sm rounded-none overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.35)]">
+                            <div className="w-full md:w-[80%] border border-[#8a6b4d]/55 bg-gradient-to-b from-[#8a6b4d]/45 via-[#8a6b4d]/18 to-black/92 backdrop-blur-sm rounded-none overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.35)]">
                               <div className="p-4 text-left">
-                                <p className="text-xs uppercase tracking-[0.2em] text-accent font-extrabold drop-shadow-sm">
+                                <p className="text-xs uppercase tracking-[0.2em] text-[#8a6b4d] font-extrabold drop-shadow-sm">
                                   {sealedLetterLabel}
                                 </p>
                                 <p className="text-base sm:text-lg text-foreground font-serif tracking-[0.02em] font-semibold mt-1">
@@ -716,7 +716,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                                             [index]: !Boolean(previous[index]),
                                           }))
                                         }
-                                        className="mt-4 rounded-none border-accent/55 bg-accent/30 text-foreground hover:bg-accent/40 hover:text-foreground font-serif font-semibold uppercase tracking-[0.14em] px-5 py-2 h-auto skew-x-[-14deg] transition-all duration-200"
+                                        className="mt-4 rounded-none border-[#8a6b4d]/65 bg-[#8a6b4d]/35 text-foreground hover:bg-[#8a6b4d]/45 hover:text-foreground font-serif font-semibold uppercase tracking-[0.14em] px-5 py-2 h-auto skew-x-[-14deg] transition-all duration-200"
                                       >
                                         <span className="inline-block skew-x-[14deg] text-[11px] sm:text-xs">
                                           {isCardExpanded ? copy.actions.readLess : copy.actions.readMore}
