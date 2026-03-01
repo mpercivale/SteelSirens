@@ -657,19 +657,19 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                             key={`${section.title}-${index}`}
                             className={`flex ${index % 2 === 0 ? "justify-start md:pr-16 lg:pr-24" : "justify-end md:pl-16 lg:pl-24"}`}
                           >
-                            <div className="w-full md:w-[80%] border border-accent/45 bg-black/50 rounded-none overflow-hidden">
-                              <div className="py-3 px-4 bg-gradient-to-r from-accent/55 via-accent/30 to-accent/10 border-b border-accent/40">
+                            <div className="w-full md:w-[80%] border border-accent/55 bg-black/70 backdrop-blur-sm rounded-none overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.35)]">
+                              <div className="py-3 px-4 bg-gradient-to-r from-accent/75 via-accent/50 to-accent/20 border-b border-accent/55">
                                 <div className="text-left w-full">
                                   <div className="flex items-center gap-2 flex-wrap">
-                                    <span className="text-[10px] uppercase tracking-[0.16em] text-black/90 border border-black/25 bg-accent/40 px-2 py-0.5">
+                                    <span className="text-[10px] uppercase tracking-[0.16em] text-black border border-black/30 bg-accent/70 px-2 py-0.5 font-semibold">
                                       {sealedLetterLabel}
                                     </span>
-                                    <span className="text-sm sm:text-base text-black/95 font-serif tracking-[0.02em] font-semibold">
+                                    <span className="text-sm sm:text-base text-foreground font-serif tracking-[0.02em] font-semibold">
                                       {section.title}
                                     </span>
                                   </div>
                                   {section.metaLines.length > 0 && (
-                                    <div className="mt-1 text-[11px] font-serif text-black/85 tracking-[0.03em]">
+                                    <div className="mt-1 text-[11px] font-serif text-foreground/90 tracking-[0.03em]">
                                       {section.metaLines.map((metaLine, metaIndex) => (
                                         <span
                                           key={`${section.title}-meta-${metaIndex}`}
@@ -695,7 +695,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                                         isCardLong && !isCardExpanded ? "max-h-[200px] overflow-hidden" : ""
                                       }`}
                                     >
-                                      <p className="text-foreground/85 font-serif leading-relaxed whitespace-pre-line pb-1">
+                                      <p className="text-foreground font-serif leading-relaxed whitespace-pre-line pb-1">
                                         {section.content}
                                       </p>
                                       {isCardLong && !isCardExpanded && (
@@ -713,7 +713,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                                             [index]: !Boolean(previous[index]),
                                           }))
                                         }
-                                        className="mt-4 rounded-none border-accent/60 bg-accent/28 text-black/90 hover:bg-accent/45 hover:text-black font-serif uppercase tracking-[0.14em] px-5 py-2 h-auto skew-x-[-14deg] transition-all duration-200"
+                                        className="mt-4 rounded-none border-accent/70 bg-accent/55 text-black hover:bg-accent/75 hover:text-black font-serif font-semibold uppercase tracking-[0.14em] px-5 py-2 h-auto skew-x-[-14deg] transition-all duration-200"
                                       >
                                         <span className="inline-block skew-x-[14deg] text-[11px] sm:text-xs">
                                           {isCardExpanded ? copy.actions.readLess : copy.actions.readMore}
