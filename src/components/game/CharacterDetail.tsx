@@ -45,6 +45,21 @@ type ChronicleSection = {
   content: string;
 };
 
+const estimateRenderedLines = (value: string, lang: Language) => {
+  const approxCharsPerLine = lang === "ja" ? 18 : 40;
+
+  return value
+    .split("\n")
+    .map((line) => line.trim())
+    .reduce((total, line) => {
+      if (!line) {
+        return total + 1;
+      }
+
+      return total + Math.max(1, Math.ceil(line.length / approxCharsPerLine));
+    }, 0);
+};
+
 const createSeededRng = (seedText: string) => {
   let hash = 2166136261;
   for (let index = 0; index < seedText.length; index += 1) {
@@ -179,6 +194,9 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
       .filter((section) => section.title.length > 0 && section.content.length > 0);
   }, [loreText]);
   const chronicleSectionPages = useMemo(() => {
+    const maxCharsPerPage = lang === "ja" ? 260 : 340;
+    const maxLinesPerPage = lang === "ja" ? 13 : 16;
+
     return chronicleSections.map((section) => {
       const blocks = section.content
         .split(/\n\s*\n/u)
@@ -191,11 +209,13 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
 
       const pages: string[] = [];
       let currentPage = "";
-      const maxCharsPerPage = lang === "ja" ? 250 : 340;
 
       for (const block of blocks) {
         const candidate = currentPage ? `${currentPage}\n\n${block}` : block;
-        if (candidate.length > maxCharsPerPage && currentPage.length > 0) {
+        const exceedsChars = candidate.length > maxCharsPerPage;
+        const exceedsLines = estimateRenderedLines(candidate, lang) > maxLinesPerPage;
+
+        if ((exceedsChars || exceedsLines) && currentPage.length > 0) {
           pages.push(currentPage);
           currentPage = block;
         } else {
