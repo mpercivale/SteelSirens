@@ -125,6 +125,11 @@ export interface Location {
   shortDescription?: string;
   imageUrl?: string;
   mapImageUrl?: string;
+  mapPosition?: {
+    x: number;
+    y: number;
+  };
+  sightedCharacterSlugs?: string[];
   parentRegionId?: string;
   dangerLevel?: "low" | "medium" | "high" | "extreme";
   discovered?: boolean;
@@ -138,6 +143,7 @@ export type Locacion = Location & {
   descripcion_lore?: string;
   descripcion_corta?: string;
   imagen_url?: string;
+  personajes_avistados_slugs?: string[];
   peligrosidad?: string;
   descubierto?: boolean;
 };

@@ -362,7 +362,7 @@ const characterCircleLocales: Record<Language, Record<string, CharacterCircleLoc
     "el-escudero": {
       name: "El Escudero",
       title: "El Corazón Puro",
-      quotes: ["Papá decía que siempre hiciera lo correcto…",
+      quotes: ["Padre decía que siempre hiciera lo correcto…",
 "Debe haber algo bueno en todos, ¿verdad?",
 "No dejaré que el miedo decida por mí.",
 "Quizás podamos ayudarlos.",
@@ -712,7 +712,7 @@ Enough for now.`,
       title: "El Bandido de la Calle",
       class: "Bandido",
       origin: "Las Calles",
-      shortDescription: "Un bandido callejero astuto, atado a una promesa de proteger al muchacho.",
+      shortDescription: "Un bandido callejero orillado a sobrevivir, pragmático, astuto y ruin.",
       lore: `**Rol:**
 - Bandido de calle, pragmático, astuto y ruin.
 - Representa la **humanidad común**, con vicios y destellos de virtud.
@@ -745,7 +745,7 @@ Enough for now.`,
       title: "El Corazón Puro",
       class: "Escudero",
       origin: "Aldea Rural",
-      shortDescription: "Un muchacho inocente que se vuelve brújula moral en un mundo corrupto.",
+      shortDescription: "La brújula en un mundo retorcido.",
       lore: `Joven campesino que encarna esperanza y crecimiento moral. Comienza ingenuo, pero el viaje lo obliga a madurar sin perder su humanidad.
 
 Su objetivo no es el poder: es sobrevivir, cumplir la promesa de su padre y sostener al grupo cuando todo se desmorona.`,
@@ -756,10 +756,10 @@ Su objetivo no es el poder: es sobrevivir, cumplir la promesa de su padre y sost
       },
     },
     "la-doncella": {
-      title: "La Princesa Hueca",
+      title: "La Doncella Hueca",
       class: "Noble Corrupta",
       origin: "Linaje Real",
-      shortDescription: "Una princesa resucitada, atrapada entre monstruo y humanidad.",
+      shortDescription: "Una Muchacha sin pasado, atrapada entre monstruo y humanidad.",
       lore: `Día IX desde la partida —
 
 Declaración de El Perro.
@@ -962,8 +962,8 @@ Basta por ahora.
       },
     },
     "el-juez": {
-      title: "El Heraldo del Juicio",
-      class: "Fanático",
+      title: "Juez del Umbral",
+      class: "Prefecto",
       origin: "Desconocido",
       shortDescription: "“Una mano que no vacila ni aun en tiempos de desviación.”",
       lore: `..Acta de la Santa Misa de Investidura..
@@ -1027,8 +1027,8 @@ Basta por ahora.
     "el-hechicero": {
       title: "El Erudito Obsesivo",
       class: "Hechicero",
-      origin: "Tierras Orientales Lejanas",
-      shortDescription: "Un mago obsesionado con el conocimiento que termina consumido por él.",
+      origin: "Tierras del Polvo",
+      shortDescription: "Un erudito brillante, meticuloso y arrogante, sediento de conocimiento y poder.",
       lore: `Estudioso brillante, meticuloso y arrogante, atraído por la biblioteca secreta de la torre.
 
 Su talento es inmenso, pero su obsesión lo vuelve frágil ante la influencia de la torre, que distorsiona su juicio.`,

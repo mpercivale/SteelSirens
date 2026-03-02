@@ -1,6 +1,12 @@
 import type { Beast } from "@/types/game";
 
 export const DISCOVERED_CHARACTER_SLUGS_STORAGE_KEY = "steel_sirens_discovered_character_slugs";
+export const LOCATION_SECRET_PROGRESS_STORAGE_KEY = "steel_sirens_location_secret_progress";
+export const GAME_FLAGS_STORAGE_KEY = "steel_sirens_game_flags";
+
+export type GameFlag = "unlock_monastery_secret" | "unlock_sewers" | "unlock_depths";
+
+type GameFlagsState = Partial<Record<GameFlag, boolean>>;
 
 const defaultUnlockByRace: Record<string, string[]> = {
   humanoid: ["el-juez"],
@@ -38,6 +44,101 @@ export function markCharacterDiscovered(slug?: string | null): string[] {
   const updated = Array.from(current);
   window.localStorage.setItem(DISCOVERED_CHARACTER_SLUGS_STORAGE_KEY, JSON.stringify(updated));
   return updated;
+}
+
+type LocationSecretProgress = Record<string, number>;
+
+export function getLocationSecretProgress(): LocationSecretProgress {
+  if (typeof window === "undefined") {
+    return {};
+  }
+
+  try {
+    const raw = window.localStorage.getItem(LOCATION_SECRET_PROGRESS_STORAGE_KEY);
+    const parsed = raw ? (JSON.parse(raw) as unknown) : {};
+
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return {};
+    }
+
+    return Object.entries(parsed as Record<string, unknown>).reduce<LocationSecretProgress>((acc, [key, value]) => {
+      if (typeof value === "number" && Number.isFinite(value) && value >= 0) {
+        acc[key] = Math.floor(value);
+      }
+      return acc;
+    }, {});
+  } catch {
+    return {};
+  }
+}
+
+export function getLocationFoundSecrets(locationKey?: string | null): number {
+  if (!locationKey) {
+    return 0;
+  }
+
+  const progress = getLocationSecretProgress();
+  return progress[locationKey] ?? 0;
+}
+
+export function markLocationSecretFound(locationKey?: string | null): number {
+  if (!locationKey || typeof window === "undefined") {
+    return 0;
+  }
+
+  const progress = getLocationSecretProgress();
+  const nextValue = (progress[locationKey] ?? 0) + 1;
+  const updated: LocationSecretProgress = {
+    ...progress,
+    [locationKey]: nextValue,
+  };
+
+  window.localStorage.setItem(LOCATION_SECRET_PROGRESS_STORAGE_KEY, JSON.stringify(updated));
+  return nextValue;
+}
+
+export function getGameFlags(): GameFlagsState {
+  if (typeof window === "undefined") {
+    return {};
+  }
+
+  try {
+    const raw = window.localStorage.getItem(GAME_FLAGS_STORAGE_KEY);
+    const parsed = raw ? (JSON.parse(raw) as unknown) : {};
+
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return {};
+    }
+
+    return Object.entries(parsed as Record<string, unknown>).reduce<GameFlagsState>((acc, [key, value]) => {
+      if (typeof value === "boolean") {
+        acc[key as GameFlag] = value;
+      }
+      return acc;
+    }, {});
+  } catch {
+    return {};
+  }
+}
+
+export function isGameFlagEnabled(flag: GameFlag): boolean {
+  const flags = getGameFlags();
+  return Boolean(flags[flag]);
+}
+
+export function setGameFlag(flag: GameFlag, enabled = true): GameFlagsState {
+  if (typeof window === "undefined") {
+    return {};
+  }
+
+  const current = getGameFlags();
+  const next: GameFlagsState = {
+    ...current,
+    [flag]: enabled,
+  };
+
+  window.localStorage.setItem(GAME_FLAGS_STORAGE_KEY, JSON.stringify(next));
+  return next;
 }
 
 export function getBeastUnlockRequirements(beast: Beast): string[] {
