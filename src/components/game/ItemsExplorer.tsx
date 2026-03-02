@@ -1,10 +1,12 @@
 
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import type { Objeto, Categoria } from "@/types/game";
 import ItemCard from "./ItemCard";
 import { getItemCategoryName, getItemCategoryDescription, type Language } from "@/lib/i18n";
+import { getDiscoveredItemSlugs, isItemDiscoveredForList } from "@/lib/progression";
 
 interface Props {
   items: Objeto[];
@@ -13,6 +15,23 @@ interface Props {
 }
 
 export default function ItemsExplorer({ items, categories, lang }: Props) {
+  const [discoveredItemSlugs, setDiscoveredItemSlugs] = useState<string[]>([]);
+
+  useEffect(() => {
+    const syncDiscoveredItems = () => {
+      setDiscoveredItemSlugs(getDiscoveredItemSlugs());
+    };
+
+    syncDiscoveredItems();
+    window.addEventListener("storage", syncDiscoveredItems);
+    return () => window.removeEventListener("storage", syncDiscoveredItems);
+  }, []);
+
+  const visibleItems = useMemo(
+    () => items.filter((item) => isItemDiscoveredForList(item, discoveredItemSlugs)),
+    [items, discoveredItemSlugs]
+  );
+
   const itemCategories = categories.filter((category) => category.type === "item");
   const categoriesById = Object.fromEntries(itemCategories.map((category) => [category.id, category]));
 
@@ -42,7 +61,7 @@ export default function ItemsExplorer({ items, categories, lang }: Props) {
           .filter((category) => category.categoria_padre_id === parent.id)
           .sort((left, right) => (left.order ?? 999) - (right.order ?? 999));
 
-        const parentItems = items.filter((item) => getParentCategoryId(item) === parent.id);
+        const parentItems = visibleItems.filter((item) => getParentCategoryId(item) === parent.id);
 
         if (parentItems.length === 0) {
           return null;

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Noto_Serif_JP } from "next/font/google";
+import { cookies } from "next/headers";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import GlobalClientEffects from "@/components/GlobalClientEffects";
+import { resolveLanguage } from "@/lib/i18n";
 import "./globals.css";
 import MobileMenu from "@/components/game/MobileMenu";
 
@@ -28,13 +30,16 @@ export const metadata: Metadata = {
   description: "Explore the lore, characters, items, and locations of The Ashen Chronicle.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const lang = resolveLanguage(cookieStore.get("lang")?.value ?? "en");
+
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
+    <html lang={lang} suppressHydrationWarning className="dark">
       <body className={`${geistSans.variable} ${geistMono.variable} ${notoSerifJp.variable} antialiased bg-background text-foreground`}>
         <Toaster />
         <ThemeProvider

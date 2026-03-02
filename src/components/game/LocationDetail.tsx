@@ -8,7 +8,7 @@ import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import type { Locacion } from "@/types/game";
 import { type Language } from "@/lib/i18n";
-import { getGameFlags, markCharacterDiscovered, setGameFlag, type GameFlag } from "@/lib/progression";
+import { getGameFlags, markCharacterDiscovered, markItemDiscovered, setGameFlag, type GameFlag } from "@/lib/progression";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -26,6 +26,7 @@ type SceneHotspot = {
   actionEn: string;
   actionJa: string;
   targetSlug?: string;
+  unlockItemSlug?: string;
   unlockFlag?: GameFlag;
   requiresFlag?: GameFlag;
 };
@@ -33,6 +34,19 @@ type SceneHotspot = {
 const MAP_PLACEHOLDER_SRC = "/images/maps/elden-ring-placeholder.png";
 
 const HOTSPOTS_BY_LOCATION: Record<string, SceneHotspot[]> = {
+  "la-pradera": [
+    {
+      id: "pradera-wolfsbane-notes",
+      x: 58,
+      y: 63,
+      width: 12,
+      height: 15,
+      actionEs: "Recoger Notas de Campo",
+      actionEn: "Collect Field Notes",
+      actionJa: "調査メモを拾う",
+      unlockItemSlug: "field-notes-wolfsbane",
+    },
+  ],
   "ruinas-del-monasterio": [
     {
       id: "to-dungeons",
@@ -97,6 +111,56 @@ const HOTSPOTS_BY_LOCATION: Record<string, SceneHotspot[]> = {
       targetSlug: "las-profundidades",
       unlockFlag: "unlock_depths",
       requiresFlag: "unlock_sewers",
+    },
+  ],
+  "molino-abandonado": [
+    {
+      id: "wolfsbane-ledger",
+      x: 67,
+      y: 44,
+      width: 11,
+      height: 13,
+      actionEs: "Recoger Registro de Wolfsbane",
+      actionEn: "Collect Wolfsbane Ledger",
+      actionJa: "ウルフズベイン記録を拾う",
+      unlockItemSlug: "wolfsbane-ledger",
+    },
+    {
+      id: "mill-floodgate-key",
+      x: 46,
+      y: 72,
+      width: 10,
+      height: 13,
+      actionEs: "Recoger Llave de Compuerta",
+      actionEn: "Collect Floodgate Key",
+      actionJa: "水門の鍵を拾う",
+      unlockItemSlug: "mill-floodgate-key",
+    },
+  ],
+  "bosque-embrujado": [
+    {
+      id: "forest-cracked-seal",
+      x: 34,
+      y: 58,
+      width: 12,
+      height: 16,
+      actionEs: "Recoger Sello Astillado",
+      actionEn: "Collect Cracked Seal",
+      actionJa: "ひび割れた封印を拾う",
+      unlockItemSlug: "cracked-forest-seal",
+    },
+  ],
+  "villa-infestada": [
+    {
+      id: "villa-auremont-fragment",
+      x: 74,
+      y: 41,
+      width: 13,
+      height: 17,
+      actionEs: "Recoger Fragmento Auremont",
+      actionEn: "Collect Auremont Fragment",
+      actionJa: "オーレモントの欠片を拾う",
+      unlockItemSlug: "auremont-relic-fragment",
     },
   ],
 };
@@ -164,6 +228,7 @@ export default function LocationDetail({ location, lang = "en" }: Props) {
           feedbackSewers: "Nueva ruta descubierta: Mazmorras → Alcantarillas.",
           feedbackDepths: "La caída se abre: Alcantarillas → Profundidades.",
           allUnlocked: "Las rutas ocultas bajo Auremont ya están abiertas.",
+          itemUnlocked: "Has encontrado un objeto clave:",
         }
       : lang === "ja"
       ? {
@@ -186,6 +251,7 @@ export default function LocationDetail({ location, lang = "en" }: Props) {
           feedbackSewers: "新ルート発見：地下牢 → 下水道。",
           feedbackDepths: "奈落への道解放：下水道 → 深層。",
           allUnlocked: "オーレモント地下の隠し経路はすべて解放済み。",
+          itemUnlocked: "重要アイテムを発見:",
         }
       : {
           mapSection: "Map Sightings",
@@ -207,6 +273,7 @@ export default function LocationDetail({ location, lang = "en" }: Props) {
           feedbackSewers: "New route discovered: Dungeons → Sewers.",
           feedbackDepths: "The descent opens: Sewers → Depths.",
           allUnlocked: "All hidden routes under Auremont are now open.",
+          itemUnlocked: "Key item discovered:",
         };
 
   const activeEventStep = useMemo(() => {
@@ -241,6 +308,12 @@ export default function LocationDetail({ location, lang = "en" }: Props) {
     if (hotspot.unlockFlag) {
       const next = setGameFlag(hotspot.unlockFlag, true);
       setGameFlags(next as Record<string, boolean>);
+    }
+
+    if (hotspot.unlockItemSlug) {
+      markItemDiscovered(hotspot.unlockItemSlug);
+      setEventFeedback(`${labels.itemUnlocked} ${getHotspotActionLabel(hotspot)}`);
+      window.dispatchEvent(new Event("storage"));
     }
 
     if (hotspot.targetSlug) {
@@ -367,7 +440,7 @@ export default function LocationDetail({ location, lang = "en" }: Props) {
                         onClick={() => handleHotspotClick(hotspot)}
                         aria-label={getHotspotActionLabel(hotspot)}
                       >
-                        <span className="relative block h-3 w-3 rounded-full bg-[oklch(0.72_0.08_75)] shadow-[0_0_8px_oklch(0.72_0.08_75/95%)] animate-pulse" />
+                        <span className="relative block h-3 w-3 rounded-full bg-[oklch(0.72_0.08_75)] [filter:drop-shadow(0_-3px_6px_oklch(0.72_0.08_75/60%))] animate-pulse" />
                         <span className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[oklch(0.72_0.08_75/55%)] opacity-55" />
 
                         <span
@@ -388,7 +461,7 @@ export default function LocationDetail({ location, lang = "en" }: Props) {
                       <div
                         key={`${hotspot.id}-silhouette`}
                         className={cn(
-                          "pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-lg border border-[oklch(0.72_0.08_75/55%)] bg-[oklch(0.72_0.08_75/6%)] transition-opacity duration-200",
+                          "pointer-events-none absolute -translate-x-1/2 -translate-y-[54%] rounded-lg border border-[oklch(0.72_0.08_75/55%)] bg-[oklch(0.72_0.08_75/6%)] transition-opacity duration-200",
                           isHovered ? "opacity-100" : "opacity-0"
                         )}
                         style={{
@@ -396,7 +469,7 @@ export default function LocationDetail({ location, lang = "en" }: Props) {
                           top: `${hotspot.y}%`,
                           width: `${hotspot.width}%`,
                           height: `${hotspot.height}%`,
-                          boxShadow: "0 0 36px oklch(0 0 0 / 0.9)",
+                          filter: "drop-shadow(0 -12px 12px oklch(0.72 0.08 75 / 0.18)) drop-shadow(0 -3px 5px oklch(0 0 0 / 0.45))",
                         }}
                       />
                     );

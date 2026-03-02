@@ -1,6 +1,7 @@
-import type { Beast } from "@/types/game";
+import type { Beast, Item, Objeto } from "@/types/game";
 
 export const DISCOVERED_CHARACTER_SLUGS_STORAGE_KEY = "steel_sirens_discovered_character_slugs";
+export const DISCOVERED_ITEM_SLUGS_STORAGE_KEY = "steel_sirens_discovered_item_slugs";
 export const LOCATION_SECRET_PROGRESS_STORAGE_KEY = "steel_sirens_location_secret_progress";
 export const GAME_FLAGS_STORAGE_KEY = "steel_sirens_game_flags";
 
@@ -44,6 +45,63 @@ export function markCharacterDiscovered(slug?: string | null): string[] {
   const updated = Array.from(current);
   window.localStorage.setItem(DISCOVERED_CHARACTER_SLUGS_STORAGE_KEY, JSON.stringify(updated));
   return updated;
+}
+
+type ItemDiscoveryShape = Pick<Item, "slug" | "categoryId" | "subcategoryId" | "rarity"> &
+  Partial<Pick<Objeto, "categoria_id" | "subcategoria_id" | "rareza">>;
+
+export function getDiscoveredItemSlugs(): string[] {
+  if (typeof window === "undefined") {
+    return [];
+  }
+
+  try {
+    const raw = window.localStorage.getItem(DISCOVERED_ITEM_SLUGS_STORAGE_KEY);
+    const parsed = raw ? (JSON.parse(raw) as unknown) : [];
+    return Array.isArray(parsed) ? parsed.filter((value): value is string => typeof value === "string") : [];
+  } catch {
+    return [];
+  }
+}
+
+export function markItemDiscovered(slug?: string | null): string[] {
+  if (!slug || typeof window === "undefined") {
+    return getDiscoveredItemSlugs();
+  }
+
+  const current = new Set(getDiscoveredItemSlugs());
+  current.add(slug);
+  const updated = Array.from(current);
+  window.localStorage.setItem(DISCOVERED_ITEM_SLUGS_STORAGE_KEY, JSON.stringify(updated));
+  return updated;
+}
+
+export function isItemHiddenUntilDiscovered(item: ItemDiscoveryShape): boolean {
+  const categoryId = item.categoryId ?? item.categoria_id ?? "";
+  const subcategoryId = item.subcategoryId ?? item.subcategoria_id ?? "";
+  const rarity = (item.rarity ?? item.rareza ?? "").toLowerCase();
+
+  if (categoryId === "key_items") {
+    return true;
+  }
+
+  if (subcategoryId === "quest_relics" || subcategoryId === "runes") {
+    return true;
+  }
+
+  return rarity === "epic" || rarity === "legendary";
+}
+
+export function isItemDiscoveredForList(item: ItemDiscoveryShape, discoveredItemSlugs: string[]): boolean {
+  if (!isItemHiddenUntilDiscovered(item)) {
+    return true;
+  }
+
+  if (!item.slug) {
+    return false;
+  }
+
+  return new Set(discoveredItemSlugs).has(item.slug);
 }
 
 type LocationSecretProgress = Record<string, number>;

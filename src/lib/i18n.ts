@@ -2,10 +2,94 @@ export const SUPPORTED_LANGUAGES = ["en", "es", "ja"] as const;
 
 export type Language = (typeof SUPPORTED_LANGUAGES)[number];
 
-export function resolveLanguage(value?: string | null): Language {
-  if (value && SUPPORTED_LANGUAGES.includes(value as Language)) {
-    return value as Language;
+const SPANISH_SPEAKING_COUNTRIES = new Set([
+  "AR",
+  "BO",
+  "CL",
+  "CO",
+  "CR",
+  "CU",
+  "DO",
+  "EC",
+  "SV",
+  "GQ",
+  "GT",
+  "HN",
+  "MX",
+  "NI",
+  "PA",
+  "PY",
+  "PE",
+  "PR",
+  "ES",
+  "UY",
+  "VE",
+]);
+
+function normalizeLanguageTag(value?: string | null): string {
+  return (value ?? "").trim().toLowerCase();
+}
+
+function languageFromTag(value?: string | null): Language | null {
+  const normalized = normalizeLanguageTag(value);
+  if (!normalized) {
+    return null;
   }
+
+  if (normalized === "es" || normalized.startsWith("es-")) {
+    return "es";
+  }
+  if (normalized === "ja" || normalized.startsWith("ja-")) {
+    return "ja";
+  }
+  if (normalized === "en" || normalized.startsWith("en-")) {
+    return "en";
+  }
+
+  return null;
+}
+
+export function resolveLanguage(value?: string | null): Language {
+  const matched = languageFromTag(value);
+  if (matched) {
+    return matched;
+  }
+  return "en";
+}
+
+export function detectBestLanguage(params: {
+  userLanguage?: string | null;
+  acceptLanguage?: string | null;
+  countryCode?: string | null;
+}): Language {
+  const { userLanguage, acceptLanguage, countryCode } = params;
+
+  const userSelected = languageFromTag(userLanguage);
+  if (userSelected) {
+    return userSelected;
+  }
+
+  const accepted = normalizeLanguageTag(acceptLanguage);
+  if (accepted) {
+    const acceptedItems = accepted.split(",").map((item) => item.trim());
+    for (const item of acceptedItems) {
+      const tag = item.split(";")[0]?.trim();
+      const acceptedLanguage = languageFromTag(tag);
+      if (acceptedLanguage === "es" || acceptedLanguage === "ja") {
+        return acceptedLanguage;
+      }
+    }
+  }
+
+  const normalizedCountry = (countryCode ?? "").trim().toUpperCase();
+  if (normalizedCountry === "JP") {
+    return "ja";
+  }
+
+  if (SPANISH_SPEAKING_COUNTRIES.has(normalizedCountry)) {
+    return "es";
+  }
+
   return "en";
 }
 
