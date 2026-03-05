@@ -419,6 +419,7 @@ const POPUP_HOTSPOTS_BY_NODE_ID: Record<string, PopupHotspot[]> = {
       actionEs: "Hablar con acólito en la puerta",
       actionEn: "Speak with gate acolyte",
       actionJa: "門の侍祭に話しかける",
+      sceneImageSrc: "/images/maps/santa-sede/acolyte-gate.png",
       uniqueEventId: "event_holy_see_gate_acolyte",
       eventTextEs: "El acólito susurra que en la muralla exterior se oyen campanas bajo piedra, aunque nadie toca los bronces del templo.",
       eventTextEn: "The acolyte whispers that bells ring beneath the outer wall, though no one touches the temple bronzes.",
@@ -433,6 +434,7 @@ const POPUP_HOTSPOTS_BY_NODE_ID: Record<string, PopupHotspot[]> = {
       actionEs: "Hablar con custodio del patio",
       actionEn: "Speak with courtyard warden",
       actionJa: "中庭の番人に話しかける",
+      sceneImageSrc: "/images/maps/santa-sede/veteran-courtyard.png",
       uniqueEventId: "event_holy_see_courtyard_warden",
       eventTextEs: "El custodio confirma que el brocal bajo la Santa Sede fue sellado tras una noche de cánticos sin lengua humana.",
       eventTextEn: "The warden confirms the shaft beneath the Holy See was sealed after a night of chants in no human tongue.",
@@ -446,7 +448,7 @@ const POPUP_HOTSPOTS_BY_NODE_ID: Record<string, PopupHotspot[]> = {
       actionEs: "Explorar la muralla exterior",
       actionEn: "Explore the outer wall",
       actionJa: "外壁を探索する",
-      sceneImageSrc: "/images/maps/elden-ring-placeholder.png",
+      sceneImageSrc: "/images/maps/santa-sede/outer-wall.png",
     },
     {
       id: "holy-see-explore-sunken-road",
@@ -456,7 +458,7 @@ const POPUP_HOTSPOTS_BY_NODE_ID: Record<string, PopupHotspot[]> = {
       actionEs: "Explorar camino hundido al pozo",
       actionEn: "Explore the sunken road to the well",
       actionJa: "井戸へ続く沈んだ道を探索する",
-      sceneImageSrc: "/images/maps/elden-ring-placeholder.png",
+      sceneImageSrc: "/images/maps/santa-sede/sunken-road.png",
     },
     {
       id: "holy-see-event-judge-appointment",
@@ -466,6 +468,7 @@ const POPUP_HOTSPOTS_BY_NODE_ID: Record<string, PopupHotspot[]> = {
       actionEs: "Acercarte en silencio al nombramiento del Juez",
       actionEn: "Approach the Judge's appointment in silence",
       actionJa: "裁き手の任命に静かに近づく",
+      sceneImageSrc: "/images/maps/santa-sede/judge-appointment.png",
       uniqueEventId: "event_holy_see_judge_appointment",
       eventTextEs: "Has presenciado el nombramiento del Juez: la asamblea juró obediencia mientras el sello del pozo permanecía cubierto bajo el altar.",
       eventTextEn: "You witness the Judge's appointment: the assembly swears obedience while the well-seal remains hidden beneath the altar.",
@@ -479,6 +482,7 @@ const POPUP_HOTSPOTS_BY_NODE_ID: Record<string, PopupHotspot[]> = {
       actionEs: "Recoger Acta del Nombramiento",
       actionEn: "Collect Appointment Act",
       actionJa: "任命記録を拾う",
+      sceneImageSrc: "/images/maps/santa-sede/appointment-act.png",
       unlockItemSlug: "judge-appointment-act",
     },
     {
@@ -490,6 +494,7 @@ const POPUP_HOTSPOTS_BY_NODE_ID: Record<string, PopupHotspot[]> = {
       actionEs: "Escuchar sacerdotes cuchichear",
       actionEn: "Listen to whispering priests",
       actionJa: "司祭たちの囁きを聞く",
+      sceneImageSrc: "/images/maps/santa-sede/whisper-priests.png",
       uniqueEventId: "event_holy_see_whispering_priests",
       eventTextEs: "Los sacerdotes mencionan la ciudad bajo el pozo: saber obtenido, hambre desatada y un sello mantenido con miedo.",
       eventTextEn: "The priests mention the city beneath the well: knowledge gained, hunger unleashed, and a seal upheld by fear.",
@@ -503,7 +508,7 @@ const POPUP_HOTSPOTS_BY_NODE_ID: Record<string, PopupHotspot[]> = {
       actionEs: "Entrar al claustro norte",
       actionEn: "Enter the north cloister",
       actionJa: "北回廊に入る",
-      sceneImageSrc: "/images/maps/elden-ring-placeholder.png",
+      sceneImageSrc: "/images/maps/santa-sede/north-cloister.png",
     },
     {
       id: "holy-see-explore-bell-tower-stairs",
@@ -513,7 +518,7 @@ const POPUP_HOTSPOTS_BY_NODE_ID: Record<string, PopupHotspot[]> = {
       actionEs: "Subir escaleras de la torre campanario",
       actionEn: "Climb the bell tower stairs",
       actionJa: "鐘楼の階段を上る",
-      sceneImageSrc: "/images/maps/elden-ring-placeholder.png",
+      sceneImageSrc: "/images/maps/santa-sede/bell-tower-stairs.png",
     },
     {
       id: "holy-see-event-corner-breath",
@@ -523,6 +528,7 @@ const POPUP_HOTSPOTS_BY_NODE_ID: Record<string, PopupHotspot[]> = {
       actionEs: "Notar respiración en un rincón sellado",
       actionEn: "Notice breathing in a sealed corner",
       actionJa: "封鎖された隅で呼吸音に気づく",
+      sceneImageSrc: "/images/maps/santa-sede/corner-breath.png",
       uniqueEventId: "event_holy_see_corner_breath",
       eventTextEs: "El rincón parece latir bajo yeso húmedo, como si algo respirara detrás de la pared.",
       eventTextEn: "The corner seems to pulse beneath damp plaster, as if something breathes behind the wall.",
@@ -536,6 +542,7 @@ const POPUP_HOTSPOTS_BY_NODE_ID: Record<string, PopupHotspot[]> = {
       actionEs: "Examinar cera negra en el altar lateral",
       actionEn: "Inspect black wax at side altar",
       actionJa: "側祭壇の黒い蝋を調べる",
+      sceneImageSrc: "/images/maps/santa-sede/black-wax-altar.png",
       uniqueEventId: "event_holy_see_black_wax",
       eventTextEs: "La cera negra conserva huellas de dedos infantiles, pese a que nadie reconoce niños en servicio aquí.",
       eventTextEn: "The black wax preserves child-sized fingerprints, though no one admits children serve here.",
@@ -549,7 +556,7 @@ const POPUP_HOTSPOTS_BY_NODE_ID: Record<string, PopupHotspot[]> = {
       actionEs: "Forzar paso al osario sellado",
       actionEn: "Force entry to sealed ossuary",
       actionJa: "封鎖された納骨堂へ進む",
-      sceneImageSrc: "/images/maps/elden-ring-placeholder.png",
+      sceneImageSrc: "/images/maps/santa-sede/sealed-ossuary.png",
     },
   ],
   "03-02-1": [
@@ -1737,8 +1744,16 @@ export default function LocationsExplorer({ locations, lang = "en" }: Props) {
   };
 
   const resetView = () => {
+    const travelerWorldX = (travelerPosition.x / 100) * WORLD_WIDTH;
+    const travelerWorldY = (travelerPosition.y / 100) * WORLD_HEIGHT;
+
+    const centeredOffset = {
+      x: viewportSize.width / 2 - travelerWorldX * DEFAULT_SCALE,
+      y: viewportSize.height / 2 - travelerWorldY * DEFAULT_SCALE,
+    };
+
     setScale(DEFAULT_SCALE);
-    setOffset(clampOffset({ x: 0, y: 0 }, DEFAULT_SCALE));
+    setOffset(clampOffset(centeredOffset, DEFAULT_SCALE));
   };
 
   const resetStoryProgress = () => {
