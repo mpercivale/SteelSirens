@@ -1,8 +1,7 @@
 
 "use client";
 
-import { Beast } from "@/types/game";
-import { mockBeasts } from "@/data/mock-data";
+import { Beast, Item } from "@/types/game";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -112,6 +111,8 @@ const createBeastParticleSeed = (beastId: string): BeastParticleSeed => {
 };
 
 interface BestiaryGridProps {
+  beasts: Beast[];
+  items: Item[];
   lang?: Language;
 }
 
@@ -128,7 +129,7 @@ const raceCategoriesBase = [
   { value: "elemental", labelEn: "Elemental", labelEs: "Elemental", labelJa: "元素" },
 ];
 
-export function BestiaryGrid({ lang }: BestiaryGridProps) {
+export function BestiaryGrid({ beasts, items, lang }: BestiaryGridProps) {
   const [selectedRace, setSelectedRace] = useState("all");
   const [hoveredBeastId, setHoveredBeastId] = useState<string | null>(null);
   const [trollPortraitIndex, setTrollPortraitIndex] = useState(0);
@@ -172,36 +173,36 @@ export function BestiaryGrid({ lang }: BestiaryGridProps) {
   }, []);
 
   const filteredBeasts = selectedRace === "all"
-    ? mockBeasts
-    : mockBeasts.filter(beast => beast.race === selectedRace);
+    ? beasts
+    : beasts.filter(beast => beast.race === selectedRace);
 
   const goToPreviousBeast = useCallback(() => {
     setSelectedBeast((current) => {
       if (!current) return current;
-      const currentIndex = mockBeasts.findIndex((beast) => beast.slug === current.slug);
+      const currentIndex = beasts.findIndex((beast) => beast.slug === current.slug);
       if (currentIndex === -1) return current;
-      const previousIndex = currentIndex > 0 ? currentIndex - 1 : mockBeasts.length - 1;
-      return mockBeasts[previousIndex] ?? current;
+      const previousIndex = currentIndex > 0 ? currentIndex - 1 : beasts.length - 1;
+      return beasts[previousIndex] ?? current;
     });
-  }, []);
+  }, [beasts]);
 
   const goToNextBeast = useCallback(() => {
     setSelectedBeast((current) => {
       if (!current) return current;
-      const currentIndex = mockBeasts.findIndex((beast) => beast.slug === current.slug);
+      const currentIndex = beasts.findIndex((beast) => beast.slug === current.slug);
       if (currentIndex === -1) return current;
-      const nextIndex = currentIndex < mockBeasts.length - 1 ? currentIndex + 1 : 0;
-      return mockBeasts[nextIndex] ?? current;
+      const nextIndex = currentIndex < beasts.length - 1 ? currentIndex + 1 : 0;
+      return beasts[nextIndex] ?? current;
     });
-  }, []);
+  }, [beasts]);
 
   const particleSeeds = useMemo(
     () =>
-      mockBeasts.reduce<Record<string, BeastParticleSeed>>((accumulator, beast) => {
+      beasts.reduce<Record<string, BeastParticleSeed>>((accumulator, beast) => {
         accumulator[beast.id] = createBeastParticleSeed(beast.id);
         return accumulator;
       }, {}),
-    []
+    [beasts]
   );
 
   const getRaceColor = (race?: string) => {
@@ -654,6 +655,8 @@ export function BestiaryGrid({ lang }: BestiaryGridProps) {
           {selectedBeast && (
             <BeastDetail
               beast={selectedBeast}
+              allBeasts={beasts}
+              allItems={items}
               lang={finalLang}
               enableRouteNavigation={false}
               showInternalNavigation={true}

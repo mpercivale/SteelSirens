@@ -1,5 +1,5 @@
 
-import { mockPersonajes } from "@/data/mock-data";
+import { mockObjetos, mockPersonajes } from "@/data/mock-data";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/game/Navbar";
 import Footer from "@/components/game/Footer";
@@ -46,7 +46,7 @@ export default async function CharacterPage({ params, searchParams }: Props) {
       <AshParticles />
       <Navbar />
       <main className="relative z-10 pt-16">
-        <CharacterDetail character={character} personaje={personaje} lang={lang} />
+        <CharacterDetail character={character} personaje={personaje} itemsCatalog={mockObjetos} lang={lang} />
       </main>
       <Footer />
     </div>

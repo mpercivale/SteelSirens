@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Character, Personaje } from "@/types/game";
+import { Character, Item, Personaje } from "@/types/game";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -15,7 +15,6 @@ import ModelViewer3D from "./ModelViewer3D";
 import CharacterGlow from "./CharacterGlow";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { mockObjetos } from "@/data/mock-data";
 import RelationsNodeMap from "./RelationsNodeMap";
 import {
   getCharacterCircleContent,
@@ -29,6 +28,7 @@ import {
 interface CharacterDetailProps {
   character: Character;
   personaje: Personaje;
+  itemsCatalog: Item[];
   lang?: Language;
 }
 
@@ -73,7 +73,7 @@ const createSeededRng = (seedText: string) => {
   };
 };
 
-export function CharacterDetail({ character, personaje, lang = "en" }: CharacterDetailProps) {
+export function CharacterDetail({ character, personaje, itemsCatalog, lang = "en" }: CharacterDetailProps) {
   const [is3DMode, setIs3DMode] = useState(false);
   const [displayName, setDisplayName] = useState(character.name);
   const [isLoreExpanded, setIsLoreExpanded] = useState(false);
@@ -476,7 +476,7 @@ export function CharacterDetail({ character, personaje, lang = "en" }: Character
                 className="border-accent/40 text-foreground bg-black/35 font-serif hover:bg-accent/20 transition-colors cursor-pointer"
               >
                 {(() => {
-                  const item = mockObjetos.find((obj) => obj.slug === entry.itemSlug);
+                  const item = itemsCatalog.find((obj) => obj.slug === entry.itemSlug);
                   if (!item) return entry.name;
                   return getItemContent(lang, item.id)?.name ?? item.name;
                 })()}

@@ -7,7 +7,7 @@
     "dev:debug": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start --port 3000",
-    "lint": "next lint"
+    "lint": "eslint src --ext .ts,.tsx"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",

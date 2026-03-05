@@ -1,15 +1,15 @@
-"use client";
-
 import { Navbar } from "@/components/game/Navbar";
 import Footer from "@/components/game/Footer";
 import { BestiaryGrid } from "@/components/game/BestiaryGrid";
+import { mockBeasts, mockItems } from "@/data/mock-data";
 import { getBestiarioCopy, resolveLanguage, type Language } from "@/lib/i18n";
-import { useSearchParams } from "next/navigation";
-import React, { Suspense } from "react";
+interface BestiaryPageProps {
+  searchParams?: Promise<{ lang?: string }>;
+}
 
-function BestiaryContent() {
-  const searchParams = useSearchParams();
-  const lang = resolveLanguage(searchParams.get("lang")) as Language;
+export default async function BestiaryPage({ searchParams }: BestiaryPageProps) {
+  const params = await searchParams;
+  const lang = resolveLanguage(params?.lang) as Language;
   const t = getBestiarioCopy(lang);
 
   const fontClass = lang === "ja" ? "font-noto-serif-jp" : "font-serif";
@@ -34,18 +34,10 @@ function BestiaryContent() {
             "{t.pageDescription}"
           </p>
         </div>
-        <BestiaryGrid lang={lang} />
+        <BestiaryGrid beasts={mockBeasts} items={mockItems} lang={lang} />
       </main>
       <Footer />
     </div>
-  );
-}
-
-export default function BestiaryPage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <BestiaryContent />
-    </Suspense>
   );
 }
 

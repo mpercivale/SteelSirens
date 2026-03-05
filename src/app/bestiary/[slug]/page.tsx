@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/game/Navbar";
 import Footer from "@/components/game/Footer";
 import { BeastDetail } from "@/components/game/BeastDetail";
-import { mockBeasts } from "@/data/mock-data";
+import { mockBeasts, mockItems } from "@/data/mock-data";
 import { notFound } from "next/navigation";
 import { resolveLanguage, type Language } from "@/lib/i18n";
 
@@ -27,7 +27,7 @@ export default async function BeastPage({ params, searchParams }: BeastPageProps
   return (
     <div lang={lang} className="min-h-screen overflow-x-hidden">
       <Navbar />
-      <BeastDetail beast={beast} lang={lang} />
+      <BeastDetail beast={beast} allBeasts={mockBeasts} allItems={mockItems} lang={lang} />
       <Footer lang={lang} />
     </div>
   );

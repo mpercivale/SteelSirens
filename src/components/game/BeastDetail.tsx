@@ -2,7 +2,6 @@
 "use client";
 
 import { Beast, BeastVariant, Item } from "@/types/game";
-import { mockBeasts, mockItems } from "@/data/mock-data";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
@@ -26,6 +25,8 @@ import { useRouter } from "next/navigation";
 
 interface BeastDetailProps {
   beast: Beast;
+  allBeasts: Beast[];
+  allItems: Item[];
   lang?: Language;
   enableRouteNavigation?: boolean;
   showInternalNavigation?: boolean;
@@ -81,6 +82,8 @@ const itemRarityColors: Record<string, string> = {
 
 export function BeastDetail({
   beast,
+  allBeasts,
+  allItems,
   lang = "en",
   enableRouteNavigation = true,
   showInternalNavigation = true,
@@ -139,9 +142,10 @@ export function BeastDetail({
   const habitatImages = activeBeast.habitatImages ?? [];
 
   // Find current beast index
-  const currentIndex = mockBeasts.findIndex((b) => b.slug === beast.slug);
-  const previousBeast = currentIndex > 0 ? mockBeasts[currentIndex - 1] : mockBeasts[mockBeasts.length - 1];
-  const nextBeast = currentIndex < mockBeasts.length - 1 ? mockBeasts[currentIndex + 1] : mockBeasts[0];
+  const beastList = allBeasts.length > 0 ? allBeasts : [beast];
+  const currentIndex = beastList.findIndex((b) => b.slug === beast.slug);
+  const previousBeast = currentIndex > 0 ? beastList[currentIndex - 1] : beastList[beastList.length - 1];
+  const nextBeast = currentIndex < beastList.length - 1 ? beastList[currentIndex + 1] : beastList[0];
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -161,9 +165,9 @@ export function BeastDetail({
         return;
       }
 
-      if (e.key === "ArrowLeft") {
+      if (e.key === "ArrowLeft" && previousBeast) {
         router.push(`/bestiary/${previousBeast.slug}`);
-      } else if (e.key === "ArrowRight") {
+      } else if (e.key === "ArrowRight" && nextBeast) {
         router.push(`/bestiary/${nextBeast.slug}`);
       }
     };
@@ -198,7 +202,7 @@ export function BeastDetail({
   };
 
   const findItem = (itemName: string): Item | undefined => {
-    return mockItems.find(
+    return allItems.find(
       (item) => item.name.toLowerCase() === itemName.toLowerCase()
     );
   };
