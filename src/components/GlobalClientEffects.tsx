@@ -14,6 +14,7 @@ const AMBIENT_TRACKS = [
   "/sounds/ambient/Melancolico.mp3",
   "/sounds/ambient/Tension retorcida_01}.mp3",
   "/sounds/ambient/Victoria emotive.mp3",
+  "/sounds/ambient/Inevitable Tide.mp3",
 ].map((track) => encodeURI(track));
 
 export default function GlobalClientEffects() {
